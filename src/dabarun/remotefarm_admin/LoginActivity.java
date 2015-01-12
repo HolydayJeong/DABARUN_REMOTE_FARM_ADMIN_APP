@@ -64,7 +64,7 @@ public class LoginActivity extends Activity {
         pw_Edt = (EditText)findViewById(R.id.pw_Edt);
         tv = (TextView)findViewById(R.id.tv);
          
-      //ID, PW ? •ë³´ë?? ?‚¬?š©?•˜ê¸? ?œ„?•œ SPFë¥? GET?•œ?‹¤
+      //ID, PW ?ï¿½ï¿½ë³´ï¿½?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ SPFï¿½? GET?ï¿½ï¿½?ï¿½ï¿½
       		SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
       		//session key value
       
@@ -153,14 +153,14 @@ public class LoginActivity extends Activity {
   		        			SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
   							SharedPreferences.Editor spfEdit = spf.edit();
   							
-  							//spf ? •ë³? ì§??š°ê¸?
+  							//spf ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½ï¿½?
   							spfEdit.putString(GlobalVariable.SPF_ID, id_Edt.getText().toString());
   							spfEdit.commit();
   		        			Log.d("debug", "before startActivity");
   		        	        
   		        			
   		        			//Execute activity below
-  		        			Intent intent = new Intent(LoginActivity.this, MainActivity.class);                                                                                                                                             
+  		        			Intent intent = new Intent(LoginActivity.this, ToDoListActivity.class);                                                                                                                                             
   							startActivity(intent);		        			 
   		        		}	        		
   		        		
@@ -182,7 +182,7 @@ public class LoginActivity extends Activity {
   	/* we do not use gcm in this code*/
   	
   	/*public void registerGCM(String id 14.05.10ï¿½ï¿½ï¿½ï¿½(È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½Ç°ï¿½)){
-		GCMRegistrar.checkDevice(this);		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ù±ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ßµï¿? ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿? ï¿½Èµï¿½.
+		GCMRegistrar.checkDevice(this);		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ù±ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ßµï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½? ï¿½Èµï¿½.
 		GCMRegistrar.checkManifest(this);
 		final String regId = GCMRegistrar.getRegistrationId(this);
 		Log.d("test", "regId : "+regId);
@@ -194,7 +194,7 @@ public class LoginActivity extends Activity {
 			Log.d("TAG", "Already registered");
 		}
 		HttpClient client = new DefaultHttpClient();
-		try{ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿? ï¿½ï¿½.
+		try{ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½? ï¿½ï¿½.
 	
 			String result1;
 			Log.d("test","MainActivity id : "+id);
