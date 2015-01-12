@@ -3,10 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="dabarun.remotefarm_admin.MainActivity" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+    <item android:id="@+id/todolist"
+          android:title="ToDoList"  /> 
+  
+    <item android:id="@+id/farm_gridview"
+          android:title="News" /> 
+  
+    <item android:id="@+id/message_menu"
+          android:title="Search" /> 
+ 
 
 </menu>
