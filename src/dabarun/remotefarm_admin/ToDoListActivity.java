@@ -29,20 +29,17 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
-
 public class ToDoListActivity extends Activity {
-	
+
 	ListView list;
-	
+
 	TextView seq;
 	TextView cropSeq;
 	TextView request;
 	TextView id;
 	TextView modNum;
 	TextView name;
-	
+
 	Button Btngetdata;
 	Button BtPlaygame;
 	ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
@@ -58,16 +55,13 @@ public class ToDoListActivity extends Activity {
 	private static boolean isFirst = true;
 
 	JSONArray android = null;
-	
-	
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.todolist_main);
-		//setContentView(new TableMainLayout(this));
+		// setContentView(new TableMainLayout(this));
 		oslist = new ArrayList<HashMap<String, String>>();
 		// Btngetdata = (Button) findViewById(R.id.getdata);
 		/*
@@ -76,34 +70,60 @@ public class ToDoListActivity extends Activity {
 		 * @Override public void onClick(View view) { new JSONParse().execute();
 		 * } });
 		 */
-		//new JSONParse().execute();
-//		BtPlaygame = (Button) findViewById(R.id.playgame);
-//		BtPlaygame.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View view) {
-//				Intent intent = new Intent(RankMainActivity.this, MainActivity.class);                                                                                                                                             
-//				startActivity(intent);
-//			}
-//		});
+		// new JSONParse().execute();
+		// BtPlaygame = (Button) findViewById(R.id.playgame);
+		// BtPlaygame.setOnClickListener(new View.OnClickListener() {
+		// @Override
+		// public void onClick(View view) {
+		// Intent intent = new Intent(RankMainActivity.this,
+		// MainActivity.class);
+		// startActivity(intent);
+		// }
+		// });
 
 	}
-	@Override 
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar 
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main, menu);
-	    return super.onCreateOptionsMenu(menu);
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.action_todolist://todolist 클릭 - 아무것도 안해야됨.
+			return true;
+		case R.id.action_farm_gridview: //Farm grid view 로 진입
+			ExecuteGridActivity();
+			return true;
+		case R.id.action_message_menu: //Message menu로 진입
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+
+		}
+
+	}
+	private void ExecuteGridActivity(){ // action menu에서 아이템 선택시 실행되는 펑션.
+		Intent i = new Intent(ToDoListActivity.this,GridViewActivity.class);
+		startActivity(i);
+	}
+
 	@Override
 	protected void onResume() {
 		oslist = new ArrayList<HashMap<String, String>>();
 		super.onResume();
 		parsingCheck();
 	};
-	private void parsingCheck(){
-			new JSONParse().execute();
+
+	private void parsingCheck() {
+		new JSONParse().execute();
 	}
+
 	private class JSONParse extends AsyncTask<String, String, JSONObject> {
 		private ProgressDialog pDialog;
 
@@ -150,8 +170,8 @@ public class ToDoListActivity extends Activity {
 					list = (ListView) findViewById(R.id.todolist);
 					ListAdapter adapter = new SimpleAdapter(
 							ToDoListActivity.this, oslist, R.layout.list_v,
-							new String[] { ID, NAME }, new int[] {
-									R.id.id, R.id.name });
+							new String[] { ID, NAME }, new int[] { R.id.id,
+									R.id.name });
 					list.setAdapter(adapter);
 					list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
@@ -170,6 +190,5 @@ public class ToDoListActivity extends Activity {
 			}
 		}
 	}
-	
 
 }
