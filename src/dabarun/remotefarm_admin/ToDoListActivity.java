@@ -17,6 +17,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.Intent;
 
 
 
@@ -36,11 +37,9 @@ public class ToDoListActivity extends Activity {
 	
 	ListView list;
 	
-	TextView seq;
-	TextView cropSeq;
+	TextView pos;
+	TextView crop;
 	TextView request;
-	TextView id;
-	TextView modNum;
 	TextView name;
 	
 	Button Btngetdata;
@@ -50,42 +49,28 @@ public class ToDoListActivity extends Activity {
 	// JSON Node Names
 	private static final String RESULT = "result";
 	private static final String SEQ = "seq";
-	private static final String CROPSEQ = "cropSeq";
-	private static final String REQUEST = "request";
-	private static final String ID = "id";
+	private static final String POS = "pos";
+	private static final String FARMNUM = "farmNum";
 	private static final String MODNUM = "modNum";
+	private static final String CROP = "type";
+	private static final String REQUEST = "request";
 	private static final String NAME = "name";
 	private static boolean isFirst = true;
 
 	JSONArray android = null;
 	
-	
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.todolist_main);
-		//setContentView(new TableMainLayout(this));
+		setContentView(R.layout.activity_to_do_list);
 		oslist = new ArrayList<HashMap<String, String>>();
-		// Btngetdata = (Button) findViewById(R.id.getdata);
-		/*
-		 * Btngetdata.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * @Override public void onClick(View view) { new JSONParse().execute();
-		 * } });
-		 */
-		//new JSONParse().execute();
-//		BtPlaygame = (Button) findViewById(R.id.playgame);
-//		BtPlaygame.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View view) {
-//				Intent intent = new Intent(RankMainActivity.this, MainActivity.class);                                                                                                                                             
-//				startActivity(intent);
-//			}
-//		});
-
+		
+		pos = (TextView) findViewById(R.id.list_pos);
+		crop = (TextView) findViewById(R.id.list_crop);
+		request = (TextView) findViewById(R.id.list_request);			
+		name = (TextView) findViewById(R.id.list_name);
+		
 	}
 	@Override 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,8 +82,9 @@ public class ToDoListActivity extends Activity {
 	
 	@Override
 	protected void onResume() {
-		oslist = new ArrayList<HashMap<String, String>>();
 		super.onResume();
+		//oslist = new ArrayList<HashMap<String, String>>();
+		oslist.clear();
 		parsingCheck();
 	};
 	private void parsingCheck(){
@@ -110,8 +96,7 @@ public class ToDoListActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			id = (TextView) findViewById(R.id.id);
-			name = (TextView) findViewById(R.id.name);
+			Log.d("test", "onPreExecute()");
 			pDialog = new ProgressDialog(ToDoListActivity.this);
 			pDialog.setMessage("Getting Data ...");
 			pDialog.setIndeterminate(false);
@@ -121,9 +106,11 @@ public class ToDoListActivity extends Activity {
 
 		@Override
 		protected JSONObject doInBackground(String... args) {
+			Log.d("test", "parse start");
 			JSONParser jParser = new JSONParser();
 			// Getting JSON from URL
 			JSONObject json = jParser.getJSONFromUrl(GlobalVariable.getDoList);
+			Log.d("test", "parse end");
 			return json;
 		}
 
@@ -137,31 +124,34 @@ public class ToDoListActivity extends Activity {
 				for (int i = 0; i < android.length(); i++) {
 					JSONObject c = android.getJSONObject(i);
 					// Storing JSON item in a Variable
-					String id = c.getString(ID);
-					String name = c.getString(NAME);
 					String seq = c.getString(SEQ);
-					String cropSeq = c.getString(CROPSEQ);
+					String pos = c.getString("farmNum")+"-"+c.getString("modNum");
+					String type = getCropStr(c.getString(CROP));
+					String request = getRequestStr(c.getString(REQUEST));
+					String name = c.getString(NAME);
 					// Adding value HashMap key => value
 					HashMap<String, String> map = new HashMap<String, String>();
-					map.put(ID, id);
+					map.put(SEQ, seq);
+					map.put(POS, pos);
+					map.put(CROP, type);
+					map.put(REQUEST, request);
 					map.put(NAME, name);
 					// map.put(TAG_API, api);
 					oslist.add(map);
 					list = (ListView) findViewById(R.id.todolist);
 					ListAdapter adapter = new SimpleAdapter(
 							ToDoListActivity.this, oslist, R.layout.list_v,
-							new String[] { ID, NAME }, new int[] {
-									R.id.id, R.id.name });
+							new String[] { POS, CROP, REQUEST, NAME }, new int[] {
+									R.id.list_pos, R.id.list_crop, R.id.list_request, R.id.list_name });
 					list.setAdapter(adapter);
+					Log.d("test", "list setting end");
 					list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
 						public void onItemClick(AdapterView<?> parent,
 								View view, int position, long id) {
-							Toast.makeText(
-									ToDoListActivity.this,
-									"You Clicked at "
-											+ oslist.get(+position).get("name"),
-									Toast.LENGTH_SHORT).show();
+							Intent intent = new Intent(ToDoListActivity.this, ToDoDetailActivity.class);
+							intent.putExtra("seq", oslist.get(+position).get(SEQ));
+							startActivity(intent);
 						}
 					});
 				}
@@ -171,5 +161,34 @@ public class ToDoListActivity extends Activity {
 		}
 	}
 	
-
+	public static String getRequestStr(String request){
+		switch(Integer.parseInt(request))
+		{
+		case 1:
+			request = "물을 주세요";
+			break;
+		case 2:
+			request = "비료를 주세요";
+			break;
+		case 3:
+			request = "잡초를 뽑아주세요";
+			break;
+		}
+		return request;
+	}
+	
+	public static String getCropStr(String crop)
+	{
+		switch(Integer.parseInt(crop))
+		{
+		case 1:
+			crop = "딸기";
+			break;
+		case 2:
+			crop = "토마토";
+			break;
+		}
+		return crop;
+		
+	}
 }

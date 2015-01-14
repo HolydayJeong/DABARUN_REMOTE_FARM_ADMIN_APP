@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/* 나중에 해야할 것 : HttpPost 통신 리팩토링 하기. */
+
 
 public class MainActivity extends Activity {
 
