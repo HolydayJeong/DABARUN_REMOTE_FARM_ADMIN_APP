@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/Grid1_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:freezesText="false"
+                android:minHeight="200dp"
+                android:minWidth="160dp"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/Grid1_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:minWidth="160dp"
+                android:text="Button" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Grid1_tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/Grid1_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:minWidth="160dp"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/Grid1_button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:minWidth="160dp"
+                android:text="Button" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
