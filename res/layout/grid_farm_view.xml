@@ -19,7 +19,8 @@
                 android:freezesText="false"
                 android:minHeight="200dp"
                 android:minWidth="160dp"
-                android:text="Button" />
+                android:onClick="onClickButton"
+                android:text="@string/null_text" />
 
             <Button
                 android:id="@+id/Grid1_button2"
@@ -27,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="200dp"
                 android:minWidth="160dp"
-                android:text="Button" />
+                android:onClick="onClickButton"
+                android:text="@string/null_text" />
         </TableRow>
 
         <TableRow
@@ -41,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="200dp"
                 android:minWidth="160dp"
-                android:text="Button" />
+                android:onClick="onClickButton"
+                android:text="@string/null_text" />
 
             <Button
                 android:id="@+id/Grid1_button4"
@@ -49,7 +52,32 @@
                 android:layout_height="wrap_content"
                 android:minHeight="200dp"
                 android:minWidth="160dp"
-                android:text="Button" />
+                android:onClick="onClickButton"
+                android:text="@string/null_text" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Grid1_tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <Button
+                android:id="@+id/Grid1_button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:minWidth="160dp"
+                android:text="@string/null_text" 
+                android:onClick="onClickButton"/>
+
+            <Button
+                android:id="@+id/Grid1_button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:minWidth="160dp"
+                android:text="@string/null_text" 
+                android:onClick="onClickButton"/>
+            
         </TableRow>
     </TableLayout>
 

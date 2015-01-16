@@ -4,5 +4,10 @@
     <string name="app_name">RemoteFarm_admin</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="button_text_water">물주기</string>
+    <string name="button_text_fertil">거름주기</string>
+    <string name="button_text_select">작물선택</string>
+    <string name="button_text_levelup">레벨업</string>
+    <string name="null_text">없음</string>
 
 </resources>

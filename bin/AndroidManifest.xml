@@ -38,6 +38,14 @@
             android:name=".GridViewActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".GridViewActivity2"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".GridViewActivity3"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
