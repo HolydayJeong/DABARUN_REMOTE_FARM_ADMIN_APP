@@ -5,7 +5,6 @@ import dabarun.remotefarm_admin.JSONParser;
 import Variable.GlobalVariable;
 import Variable.TableMainLayout;
 import android.support.v7.appcompat.*;
-<<<<<<< HEAD
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,20 +23,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
-=======
-
-
-
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 
 public class ToDoListActivity extends Activity {
 
 	ListView list;
-
-<<<<<<< HEAD
-	TextView pos;
-	TextView crop;
-=======
 
 	TextView seq;
 	TextView cropSeq;
@@ -46,7 +35,6 @@ public class ToDoListActivity extends Activity {
 	TextView pos;
 	TextView crop;
 
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 	TextView request;
 	TextView name;
 
