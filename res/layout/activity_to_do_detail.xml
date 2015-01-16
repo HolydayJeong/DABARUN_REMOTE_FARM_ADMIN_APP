@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="dabarun.remotefarm_admin.ToDoDetailActivity" >
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="#ffffff" >
+
+
+        <ImageView
+            android:id="@+id/dodetail_landImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/dodetail_poscrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/dodetail_landImage"
+            android:text="@string/dodetail_poscrop"
+            android:textSize="13pt" />
+
+
+        <TextView
+            android:id="@+id/dodetail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/dodetail_poscrop"
+            android:layout_marginRight="15dp"
+	        android:layout_alignParentRight="true"
+            android:text="@string/dodetail_name"
+            android:textSize="10pt" />
+
+
+        <TextView
+            android:id="@+id/dodetail_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dodetail_poscrop"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/dodetail_landImage"
+            android:text="@string/hello_world"
+            android:textSize="11pt" />
+
+
+        <TextView
+            android:id="@+id/dodetail_startdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dodetail_landImage"
+            android:layout_marginTop="20dp"
+            android:layout_alignLeft="@id/dodetail_landImage"
+            android:paddingBottom="15dp"
+            android:text="@string/hello_world"
+            android:textSize="10pt" />
+		<RelativeLayout
+		    android:layout_width = "wrap_content"
+		    android:layout_height = "wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_alignBottom="@+id/dodetail_startdate"
+		    >
+	        <TextView
+	            android:id="@+id/dodetail_level"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="20dp"
+	            android:layout_alignParentRight="true"
+	            android:text="Level"
+	            android:textSize="10pt" />
+	
+	        <TextView
+	            android:id="@+id/dodetail_levelnum"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignRight="@+id/dodetail_level"
+	            android:layout_marginRight="15dp"
+	            android:layout_below="@+id/dodetail_level"
+	            android:paddingBottom="15dp"
+	            android:text="1"
+	            android:textSize="12pt" />
+		</RelativeLayout>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/dodetail_btnconfirm"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/relativeLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/dodetail_btnconfirm" />
+    <Button
+        android:id="@+id/dodetail_btncancel"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/dodetail_btnconfirm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/dodetail_btncancel" />
+
+
+</RelativeLayout>

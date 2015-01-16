@@ -174,8 +174,7 @@ public class GridViewActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			id = (TextView) findViewById(R.id.id);
-			name = (TextView) findViewById(R.id.name);
+			
 			pDialog = new ProgressDialog(GridViewActivity.this);
 			pDialog.setMessage("Getting Data ...");
 			pDialog.setIndeterminate(false);

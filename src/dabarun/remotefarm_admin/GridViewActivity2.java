@@ -173,7 +173,6 @@ public class GridViewActivity2 extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			id = (TextView) findViewById(R.id.id);
 			//name = (TextView) findViewById(R.id.name);
 			pDialog = new ProgressDialog(GridViewActivity2.this);
 			pDialog.setMessage("Getting Data ...");
@@ -209,7 +208,7 @@ public class GridViewActivity2 extends Activity {
 					//String cropSeq = c.getString(CROPSEQ);
 					// JSON에서 부터 받아온 String을 가지고 이제 button들에 setText하면 되겠지?
 					
-					gridButton.get(modNum-1).setText(modNum+". "+type+"\n Level : "+level);
+					gridButton.get(modNum-1).setText(modNum+". "+GlobalVariable.getCropStr(type)+"\n Level : "+level);
 					
 					
 					 //여기에서 type 가지고 setText할 거임.
