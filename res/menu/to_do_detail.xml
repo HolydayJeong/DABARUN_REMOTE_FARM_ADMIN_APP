@@ -3,12 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="dabarun.remotefarm_admin.ToDoDetailActivity" >
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 </menu>

@@ -12,8 +12,12 @@
         android:gravity="center"
         android:text="@string/dolist_position"
         android:textSize="12pt" />
+<<<<<<< HEAD
  
  
+=======
+
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
    	<TextView
    	    android:id="@+id/dolist_crop"
    	    android:layout_toRightOf="@id/dolist_pos"
@@ -51,9 +55,15 @@
    	    android:dividerHeight="1dip"
    	    android:divider="#dddddd"
    	    android:gravity="center" >
+<<<<<<< HEAD
  
  
     </ListView>
  
  
+=======
+
+    </ListView>
+
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 </RelativeLayout>
