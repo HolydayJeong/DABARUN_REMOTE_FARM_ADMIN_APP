@@ -66,9 +66,9 @@ public class GridViewActivity2 extends Activity {
 		
 		
 		buttonAddToArray();
-		for(int i = 0 ; i < parsedInfo.size();i++){
+		/*for(int i = 0 ; i < parsedInfo.size();i++){
 			setButtonText(parsedInfo,i);
-		}
+		}*/
 
 	}
 	
@@ -211,27 +211,27 @@ public class GridViewActivity2 extends Activity {
 					
 					gridButton.get(modNum-1).setText(modNum+". "+type+"\n Level : "+level);
 					
-					/*
+					
 					 //여기에서 type 가지고 setText할 거임.
 					 
 					parsedInfo.put(GlobalVariable.SEQ, seq);
 					parsedInfo.put(GlobalVariable.TYPE, type);
 					parsedInfo.put(GlobalVariable.STARTDATE,startDate);
-					parsedInfo.put(GlobalVariable.MODNUM,modNum);
+					parsedInfo.put(GlobalVariable.MODNUM,c.getString(GlobalVariable.MODNUM));
 					parsedInfo.put(GlobalVariable.LEVEL,level);
-					*/
+					
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	private void setButtonText(HashMap<String,String> h,int i){
+	/*private void setButtonText(HashMap<String,String> h,int i){
 		gridButton.get(i).setText(
-				h.get("seq")+" "+
-		h.get(GlobalVariable.STARTDATE)+" "+
+				h.get(GlobalVariable.MODNUM)+" "+
+		h.get(GlobalVariable.TYPE)+" \n"+
 		h.get(GlobalVariable.LEVEL));
-	}
+	}*/
 	// ////////////JSONParse 관련 1 끝
 
 }
