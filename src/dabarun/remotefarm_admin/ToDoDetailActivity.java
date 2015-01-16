@@ -1,21 +1,10 @@
 
-<<<<<<< HEAD
-
 package dabarun.remotefarm_admin;
 
-
-=======
-package dabarun.remotefarm_admin;
-
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -29,10 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;
 import android.app.ProgressDialog;
@@ -52,10 +37,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 public class ToDoDetailActivity extends ActionBarActivity {
 	ImageView image;
 	
@@ -69,10 +50,6 @@ public class ToDoDetailActivity extends ActionBarActivity {
 	Button Cancel;
 	
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
     HttpResponse response;
     HttpClient httpclient;
     List<NameValuePair> nameValuePairs;
@@ -114,10 +91,6 @@ public class ToDoDetailActivity extends ActionBarActivity {
 		
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -255,8 +228,3 @@ public class ToDoDetailActivity extends ActionBarActivity {
   	
 }
 	
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79

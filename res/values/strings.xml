@@ -4,25 +4,13 @@
     <string name="app_name">RemoteFarm_admin</string>
     <string name="hello_world">로딩중입니다</string>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
-    <string name="dolist_position">밭-구획</string>
-    <string name="dolist_request">요청</string>
-    <string name="dolist_name">사용자</string>
-    <string name="dolist_crop">작물</string>
-    <string name="title_activity_to_do_detail">ToDoDetailActivity</string>
-    <string name="dodetail_poscrop">1-2 배추</string>
-    <string name="dodetail_name">홍길동</string>
-    <string name="dodetail_btnconfirm">물을 주었습니다!</string>
-    <string name="dodetail_btncancel">물을 줄 때가 아닙니다</string>
-=======
-<<<<<<< HEAD
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
     <string name="button_text_water">물주기</string>
     <string name="button_text_fertil">거름주기</string>
     <string name="button_text_select">작물선택</string>
     <string name="button_text_levelup">레벨업</string>
     <string name="null_text">없음</string>
-=======
+    
+    
     <string name="dolist_position">밭-구획</string>
     <string name="dolist_request">요청</string>
     <string name="dolist_name">사용자</string>
@@ -32,6 +20,5 @@
     <string name="dodetail_name">홍길동</string>
     <string name="dodetail_btnconfirm">물을 주었습니다!</string>
     <string name="dodetail_btncancel">물을 줄 때가 아닙니다</string>
->>>>>>> master
 
 </resources>

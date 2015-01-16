@@ -1,6 +1,12 @@
 package dabarun.remotefarm_admin;
 
-import dabarun.remotefarm_admin.R;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import dabarun.remotefarm_admin.JSONParser;
 import Variable.GlobalVariable;
 import Variable.TableMainLayout;
@@ -59,13 +65,9 @@ public class ToDoListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-<<<<<<< HEAD
-		setContentView(R.layout.activity_to_do_list);
-=======
 
-		setContentView(R.layout.todolist_main);
-		// setContentView(new TableMainLayout(this));
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
+		setContentView(R.layout.activity_to_do_list);
+		
 		oslist = new ArrayList<HashMap<String, String>>();
 
 		pos = (TextView) findViewById(R.id.list_pos);
@@ -119,11 +121,7 @@ public class ToDoListActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-<<<<<<< HEAD
-		// oslist = new ArrayList<HashMap<String, String>>();
-=======
 		//oslist = new ArrayList<HashMap<String, String>>();
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 		oslist.clear();
 		parsingCheck();
 	};
@@ -165,20 +163,13 @@ public class ToDoListActivity extends Activity {
 				oslist.clear();
 				for (int i = 0; i < android.length(); i++) {
 					JSONObject c = android.getJSONObject(i);
+					
 					// Storing JSON item in a Variable
 					String seq = c.getString(SEQ);
-<<<<<<< HEAD
-					String pos = c.getString("farmNum") + "-"
-							+ c.getString("modNum");
-					String type = GlobalVariable
-							.getCropStr((c.getString(CROP)));
-					String request = GlobalVariable.getRequestStr(c
-							.getString(REQUEST));
-=======
 					String pos = c.getString("farmNum")+"-"+c.getString("modNum");
 					String type = GlobalVariable.getCropStr((c.getString(CROP)));
 					String request = GlobalVariable.getRequestStr(c.getString(REQUEST));
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
+
 					String name = c.getString(NAME);
 					// Adding value HashMap key => value
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -192,34 +183,19 @@ public class ToDoListActivity extends Activity {
 					list = (ListView) findViewById(R.id.todolist);
 					ListAdapter adapter = new SimpleAdapter(
 							ToDoListActivity.this, oslist, R.layout.list_v,
-<<<<<<< HEAD
-							new String[] { POS, CROP, REQUEST, NAME },
-							new int[] { R.id.list_pos, R.id.list_crop,
-									R.id.list_request, R.id.list_name });
-=======
-
-							new String[] { ID, NAME }, new int[] { R.id.id,
-									R.id.name });
-
 							new String[] { POS, CROP, REQUEST, NAME }, new int[] {
 									R.id.list_pos, R.id.list_crop, R.id.list_request, R.id.list_name });
 
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 					list.setAdapter(adapter);
 					Log.d("test", "list setting end");
 					list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
 						public void onItemClick(AdapterView<?> parent,
 								View view, int position, long id) {
-<<<<<<< HEAD
-							Intent intent = new Intent(ToDoListActivity.this,
-									ToDoDetailActivity.class);
-							intent.putExtra("seq",
-									oslist.get(+position).get(SEQ));
-=======
+
 							Intent intent = new Intent(ToDoListActivity.this, ToDoDetailActivity.class);
 							intent.putExtra("seq", oslist.get(+position).get(SEQ));
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
+
 							startActivity(intent);
 						}
 					});

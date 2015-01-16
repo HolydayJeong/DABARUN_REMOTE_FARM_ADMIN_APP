@@ -8,10 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dabarun.remotefarm_admin.ToDoDetailActivity" >
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
@@ -19,10 +15,6 @@
         android:layout_marginTop="30dp"
         android:background="#ffffff" >
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
         <ImageView
             android:id="@+id/dodetail_landImage"
             android:layout_width="100dp"
@@ -32,10 +24,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher" />
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
         <TextView
             android:id="@+id/dodetail_poscrop"
             android:layout_width="wrap_content"
@@ -45,10 +33,6 @@
             android:text="@string/dodetail_poscrop"
             android:textSize="13pt" />
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
         <TextView
             android:id="@+id/dodetail_name"
             android:layout_width="wrap_content"
@@ -59,10 +43,6 @@
             android:text="@string/dodetail_name"
             android:textSize="10pt" />
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
         <TextView
             android:id="@+id/dodetail_request"
             android:layout_width="wrap_content"
@@ -73,10 +53,6 @@
             android:text="@string/hello_world"
             android:textSize="11pt" />
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
         <TextView
             android:id="@+id/dodetail_startdate"
             android:layout_width="wrap_content"
@@ -115,10 +91,6 @@
 		</RelativeLayout>
     </RelativeLayout>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
     <Button
         android:id="@+id/dodetail_btnconfirm"
         android:layout_width="300dp"
@@ -136,9 +108,4 @@
         android:layout_marginTop="20dp"
         android:text="@string/dodetail_btncancel" />
 
-<<<<<<< HEAD
-
 </RelativeLayout>
-=======
-</RelativeLayout>
->>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
