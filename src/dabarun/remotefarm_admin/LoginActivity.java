@@ -33,7 +33,7 @@ import android.widget.TextView;
 //we do not use gcm in this java code.
 /*import com.google.android.gcm.GCMRegistrar;*/
 
-//�α��� ��Ƽ��Ƽ�Դϴ�.
+//占싸깍옙占쏙옙 占쏙옙티占쏙옙티占쌉니댐옙.
 public class LoginActivity extends Activity {
 
 	Button b;
@@ -64,7 +64,7 @@ public class LoginActivity extends Activity {
         pw_Edt = (EditText)findViewById(R.id.pw_Edt);
         tv = (TextView)findViewById(R.id.tv);
          
-      //ID, PW ?��보�?? ?��?��?���? ?��?�� SPF�? GET?��?��
+      //ID, PW ?占쏙옙蹂댐옙?? ?占쏙옙?占쏙옙?占쏙옙占�? ?占쏙옙?占쏙옙 SPF占�? GET?占쏙옙?占쏙옙
       		SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
       		//session key value
       
@@ -124,12 +124,12 @@ public class LoginActivity extends Activity {
   					HttpClient client = new DefaultHttpClient();
   					Log.d("test","ing");				
   	    			try{
-  	    				// 14.4.4 �߰�
+  	    				// 14.4.4 占쌩곤옙
   	    				ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
   	    				nameValuePairs1.add(new BasicNameValuePair("id", id_Edt.getText().toString()));
   	    				nameValuePairs1.add(new BasicNameValuePair("pw", pw_Edt.getText().toString()));
   	    				Log.d("test","i7");
-  	    				// 14.4.4 �߰���
+  	    				// 14.4.4 占쌩곤옙占쏙옙
   	    				
   	    				
   	    				HttpPost httpPost1 = new HttpPost(GlobalVariable.login);			
@@ -139,7 +139,7 @@ public class LoginActivity extends Activity {
   	    				String result1 = client.execute(httpPost1, handler1);
   	    				
   						result1 = result1.trim().toString();
-//  						result1 = "�α���";
+//  						result1 = "占싸깍옙占쏙옙";
   						Log.d("test", "result1:"+result1);
   						
   		        		Log.d("test","check3");
@@ -153,7 +153,7 @@ public class LoginActivity extends Activity {
   		        			SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
   							SharedPreferences.Editor spfEdit = spf.edit();
   							
-  							//spf ?���? �??���?
+  							//spf ?占쏙옙占�? 占�??占쏙옙占�?
   							spfEdit.putString(GlobalVariable.SPF_ID, id_Edt.getText().toString());
   							spfEdit.commit();
   		        			Log.d("debug", "before startActivity");
@@ -173,16 +173,12 @@ public class LoginActivity extends Activity {
   			
   			return -1;
 
-  		}
-  		
-  		//doinbackground ��
-  		
-  		
+  		}  		
   	}
   	/* we do not use gcm in this code*/
   	
-  	/*public void registerGCM(String id 14.05.10����(ȸ�������ص��ǰ�)){
-		GCMRegistrar.checkDevice(this);		// ���� �ٱ� Ŭ������ �־�ߵ�? ������ ����? �ȵ�.
+  	/*public void registerGCM(String id 14.05.10占쏙옙占쏙옙(회占쏙옙占쏙옙占쏙옙占쌔듸옙占실곤옙)){
+		GCMRegistrar.checkDevice(this);		// 占쏙옙占쏙옙 占쌕깍옙 클占쏙옙占쏙옙占쏙옙 占쌍억옙森占�? 占쏙옙占쏙옙占쏙옙 占쏙옙載∽옙占�? 占싫듸옙.
 		GCMRegistrar.checkManifest(this);
 		final String regId = GCMRegistrar.getRegistrationId(this);
 		Log.d("test", "regId : "+regId);
@@ -194,7 +190,7 @@ public class LoginActivity extends Activity {
 			Log.d("TAG", "Already registered");
 		}
 		HttpClient client = new DefaultHttpClient();
-		try{ // ������ ����ϴ�? ��.
+		try{ // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙求占�? 占쏙옙.
 	
 			String result1;
 			Log.d("test","MainActivity id : "+id);
@@ -211,6 +207,6 @@ public class LoginActivity extends Activity {
 			
 			}catch(Exception e){}
 	}*/
-  	//register ��
+  	//register 占쏙옙
   	
 }
