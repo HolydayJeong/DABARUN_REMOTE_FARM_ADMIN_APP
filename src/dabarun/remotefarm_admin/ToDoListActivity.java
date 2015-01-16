@@ -126,8 +126,8 @@ public class ToDoListActivity extends Activity {
 					// Storing JSON item in a Variable
 					String seq = c.getString(SEQ);
 					String pos = c.getString("farmNum")+"-"+c.getString("modNum");
-					String type = getCropStr(c.getString(CROP));
-					String request = getRequestStr(c.getString(REQUEST));
+					String type = GlobalVariable.getCropStr((c.getString(CROP)));
+					String request = GlobalVariable.getRequestStr(c.getString(REQUEST));
 					String name = c.getString(NAME);
 					// Adding value HashMap key => value
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -161,34 +161,4 @@ public class ToDoListActivity extends Activity {
 		}
 	}
 	
-	public static String getRequestStr(String request){
-		switch(Integer.parseInt(request))
-		{
-		case 1:
-			request = "물을 주세요";
-			break;
-		case 2:
-			request = "비료를 주세요";
-			break;
-		case 3:
-			request = "잡초를 뽑아주세요";
-			break;
-		}
-		return request;
-	}
-	
-	public static String getCropStr(String crop)
-	{
-		switch(Integer.parseInt(crop))
-		{
-		case 1:
-			crop = "딸기";
-			break;
-		case 2:
-			crop = "토마토";
-			break;
-		}
-		return crop;
-		
-	}
 }

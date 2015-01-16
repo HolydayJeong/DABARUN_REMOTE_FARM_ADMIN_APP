@@ -24,5 +24,37 @@ public class GlobalVariable {
 	public final static String SPF_SVALUE = "SVALUE"; 
 	public final static String NOTICE_READ = "noticeRead";
 	
+	
+
+	public static String getRequestStr(String request){
+		switch(Integer.parseInt(request))
+		{
+		case 1:
+			request = "물을 주세요";
+			break;
+		case 2:
+			request = "비료를 주세요";
+			break;
+		case 3:
+			request = "잡초를 뽑아주세요";
+			break;
+		}
+		return request;
+	}
+	
+	public static String getCropStr(String crop)
+	{
+		switch(Integer.parseInt(crop))
+		{
+		case 1:
+			crop = "딸기";
+			break;
+		case 2:
+			crop = "토마토";
+			break;
+		}
+		return crop;
+		
+	}
 }
 
