@@ -3,6 +3,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical" >
+
+    <!--
     <TextView
         android:id="@+id/list_pos"
         android:layout_alignParentLeft="true"
@@ -35,4 +37,42 @@
         android:textSize="13pt"
         android:gravity="center"
         />
+<<<<<<< HEAD
+    -->
+
+    <TextView
+        android:id="@+id/list_pos"
+        android:layout_width="90dip"
+        android:layout_height="80dip"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:textSize="13pt" />
+
+    <TextView
+        android:id="@+id/list_crop"
+        android:layout_width="70dip"
+        android:layout_height="80dip"
+        android:layout_toRightOf="@id/list_pos"
+        android:gravity="center"
+        android:textSize="11pt" />
+
+    <TextView
+        android:id="@+id/list_request"
+        android:layout_width="120dip"
+        android:layout_height="80dip"
+        android:layout_toRightOf="@id/list_crop"
+        android:gravity="center"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/list_name"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:layout_toRightOf="@id/list_request"
+        android:gravity="center"
+        android:textSize="13pt" />
+
+</LinearLayout>
+=======
 </RelativeLayout>
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79

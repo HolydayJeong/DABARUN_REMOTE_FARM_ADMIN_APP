@@ -1,12 +1,5 @@
 package dabarun.remotefarm_admin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import dabarun.remotefarm_admin.R;
 import dabarun.remotefarm_admin.JSONParser;
 import Variable.GlobalVariable;
@@ -31,17 +24,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
-
-
 public class ToDoListActivity extends Activity {
-	
+
 	ListView list;
+
+	TextView seq;
+	TextView cropSeq;
+
 	
 	TextView pos;
 	TextView crop;
+
 	TextView request;
 	TextView name;
-	
+
 	Button Btngetdata;
 	Button BtPlaygame;
 	ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
@@ -58,10 +54,25 @@ public class ToDoListActivity extends Activity {
 	private static boolean isFirst = true;
 
 	JSONArray android = null;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+<<<<<<< HEAD
+		setContentView(R.layout.activity_to_do_list);
+=======
+
+		setContentView(R.layout.todolist_main);
+		// setContentView(new TableMainLayout(this));
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
+		oslist = new ArrayList<HashMap<String, String>>();
+
+		pos = (TextView) findViewById(R.id.list_pos);
+		crop = (TextView) findViewById(R.id.list_crop);
+		request = (TextView) findViewById(R.id.list_request);
+		name = (TextView) findViewById(R.id.list_name);
+
 
 		setContentView(R.layout.activity_to_do_list);
 		oslist = new ArrayList<HashMap<String, String>>();
@@ -71,25 +82,56 @@ public class ToDoListActivity extends Activity {
 		request = (TextView) findViewById(R.id.list_request);			
 		name = (TextView) findViewById(R.id.list_name);
 		
+
 	}
-	@Override 
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar 
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main, menu);
-	    return super.onCreateOptionsMenu(menu);
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
-	
+
+	// 엑션 메뉴의 메뉴 클릭시 실행되는 메서드 .
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.action_todolist:// todolist 클릭 - TodoListActivity 실행.
+			
+			return true;
+		case R.id.action_farm_gridview: // GridViewActivity 실행
+			ExecuteGridViewActivity();
+			return true;
+		case R.id.action_message_menu: // Message menu로 진입
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	private void ExecuteGridViewActivity() { // action menu에서 아이템 선택시 실행되는 펑션.
+		this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
+		Intent i = new Intent(ToDoListActivity.this, GridViewActivity.class);
+		startActivity(i);
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
+<<<<<<< HEAD
+		// oslist = new ArrayList<HashMap<String, String>>();
+=======
 		//oslist = new ArrayList<HashMap<String, String>>();
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 		oslist.clear();
 		parsingCheck();
 	};
-	private void parsingCheck(){
-			new JSONParse().execute();
+
+	private void parsingCheck() {
+		new JSONParse().execute();
 	}
+
 	private class JSONParse extends AsyncTask<String, String, JSONObject> {
 		private ProgressDialog pDialog;
 
@@ -125,9 +167,18 @@ public class ToDoListActivity extends Activity {
 					JSONObject c = android.getJSONObject(i);
 					// Storing JSON item in a Variable
 					String seq = c.getString(SEQ);
+<<<<<<< HEAD
+					String pos = c.getString("farmNum") + "-"
+							+ c.getString("modNum");
+					String type = GlobalVariable
+							.getCropStr((c.getString(CROP)));
+					String request = GlobalVariable.getRequestStr(c
+							.getString(REQUEST));
+=======
 					String pos = c.getString("farmNum")+"-"+c.getString("modNum");
 					String type = GlobalVariable.getCropStr((c.getString(CROP)));
 					String request = GlobalVariable.getRequestStr(c.getString(REQUEST));
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 					String name = c.getString(NAME);
 					// Adding value HashMap key => value
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -141,16 +192,34 @@ public class ToDoListActivity extends Activity {
 					list = (ListView) findViewById(R.id.todolist);
 					ListAdapter adapter = new SimpleAdapter(
 							ToDoListActivity.this, oslist, R.layout.list_v,
+<<<<<<< HEAD
+							new String[] { POS, CROP, REQUEST, NAME },
+							new int[] { R.id.list_pos, R.id.list_crop,
+									R.id.list_request, R.id.list_name });
+=======
+
+							new String[] { ID, NAME }, new int[] { R.id.id,
+									R.id.name });
+
 							new String[] { POS, CROP, REQUEST, NAME }, new int[] {
 									R.id.list_pos, R.id.list_crop, R.id.list_request, R.id.list_name });
+
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 					list.setAdapter(adapter);
 					Log.d("test", "list setting end");
 					list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
 						public void onItemClick(AdapterView<?> parent,
 								View view, int position, long id) {
+<<<<<<< HEAD
+							Intent intent = new Intent(ToDoListActivity.this,
+									ToDoDetailActivity.class);
+							intent.putExtra("seq",
+									oslist.get(+position).get(SEQ));
+=======
 							Intent intent = new Intent(ToDoListActivity.this, ToDoDetailActivity.class);
 							intent.putExtra("seq", oslist.get(+position).get(SEQ));
+>>>>>>> d7edce60adc6c95d0ea1ba5dfa6860278482ea79
 							startActivity(intent);
 						}
 					});
@@ -160,5 +229,4 @@ public class ToDoListActivity extends Activity {
 			}
 		}
 	}
-	
 }
