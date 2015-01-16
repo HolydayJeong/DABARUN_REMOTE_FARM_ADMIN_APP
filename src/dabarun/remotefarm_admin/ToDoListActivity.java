@@ -1,53 +1,26 @@
 package dabarun.remotefarm_admin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import dabarun.remotefarm_admin.R;
 import dabarun.remotefarm_admin.JSONParser;
 import Variable.GlobalVariable;
 import Variable.TableMainLayout;
 import android.support.v7.appcompat.*;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-<<<<<<< HEAD
-=======
-import android.content.Intent;
 
 
->>>>>>> master
+
 
 public class ToDoListActivity extends Activity {
 
 	ListView list;
-<<<<<<< HEAD
+
 
 	TextView seq;
 	TextView cropSeq;
-=======
+
 	
 	TextView pos;
 	TextView crop;
->>>>>>> master
+
 	TextView request;
 	TextView name;
 
@@ -67,16 +40,12 @@ public class ToDoListActivity extends Activity {
 	private static boolean isFirst = true;
 
 	JSONArray android = null;
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> master
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-<<<<<<< HEAD
+
 		setContentView(R.layout.todolist_main);
 		// setContentView(new TableMainLayout(this));
 		oslist = new ArrayList<HashMap<String, String>>();
@@ -98,7 +67,7 @@ public class ToDoListActivity extends Activity {
 		// }
 		// });
 
-=======
+
 		setContentView(R.layout.activity_to_do_list);
 		oslist = new ArrayList<HashMap<String, String>>();
 		
@@ -107,7 +76,7 @@ public class ToDoListActivity extends Activity {
 		request = (TextView) findViewById(R.id.list_request);			
 		name = (TextView) findViewById(R.id.list_name);
 		
->>>>>>> master
+
 	}
 
 	@Override
@@ -203,13 +172,13 @@ public class ToDoListActivity extends Activity {
 					list = (ListView) findViewById(R.id.todolist);
 					ListAdapter adapter = new SimpleAdapter(
 							ToDoListActivity.this, oslist, R.layout.list_v,
-<<<<<<< HEAD
+
 							new String[] { ID, NAME }, new int[] { R.id.id,
 									R.id.name });
-=======
+
 							new String[] { POS, CROP, REQUEST, NAME }, new int[] {
 									R.id.list_pos, R.id.list_crop, R.id.list_request, R.id.list_name });
->>>>>>> master
+
 					list.setAdapter(adapter);
 					Log.d("test", "list setting end");
 					list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -227,9 +196,4 @@ public class ToDoListActivity extends Activity {
 			}
 		}
 	}
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> master
 }
