@@ -9,8 +9,6 @@
     <string name="button_text_select">작물선택</string>
     <string name="button_text_levelup">레벨업</string>
     <string name="null_text">없음</string>
-    
-    
     <string name="dolist_position">밭-구획</string>
     <string name="dolist_request">요청</string>
     <string name="dolist_name">사용자</string>
@@ -20,5 +18,10 @@
     <string name="dodetail_name">홍길동</string>
     <string name="dodetail_btnconfirm">물을 주었습니다!</string>
     <string name="dodetail_btncancel">물을 줄 때가 아닙니다</string>
+    <!-- title of each tab -->
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="title_section1">할 일</string>
+    <string name="title_section2">밭 보기</string>
+    <string name="title_section3">메세지</string>
 
 </resources>
