@@ -13,6 +13,8 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.google.android.gcm.GCMRegistrar;
+
 import Variable.GlobalVariable;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,12 +30,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-//import bayaba.game.main.MenuMainActivity;
 
-//we do not use gcm in this java code.
-/*import com.google.android.gcm.GCMRegistrar;*/
-
-//占싸깍옙占쏙옙 占쏙옙티占쏙옙티占쌉니댐옙.
 public class LoginActivity extends Activity {
 
 	Button b;
@@ -45,15 +42,15 @@ public class LoginActivity extends Activity {
     HttpClient httpclient;
     List<NameValuePair> nameValuePairs;
     ProgressDialog dialog = null;
+    
+    static String id;
      
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        
-    	
     	Log.d("debug", "onCreate1");
     	super.onCreate(savedInstanceState);
-       
+    	GCMRegistrar.unregister(this);
         setContentView(R.layout.activity_login_main);
         
        
@@ -64,11 +61,10 @@ public class LoginActivity extends Activity {
         pw_Edt = (EditText)findViewById(R.id.pw_Edt);
         tv = (TextView)findViewById(R.id.tv);
          
-      //ID, PW ?占쏙옙蹂댐옙?? ?占쏙옙?占쏙옙?占쏙옙占�? ?占쏙옙?占쏙옙 SPF占�? GET?占쏙옙?占쏙옙
       		SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
       		//session key value
       
-      		String id = ""+spf.getString(GlobalVariable.SPF_ID, "");
+      		id = ""+spf.getString(GlobalVariable.SPF_ID, "");
       		if(id != null)
       		{
       			id_Edt.setText(id);
@@ -80,7 +76,7 @@ public class LoginActivity extends Activity {
         b.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            	
+            	id = id_Edt.getText().toString();
             	 Log.d("debug", "onClick");
             	new Register().execute();
             }
@@ -114,7 +110,6 @@ public class LoginActivity extends Activity {
       		super.onPreExecute();
       	}
       	
-  	
   		@Override
   		protected Integer doInBackground(String... params){
   			
@@ -124,12 +119,10 @@ public class LoginActivity extends Activity {
   					HttpClient client = new DefaultHttpClient();
   					Log.d("test","ing");				
   	    			try{
-  	    				// 14.4.4 占쌩곤옙
   	    				ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
-  	    				nameValuePairs1.add(new BasicNameValuePair("id", id_Edt.getText().toString()));
+  	    				nameValuePairs1.add(new BasicNameValuePair("id", id));
   	    				nameValuePairs1.add(new BasicNameValuePair("pw", pw_Edt.getText().toString()));
   	    				Log.d("test","i7");
-  	    				// 14.4.4 占쌩곤옙占쏙옙
   	    				
   	    				
   	    				HttpPost httpPost1 = new HttpPost(GlobalVariable.login);			
@@ -139,65 +132,58 @@ public class LoginActivity extends Activity {
   	    				String result1 = client.execute(httpPost1, handler1);
   	    				
   						result1 = result1.trim().toString();
-//  						result1 = "占싸깍옙占쏙옙";
   						Log.d("test", "result1:"+result1);
   						
   		        		Log.d("test","check3");
   		        		
-  		        		
-  		        		
   		        		//when login is successful
   		        		if(!result1.equals("not_exist")){
-  		        			/*registerGCM(id_Edt.getText().toString());*/
+  		        			registerGCM();
 
   		        			SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
   							SharedPreferences.Editor spfEdit = spf.edit();
   							
-  							//spf ?占쏙옙占�? 占�??占쏙옙占�?
   							spfEdit.putString(GlobalVariable.SPF_ID, id_Edt.getText().toString());
   							spfEdit.commit();
   		        			Log.d("debug", "before startActivity");
-  		        	        
   		        			
   		        			//Execute activity below
   		        			Intent intent = new Intent(LoginActivity.this, ToDoListActivity.class);                                                                                                                                             
-  							startActivity(intent);		        			 
+  							startActivity(intent);
   		        		}	        		
-  		        		
   	    			}catch(Exception e){
-  	    				
+  	    				e.printStackTrace();
   	    			}					
-  				}catch(Exception e){
-  					
-  				}				
-  			
+  				}catch(Exception e){}				
   			return -1;
 
-  		}  		
+  		}
   	}
-  	/* we do not use gcm in this code*/
+  		
+  	/// 리팩토링 : 위에 부분을 나중에 밑에 집어넣어보자. 가능할거 같아. php 하나로 처리해서.
   	
-  	/*public void registerGCM(String id 14.05.10占쏙옙占쏙옙(회占쏙옙占쏙옙占쏙옙占쌔듸옙占실곤옙)){
-		GCMRegistrar.checkDevice(this);		// 占쏙옙占쏙옙 占쌕깍옙 클占쏙옙占쏙옙占쏙옙 占쌍억옙森占�? 占쏙옙占쏙옙占쏙옙 占쏙옙載∽옙占�? 占싫듸옙.
+  	public void registerGCM(){
+		GCMRegistrar.checkDevice(this);		// 기기가 등록되었는지 확인.
 		GCMRegistrar.checkManifest(this);
 		final String regId = GCMRegistrar.getRegistrationId(this);
 		Log.d("test", "regId : "+regId);
 		if ("".equals(regId) || null == regId) {
 			Log.d("test", "regId check");
-		  GCMRegistrar.register(this, GCMVariable.PROJECT_ID);
+			
+		  GCMRegistrar.register(this, GlobalVariable.PROJECT_ID);
 		} 
 		else {
 			Log.d("TAG", "Already registered");
 		}
 		HttpClient client = new DefaultHttpClient();
-		try{ // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙求占�? 占쏙옙.
+		try{ 
 	
 			String result1;
 			Log.d("test","MainActivity id : "+id);
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("phid", regId));	//key,value
 			nameValuePairs.add(new BasicNameValuePair("id", id));	//key, value
-			HttpPost httpPost = new HttpPost(GCMVariable.redIdSend);
+			HttpPost httpPost = new HttpPost(GlobalVariable.redIdSend);
 			UrlEncodedFormEntity entityRequest = new UrlEncodedFormEntity(nameValuePairs,"UTF-8");
 			httpPost.setEntity(entityRequest);
 			ResponseHandler<String> handler = new BasicResponseHandler();
@@ -206,7 +192,7 @@ public class LoginActivity extends Activity {
 			Log.d("test", "phid reg : "+result1);
 			
 			}catch(Exception e){}
-	}*/
-  	//register 占쏙옙
+	}
+  	//register 끝
   	
 }

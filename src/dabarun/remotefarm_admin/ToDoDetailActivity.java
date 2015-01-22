@@ -20,7 +20,9 @@ import org.json.JSONObject;
 
 import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -37,7 +39,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class ToDoDetailActivity extends ActionBarActivity {
+public class ToDoDetailActivity extends ActionBarActivity implements View.OnClickListener {
 	ImageView image;
 	
 	TextView poscrop;
@@ -48,15 +50,17 @@ public class ToDoDetailActivity extends ActionBarActivity {
 	
 	Button Confirm;
 	Button Cancel;
-	
 
     HttpResponse response;
     HttpClient httpclient;
     List<NameValuePair> nameValuePairs;
-	
+    
 	JSONArray android = null;
 	
+	String reqId = "";
+	static int req = 0;
 	int seq = 0;
+	int reqTemp = 0;
 	
 	// JSON Node Names
 	private static final String RESULT = "result";
@@ -84,11 +88,55 @@ public class ToDoDetailActivity extends ActionBarActivity {
 		levelnum = (TextView) findViewById(R.id.dodetail_levelnum);
 		
 		Confirm = (Button) findViewById(R.id.dodetail_btnconfirm);
+		Confirm.setOnClickListener(this);
 		Cancel= (Button) findViewById(R.id.dodetail_btncancel);
+		Cancel.setOnClickListener(this);
 		
 		Intent intent = getIntent();
 		seq = Integer.parseInt(intent.getStringExtra("seq"));
 		
+	}
+	
+	public void onClick(View view){
+		if(view == Confirm)
+			 reqTemp = seq;
+		else if(view == Cancel)
+			reqTemp = seq*10 + seq;
+			
+		new AlertDialog.Builder(this)
+			.setTitle("확인")
+			.setMessage("확인을 누르면 \""+getButtonText(reqTemp)+"\" 알람을 보냅니다.")
+			.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {} })
+			.setNeutralButton("확인", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					try{
+	  					
+	  					HttpClient client = new DefaultHttpClient();
+	  					Log.d("test","confirm button");				
+	  	    			try{
+	  	    				ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
+	  	    				nameValuePairs1.add(new BasicNameValuePair("reqId", reqId));
+	  	    				nameValuePairs1.add(new BasicNameValuePair("id", LoginActivity.id));
+	  	    				nameValuePairs1.add(new BasicNameValuePair("req", ""+ reqTemp));	  	    				
+	  	    				Log.d("test","confirm semd");
+	  	    				
+	  	    				HttpPost httpPost1 = new HttpPost(GlobalVariable.push);			
+	  	    				UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs1,"UTF-8");
+	  	    				httpPost1.setEntity(entityRequest1);
+	  	    				ResponseHandler<String> handler1 = new BasicResponseHandler();
+	  	    				String result1 = client.execute(httpPost1, handler1);
+	  	    				
+	  						result1 = result1.trim().toString();
+	  						Log.d("test", "result1:"+result1);
+	  						
+	  		        		Log.d("test","check3");
+	  	    			}catch(Exception e){e.printStackTrace();}					
+  				}catch(Exception e){}		
+				} })
+			.show();							
 	}
 
 	@Override
@@ -145,12 +193,9 @@ public class ToDoDetailActivity extends ActionBarActivity {
 				HttpClient client = new DefaultHttpClient();
 				Log.d("test","ing");				
     			try{
-    				// 14.4.4 占쌩곤옙
     				ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
     				nameValuePairs1.add(new BasicNameValuePair("seq", ""+seq));
     				Log.d("test","seq send");
-    				// 14.4.4 占쌩곤옙占쏙옙
-    				
     				
     				HttpPost httpPost1 = new HttpPost(GlobalVariable.getDoDetail);			
     				UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs1,"UTF-8");
@@ -159,14 +204,11 @@ public class ToDoDetailActivity extends ActionBarActivity {
     				result1 = client.execute(httpPost1, handler1);
     				
 					result1 = result1.trim().toString();
-//  						result1 = "占싸깍옙占쏙옙";
 					Log.d("test", "result1:"+result1);
 					
 					json = new JSONObject(result1);
 					
-    			}catch(Exception e){
-    				
-    			}					
+    			}catch(Exception e){}					
 			}catch(Exception e){}	
 			return json;
   		}
@@ -180,13 +222,14 @@ public class ToDoDetailActivity extends ActionBarActivity {
 				android = json.getJSONArray(RESULT);
 				for (int i = 0; i < android.length(); i++) {
 					JSONObject c = android.getJSONObject(i);
+					req = Integer.parseInt(c.getString(REQUEST));
+					reqId = c.getString("reqId");
 					// Show on View
 					poscrop.setText(c.getString(FARMNUM)+"-"+c.getString(MODNUM)+" "+GlobalVariable.getCropStr(c.getString(CROP)));
 					startdate.setText("심은날짜 : "+c.getString(STARTDATE).substring(0,10));
-					request.setText(GlobalVariable.getRequestStr(c.getString(REQUEST)));
+					request.setText(GlobalVariable.getRequestStr(""+req));
 					name.setText(c.getString(NAME));
 					levelnum.setText(c.getString(LEVELNUM));
-					req = Integer.parseInt(c.getString(REQUEST));
 					Confirm.setText(getButtonText((req)));
 					Cancel.setText(getButtonText(req*10+req));
 				}
@@ -195,36 +238,34 @@ public class ToDoDetailActivity extends ActionBarActivity {
 			}
 			
   		}
-		
-		private String getButtonText(int request)
-		{
-			String text ="";
-			
-			switch(request)
-			{
-				case 1:
-					text = "물을 주었습니다!";
-					break;
-				case 2:
-					text = "비료를 주었습니다!";
-					break;
-				case 3:
-					text = "잡초를 뽑았습니다!";
-					break;
-					
-				case 11:
-					text = "지금은 물을 줄 때가 아닙니다.";
-					break;
-				case 22:
-					text = "지금은 비료를 줄 때가 아닙니다.";
-					break;
-				case 33:
-					text = "지금은 잡초를 뽑을 때가 아닙니다";
-					break;
-			}			
-			return text;
-		}
   	}
-  	
+  	private String getButtonText(int request)
+	{
+		String text ="";
+		
+		switch(request)
+		{
+			case 1:
+				text = "물을 주었습니다!";
+				break;
+			case 2:
+				text = "비료를 주었습니다!";
+				break;
+			case 3:
+				text = "잡초를 뽑았습니다!";
+				break;
+				
+			case 11:
+				text = "지금은 물을 줄 때가 아닙니다.";
+				break;
+			case 22:
+				text = "지금은 비료를 줄 때가 아닙니다.";
+				break;
+			case 33:
+				text = "지금은 잡초를 뽑을 때가 아닙니다";
+				break;
+		}			
+		return text;
+	}
 }
 	

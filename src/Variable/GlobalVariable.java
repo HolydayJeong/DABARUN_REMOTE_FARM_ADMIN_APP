@@ -4,12 +4,8 @@ package Variable;
 //AIzaSyDyH6nr07Iv8fGfraEqiu8d97k1pVPc1CQ
 
 public class GlobalVariable {
-	public final static String url = "http://211.39.253.201/Dabarun/";
+	public final static String url = "http://211.39.253.201/Dabarun/farmer/";
 	// public final static String url = "http://cra16.handong.edu/Dabarun/";
-
-	public final static String login = url + "login.php";
-
-	public final static String push = url + "push_all.php";
 
 	public final static String getDoList = url + "getDoList.php";
 
@@ -19,6 +15,17 @@ public class GlobalVariable {
 	
 	public final static String setPoint = url + "setPoint.php";
 
+	/////////////////////////////////////////////////////////////////
+	public final static String url1 = "http://211.39.253.201/Dabarun/";
+	public final static String login = url1 + "login.php";
+
+	//public final static String push = url1 + "push.php";
+	public final static String push = "http://cra16.handong.edu/Dabarun/dragonflight/push_test.php";
+	public final static String push_all = url1 + "push_all.php";
+	public final static String PROJECT_ID="486669052747";
+	public final static String redIdSend=url1+"push_insert.php";
+
+	//////////////////////////////////////////////////////////////////
 	public final static String SPF_LOGIN = "LOGIN";
 	public final static String SPF_ID = "ID";
 	public final static String SPF_PW = "PW";
