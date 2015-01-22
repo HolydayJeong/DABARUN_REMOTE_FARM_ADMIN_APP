@@ -160,8 +160,8 @@ public class LoginActivity extends Activity {
   		        	        
   		        			
   		        			//Execute activity below
-  		        			Intent intent = new Intent(LoginActivity.this, ToDoListActivity.class);                                                                                                                                             
-  							startActivity(intent);		        			 
+  		        			/*Intent intent = new Intent(LoginActivity.this, ToDoListActivity.class);                                                                                                                                             
+  							startActivity(intent);	*/	        			 
   		        		}	        		
   		        		
   	    			}catch(Exception e){

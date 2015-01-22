@@ -4,7 +4,7 @@ package Variable;
 //AIzaSyDyH6nr07Iv8fGfraEqiu8d97k1pVPc1CQ
 
 public class GlobalVariable {
-	public final static String url = "http://211.39.253.201/Dabarun/";
+	public final static String url = "http://211.39.253.201/Dabarun/farmer/";
 	// public final static String url = "http://cra16.handong.edu/Dabarun/";
 
 	public final static String login = url + "login.php";

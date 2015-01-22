@@ -25,11 +25,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity
+        <!--<activity
             android:name=".ToDoListActivity"
             android:label="@string/app_name" >
             
-        </activity>
+        </activity>-->
         <activity
             android:name=".GridViewActivity"
             android:label="@string/app_name" >

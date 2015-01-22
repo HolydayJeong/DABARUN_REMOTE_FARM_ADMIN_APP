@@ -149,8 +149,8 @@ public class GridViewActivity2 extends Activity {
 
 	private void ExecuteToDoActivity() { // action menu에서 아이템 선택시 실행되는 펑션.
 		this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
-		Intent i = new Intent(GridViewActivity2.this, ToDoListActivity.class);
-		startActivity(i);
+		//Intent i = new Intent(GridViewActivity2.this, ToDoListActivity.class);
+		//startActivity(i);
 	}
 
 	// ///////////// 액션메뉴 관련 1 끝

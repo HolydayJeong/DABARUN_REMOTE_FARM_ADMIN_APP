@@ -1332,6 +1332,8 @@ containing a value of this type.
         public static final int dolist_request=0x7f0a0016;
         public static final int hello_world=0x7f0a000e;
         public static final int null_text=0x7f0a0014;
+        /**  title of each tab 
+         */
         public static final int title_activity_tab=0x7f0a001e;
         public static final int title_activity_to_do_detail=0x7f0a0019;
         public static final int title_section1=0x7f0a001f;

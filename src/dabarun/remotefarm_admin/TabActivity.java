@@ -128,7 +128,17 @@ public class TabActivity extends ActionBarActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a PlaceholderFragment (defined as a static inner class
 			// below).
-			return PlaceholderFragment.newInstance(position + 1);
+			// return PlaceholderFragment.newInstance(position + 1);
+			switch (position) {
+			case 0:
+				return ToDoListFragment.newInstance(position+1);
+			case 1:
+				return GridFarmViewFragment.newInstance(position+1);
+			case 2:
+				return PlaceholderFragment.newInstance(position + 1);
+			default:
+				return PlaceholderFragment.newInstance(position + 1);
+			}
 		}
 
 		@Override

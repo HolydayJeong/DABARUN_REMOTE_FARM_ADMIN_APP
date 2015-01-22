@@ -16,21 +16,29 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GridViewActivity extends Activity {
+public class GridFarmViewFragment extends Fragment {
 	private ArrayList<Button> gridButton = new ArrayList<Button>(); // 버튼 어레이
 	// private ArrayList<String> buttonText = new ArrayList<String>(); //
 	// in here we gonna save up id and user's name. so i used 2d String
@@ -51,24 +59,50 @@ public class GridViewActivity extends Activity {
 	// JSON Array
 	JSONArray jsonArray = null;
 
+	FragmentActivity fa;
+	LinearLayout llayout;
+	private static final String ARG_SECTION_NUMBER = "section_number";
+
+	public static GridFarmViewFragment newInstance(int sectionNumber) {
+		GridFarmViewFragment fragment = new GridFarmViewFragment();
+		Bundle args = new Bundle();
+		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+		fragment.setArguments(args);
+		return fragment;
+	}
+
 	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		fa = (FragmentActivity) super.getActivity();
+		llayout = (LinearLayout) inflater.inflate(R.layout.grid_farm_view,
+				container, false);
+
+		parsingCheck();
+		buttonAddToArray();
+
+		return llayout;
+	}
+
+	/*@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.grid_farm_view);
 		buttonAddToArray();
 
-	}
+	}*/
 
 	// 버튼 셋팅 - 버튼 4개를 arrayList에 등록하고 버튼 각각 setText 해줌.
 	private void buttonAddToArray() {
 		// 화면에 출력되는 버튼 4개를 button 변수에 저장.
-		gridButton.add((Button) findViewById(R.id.Grid1_button1));
-		gridButton.add((Button) findViewById(R.id.Grid1_button2));
-		gridButton.add((Button) findViewById(R.id.Grid1_button3));
-		gridButton.add((Button) findViewById(R.id.Grid1_button4));
-		gridButton.add((Button) findViewById(R.id.Grid1_button5));
-		gridButton.add((Button) findViewById(R.id.Grid1_button6));
+		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button1));
+		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button2));
+		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button3));
+		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button4));
+		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button5));
+		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button6));
 
 		parsingCheck();
 	}
@@ -115,54 +149,14 @@ public class GridViewActivity extends Activity {
 	private void ExecuteGrid2Activity(ArrayList<String> a) {
 		if (a.get(0) != null) {
 			// this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
-			Intent i = new Intent(GridViewActivity.this,
-					GridViewActivity2.class);
+			Intent i = new Intent(
+					fa, GridViewActivity2.class);
 			i.putExtra("idAndName", a);
 			startActivity(i);
 		}
 	}
 
-	// /// 액션메뉴를 활성화 시키기 위한 메서드. //////////// 액션메뉴 관련 1 시작
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	// 엑션 메뉴의 메뉴 클릭시 실행되는 메서드 .
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		switch (item.getItemId()) {
-		case R.id.action_todolist:// todolist 클릭 - TodoListActivity 실행.
-			ExecuteToDoActivity();
-			return true;
-		case R.id.action_farm_gridview: // 현재 farmGridView이므로 아무것도 안해야됨
-			return true;
-		case R.id.action_message_menu: // Message menu로 진입
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-
-	private void ExecuteToDoActivity() { // action menu에서 아이템 선택시 실행되는 펑션.
-		this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
-		Intent i = new Intent(GridViewActivity.this, ToDoListActivity.class);
-		startActivity(i);
-	}
-
-	// ///////////// 액션메뉴 관련 1 끝
-
 	// ////////////JSONParse 관련 1 시작
-	@Override
-	protected void onResume() {
-		// buttonText를 가지고 parse 해야겠지?
-		super.onResume();
-		// parsingCheck();
-	};
 
 	private void parsingCheck() {
 		new JSONParse().execute();
@@ -174,8 +168,8 @@ public class GridViewActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			
-			pDialog = new ProgressDialog(GridViewActivity.this);
+
+			pDialog = new ProgressDialog(fa);
 			pDialog.setMessage("Getting Data ...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
