@@ -1082,25 +1082,25 @@ containing a value of this type.
     }
     public static final class id {
         public static final int Button01=0x7f090041;
-        public static final int Grid1_button1=0x7f090055;
-        public static final int Grid1_button2=0x7f090056;
-        public static final int Grid1_button3=0x7f090058;
-        public static final int Grid1_button4=0x7f090059;
-        public static final int Grid1_button5=0x7f09005b;
-        public static final int Grid1_button6=0x7f09005c;
-        public static final int Grid1_tableRow2=0x7f090057;
-        public static final int Grid1_tableRow3=0x7f09005a;
-        public static final int Grid2_button1=0x7f09005f;
-        public static final int Grid2_button2=0x7f090060;
-        public static final int Grid2_button3=0x7f090062;
-        public static final int Grid2_button4=0x7f090063;
-        public static final int Grid2_button5=0x7f090065;
-        public static final int Grid2_button6=0x7f090066;
-        public static final int Grid2_button7=0x7f090068;
-        public static final int Grid2_button8=0x7f090069;
-        public static final int LinearLayout1=0x7f090071;
-        public static final int RelativeLayout1=0x7f09006c;
-        public static final int TableLayout1=0x7f09006a;
+        public static final int Grid1_button1=0x7f09006e;
+        public static final int Grid1_button2=0x7f09006f;
+        public static final int Grid1_button3=0x7f090071;
+        public static final int Grid1_button4=0x7f090072;
+        public static final int Grid1_button5=0x7f090074;
+        public static final int Grid1_button6=0x7f090075;
+        public static final int Grid1_tableRow2=0x7f090070;
+        public static final int Grid1_tableRow3=0x7f090073;
+        public static final int Grid2_button1=0x7f090063;
+        public static final int Grid2_button2=0x7f090064;
+        public static final int Grid2_button3=0x7f090066;
+        public static final int Grid2_button4=0x7f090067;
+        public static final int Grid2_button5=0x7f090069;
+        public static final int Grid2_button6=0x7f09006a;
+        public static final int Grid2_button7=0x7f09006c;
+        public static final int Grid2_button8=0x7f09006d;
+        public static final int LinearLayout1=0x7f09005b;
+        public static final int RelativeLayout1=0x7f090056;
+        public static final int TableLayout1=0x7f090053;
         public static final int action_bar=0x7f09001c;
         public static final int action_bar_activity_content=0x7f090001;
         public static final int action_bar_container=0x7f09001b;
@@ -1119,10 +1119,10 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
-        public static final int button1=0x7f090072;
-        public static final int button2=0x7f090073;
-        public static final int button3=0x7f090074;
-        public static final int button4=0x7f090075;
+        public static final int button1=0x7f09005c;
+        public static final int button2=0x7f09005d;
+        public static final int button3=0x7f09005e;
+        public static final int button4=0x7f09005f;
         public static final int checkbox=0x7f09002d;
         public static final int collapseActionView=0x7f090010;
         public static final int default_activity_button=0x7f090028;
@@ -1152,7 +1152,7 @@ containing a value of this type.
         public static final int id_Edt=0x7f09003e;
         public static final int ifRoom=0x7f090011;
         public static final int image=0x7f090027;
-        public static final int imageView_crop=0x7f09006e;
+        public static final int imageView_crop=0x7f090058;
         public static final int listMode=0x7f090006;
         public static final int list_crop=0x7f090077;
         public static final int list_item=0x7f090029;
@@ -1179,7 +1179,7 @@ containing a value of this type.
         public static final int search_plate=0x7f090036;
         public static final int search_src_text=0x7f090037;
         public static final int search_voice_btn=0x7f09003b;
-        public static final int section_label=0x7f090053;
+        public static final int section_label=0x7f090060;
         public static final int shortcut=0x7f09002e;
         public static final int showCustom=0x7f09000b;
         public static final int showHome=0x7f09000c;
@@ -1187,15 +1187,15 @@ containing a value of this type.
         public static final int split_action_bar=0x7f09001e;
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
-        public static final int tableRow0=0x7f09005d;
+        public static final int tableRow0=0x7f090061;
         public static final int tableRow1=0x7f090054;
-        public static final int tableRow2=0x7f090061;
-        public static final int tableRow3=0x7f090064;
-        public static final int tableRow4=0x7f090067;
-        public static final int textView_cropname=0x7f090070;
-        public static final int textView_name=0x7f09006f;
-        public static final int textView_plant_date=0x7f09006d;
-        public static final int text_land=0x7f09006b;
+        public static final int tableRow2=0x7f090065;
+        public static final int tableRow3=0x7f090068;
+        public static final int tableRow4=0x7f09006b;
+        public static final int textView_cropname=0x7f09005a;
+        public static final int textView_name=0x7f090059;
+        public static final int textView_plant_date=0x7f090057;
+        public static final int text_land=0x7f090055;
         public static final int title=0x7f09002b;
         public static final int todolist=0x7f090052;
         public static final int top_action_bar=0x7f090020;
@@ -1205,7 +1205,7 @@ containing a value of this type.
         public static final int tv2=0x7f09003f;
         public static final int up=0x7f090021;
         public static final int useLogo=0x7f09000e;
-        public static final int username_textview=0x7f09005e;
+        public static final int username_textview=0x7f090062;
         public static final int withText=0x7f090013;
     }
     public static final class integer {
@@ -1263,10 +1263,10 @@ containing a value of this type.
         public static final int activity_tab=0x7f03001a;
         public static final int activity_to_do_detail=0x7f03001b;
         public static final int activity_to_do_list=0x7f03001c;
-        public static final int fragment_tab=0x7f03001d;
-        public static final int grid_farm_view=0x7f03001e;
-        public static final int grid_farm_view2=0x7f03001f;
-        public static final int grid_farm_view3=0x7f030020;
+        public static final int detail_module_view=0x7f03001d;
+        public static final int fragment_tab=0x7f03001e;
+        public static final int grid_farm_detail_view=0x7f03001f;
+        public static final int grid_farm_view=0x7f030020;
         public static final int list_v=0x7f030021;
         public static final int support_simple_spinner_dropdown_item=0x7f030022;
     }

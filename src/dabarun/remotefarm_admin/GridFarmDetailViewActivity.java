@@ -31,7 +31,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GridViewActivity2 extends Activity {
+public class GridFarmDetailViewActivity extends Activity {
 	private ArrayList<Button> gridButton = new ArrayList<Button>(); // 버튼 어레이
 	private ArrayList<String> buttonText = new ArrayList<String>(); // 버튼 텍스트를
 																	// 저장하는
@@ -50,14 +50,14 @@ public class GridViewActivity2 extends Activity {
 	JSONArray jsonArray = null;
 	// extra info from previous activity
 	ArrayList<String> extras = new ArrayList<String>();
-	HashMap<String,String> parsedInfo = new HashMap<String,String>();
-	
+	//HashMap<String,String> parsedInfo = new HashMap<String,String>();
+	ArrayList<HashMap<String, String>> parsedInfoList= new ArrayList<HashMap<String, String>>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.grid_farm_view2);
+		setContentView(R.layout.grid_farm_detail_view);
 		// retreive intent and get Extra information and set the text with the information.
 		Intent intent = getIntent();
 		extras = intent.getStringArrayListExtra("idAndName");
@@ -85,6 +85,8 @@ public class GridViewActivity2 extends Activity {
 		gridButton.add((Button) findViewById(R.id.Grid2_button7));
 		gridButton.add((Button) findViewById(R.id.Grid2_button8));
 		
+		
+	
 		parsingCheck();
 	}
 
@@ -94,9 +96,11 @@ public class GridViewActivity2 extends Activity {
 		switch (v.getId()) {
 		case R.id.Grid2_button1:
 			Log.v("test", "Grid1_button1");
+			ShowDetailExecute(v, 0);
 			break;
 		case R.id.Grid2_button2:
 			Log.d("test", "Grid1_button2");
+			ShowDetailExecute(v, 1);
 			break;
 		case R.id.Grid2_button3:
 			Log.d("test", "Grid1_button3");
@@ -120,15 +124,15 @@ public class GridViewActivity2 extends Activity {
 			break;
 		}
 	}
+	public void ShowDetailExecute(View v, int position){
+		Intent intent = new Intent(GridFarmDetailViewActivity.this, 
+				DetailModuleActivity.class);
+		intent.putExtra("seq",parsedInfoList.get(+position).get("seq"));
+		startActivity(intent);
+	}
 
 	// /// 액션메뉴를 활성화 시키기 위한 메서드. //////////// 액션메뉴 관련 1 시작
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+
 
 	// 엑션 메뉴의 메뉴 클릭시 실행되는 메서드 .
 	@Override
@@ -174,7 +178,7 @@ public class GridViewActivity2 extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			//name = (TextView) findViewById(R.id.name);
-			pDialog = new ProgressDialog(GridViewActivity2.this);
+			pDialog = new ProgressDialog(GridFarmDetailViewActivity.this);
 			pDialog.setMessage("Getting Data ...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
@@ -206,18 +210,22 @@ public class GridViewActivity2 extends Activity {
 					int modNum = Integer.parseInt(c.getString(GlobalVariable.MODNUM));
 					String level = c.getString(GlobalVariable.LEVEL);
 					//String cropSeq = c.getString(CROPSEQ);
-					// JSON에서 부터 받아온 String을 가지고 이제 button들에 setText하면 되겠지?
+					
+					HashMap<String,String> parsedInfo = new HashMap<String,String>();
+					parsedInfo.put(GlobalVariable.SEQ, seq);
+					parsedInfo.put(GlobalVariable.TYPE, type);
+					parsedInfo.put(GlobalVariable.STARTDATE,startDate);
+					parsedInfo.put(GlobalVariable.MODNUM,c.getString(GlobalVariable.MODNUM));
+					parsedInfo.put(GlobalVariable.LEVEL,level);
+					parsedInfoList.add(parsedInfo);
+					
 					
 					gridButton.get(modNum-1).setText(modNum+". "+GlobalVariable.getCropStr(type)+"\n Level : "+level);
 					
 					
 					 //여기에서 type 가지고 setText할 거임.
 					 
-					parsedInfo.put(GlobalVariable.SEQ, seq);
-					parsedInfo.put(GlobalVariable.TYPE, type);
-					parsedInfo.put(GlobalVariable.STARTDATE,startDate);
-					parsedInfo.put(GlobalVariable.MODNUM,c.getString(GlobalVariable.MODNUM));
-					parsedInfo.put(GlobalVariable.LEVEL,level);
+					
 					
 				}
 			} catch (JSONException e) {

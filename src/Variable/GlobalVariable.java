@@ -36,6 +36,7 @@ public class GlobalVariable {
 	public static final String TYPE = "type";
 	public static final String STARTDATE = "startDate";
 	public static final String LEVEL = "level";
+	public static final String FARMNO = "farmNum";
 
 
 	public static String getRequestStr(String request){

@@ -97,60 +97,70 @@ public class GridFarmViewFragment extends Fragment {
 	// 버튼 셋팅 - 버튼 4개를 arrayList에 등록하고 버튼 각각 setText 해줌.
 	private void buttonAddToArray() {
 		// 화면에 출력되는 버튼 4개를 button 변수에 저장.
+		Log.d("test", "ButtonAddToArray");
+		OnClickListener l = new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				switch (v.getId()) {
+				case R.id.Grid1_button1:
+					Log.v("test", "Grid1_button1");
+					if (infoStrings.size() > 0)
+						ExecuteGrid2Activity(infoStrings.get(0));
+					break;
+				case R.id.Grid1_button2:
+					Log.d("test", "Grid1_button2");
+					if (infoStrings.size() > 1)
+						ExecuteGrid2Activity(infoStrings.get(1));
+					break;
+				case R.id.Grid1_button3:
+					Log.d("test", "Grid1_button3");
+					if (infoStrings.size() > 2)
+						ExecuteGrid2Activity(infoStrings.get(2));
+					break;
+				case R.id.Grid1_button4:
+					Log.d("test", "Grid1_button4");
+					if (infoStrings.size() > 3)
+						ExecuteGrid2Activity(infoStrings.get(3));
+					break;
+				case R.id.Grid1_button5:
+					Log.d("test", "Grid1_button5");
+					if (infoStrings.size() > 4)
+						ExecuteGrid2Activity(infoStrings.get(4));
+					break;
+				case R.id.Grid1_button6:
+					Log.d("test", "Grid1_button6");
+					if (infoStrings.size() > 5)
+						ExecuteGrid2Activity(infoStrings.get(5));
+					break;
+				default:
+					break;
+				}
+			}
+		};
 		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button1));
 		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button2));
 		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button3));
 		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button4));
 		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button5));
 		gridButton.add((Button) llayout.findViewById(R.id.Grid1_button6));
-
+		
+		for(Button i : gridButton){
+			i.setOnClickListener(l);
+		}
 		parsingCheck();
 	}
 
 	// XML에 아래의 버튼들에 onclick = "onClickButton"을 해줌. 이제 그 버튼들을 클릭시
 	// 아래의 "onClickButton" 메서드가 실행됨. onClickListener 대신 사용함.
-	public void onClickButton(View v) {
-		switch (v.getId()) {
-		case R.id.Grid1_button1:
-			Log.v("test", "Grid1_button1");
-			if (infoStrings.size() > 0)
-				ExecuteGrid2Activity(infoStrings.get(0));
-			break;
-		case R.id.Grid1_button2:
-			Log.d("test", "Grid1_button2");
-			if (infoStrings.size() > 1)
-				ExecuteGrid2Activity(infoStrings.get(1));
-			break;
-		case R.id.Grid1_button3:
-			Log.d("test", "Grid1_button3");
-			if (infoStrings.size() > 2)
-				ExecuteGrid2Activity(infoStrings.get(2));
-			break;
-		case R.id.Grid1_button4:
-			Log.d("test", "Grid1_button4");
-			if (infoStrings.size() > 3)
-				ExecuteGrid2Activity(infoStrings.get(3));
-			break;
-		case R.id.Grid1_button5:
-			Log.d("test", "Grid1_button5");
-			if (infoStrings.size() > 4)
-				ExecuteGrid2Activity(infoStrings.get(4));
-			break;
-		case R.id.Grid1_button6:
-			Log.d("test", "Grid1_button6");
-			if (infoStrings.size() > 5)
-				ExecuteGrid2Activity(infoStrings.get(5));
-			break;
-		default:
-			break;
-		}
-	}
+	
 
 	private void ExecuteGrid2Activity(ArrayList<String> a) {
 		if (a.get(0) != null) {
 			// this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
 			Intent i = new Intent(
-					fa, GridViewActivity2.class);
+					fa, GridFarmDetailViewActivity.class);
 			i.putExtra("idAndName", a);
 			startActivity(i);
 		}
@@ -197,13 +207,14 @@ public class GridFarmViewFragment extends Fragment {
 					// Storing JSON item in a Variable
 					String id = c.getString(ID);
 					String name = c.getString(NAME);
-					// String farmNum = c.getString(FARMNUM);
+					String farmNum = c.getString("farmNum");
 					// String cropSeq = c.getString(CROPSEQ);
 					// JSON에서 부터 받아온 String을 가지고 이제 button들에 setText하면 되겠지?
 					gridButton.get(i).setText(name);
 					ArrayList<String> idAndName = new ArrayList<String>();
 					idAndName.add(0, id);
 					idAndName.add(1, name);
+					idAndName.add(2, farmNum);
 					infoStrings.add(idAndName); //
 				}
 			} catch (JSONException e) {

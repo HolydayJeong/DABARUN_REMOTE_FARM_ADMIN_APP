@@ -34,6 +34,9 @@ public class TabActivity extends ActionBarActivity implements
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	
+	GridFarmViewFragment gridFarmViewFragment = new GridFarmViewFragment();
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +115,7 @@ public class TabActivity extends ActionBarActivity implements
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
 	}
+	 
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

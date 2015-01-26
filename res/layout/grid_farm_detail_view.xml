@@ -17,7 +17,8 @@
                 android:id="@+id/username_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/null_text" />
+                android:text="@string/null_text" 
+                android:onClick="onClickButton"/>
             
         </TableRow>
 
@@ -32,7 +33,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
             <Button
                 android:id="@+id/Grid2_button2"
@@ -40,7 +42,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
         </TableRow>
 
@@ -55,7 +58,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
             <Button
                 android:id="@+id/Grid2_button4"
@@ -63,7 +67,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
         </TableRow>
 
@@ -78,7 +83,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
             <Button
                 android:id="@+id/Grid2_button6"
@@ -86,7 +92,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
         </TableRow>
 
@@ -101,7 +108,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
             <Button
                 android:id="@+id/Grid2_button8"
@@ -109,7 +117,8 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/null_text"
-                android:textSize="10sp" />
+                android:textSize="12sp" 
+                android:onClick="onClickButton"/>
 
         </TableRow>
     </TableLayout>

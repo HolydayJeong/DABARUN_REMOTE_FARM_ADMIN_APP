@@ -31,7 +31,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GridViewActivity3 extends Activity{
+public class DetailModuleActivity extends Activity{
 	private ArrayList<Button> gridButton = new ArrayList<Button>(); // 버튼 어레이
 	private ArrayList<String> buttonText = new ArrayList<String>(); // 버튼 텍스트를
 																	// 저장하는
@@ -60,7 +60,7 @@ public class GridViewActivity3 extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.grid_farm_view3);
+		setContentView(R.layout.detail_module_view);
 		// retreive intent and get Extra information and set the text with the information.
 		Intent intent = getIntent();
 		extras = intent.getStringArrayListExtra("idAndName");
@@ -119,31 +119,7 @@ public class GridViewActivity3 extends Activity{
 		}
 	}
 
-	// /// 액션메뉴를 활성화 시키기 위한 메서드. //////////// 액션메뉴 관련 1 시작
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	// 엑션 메뉴의 메뉴 클릭시 실행되는 메서드 .
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		switch (item.getItemId()) {
-		case R.id.action_todolist:// todolist 클릭 - TodoListActivity 실행.
-			ExecuteToDoActivity();
-			return true;
-		case R.id.action_farm_gridview: // 현재 farmGridView이므로 아무것도 안해야됨
-			return true;
-		case R.id.action_message_menu: // Message menu로 진입
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+	
 
 	private void ExecuteToDoActivity() { // action menu에서 아이템 선택시 실행되는 펑션.
 		this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
@@ -172,7 +148,7 @@ public class GridViewActivity3 extends Activity{
 		protected void onPreExecute() {
 			super.onPreExecute();
 			//name = (TextView) findViewById(R.id.name);
-			pDialog = new ProgressDialog(GridViewActivity3.this);
+			pDialog = new ProgressDialog(DetailModuleActivity.this);
 			pDialog.setMessage("Getting Data ...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
