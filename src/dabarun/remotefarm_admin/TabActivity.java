@@ -139,7 +139,7 @@ public class TabActivity extends ActionBarActivity implements
 			case 1:
 				return GridFarmViewFragment.newInstance(position+1);
 			case 2:
-				return PlaceholderFragment.newInstance(position + 1);
+				return LogFragment.newInstance(position + 1);
 			default:
 				return PlaceholderFragment.newInstance(position + 1);
 			}

@@ -45,33 +45,33 @@ public class GridFarmDetailViewActivity extends Activity {
 	TextView id;
 	TextView modNum;
 	
-	
+
 	// JSON Array
 	JSONArray jsonArray = null;
 	// extra info from previous activity
 	ArrayList<String> extras = new ArrayList<String>();
-	//HashMap<String,String> parsedInfo = new HashMap<String,String>();
-	ArrayList<HashMap<String, String>> parsedInfoList= new ArrayList<HashMap<String, String>>();
+	// HashMap<String,String> parsedInfo = new HashMap<String,String>();
+	ArrayList<HashMap<String, String>> parsedInfoList = new ArrayList<HashMap<String, String>>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.grid_farm_detail_view);
-		// retreive intent and get Extra information and set the text with the information.
+		// retreive intent and get Extra information and set the text with the
+		// information.
 		Intent intent = getIntent();
 		extras = intent.getStringArrayListExtra("idAndName");
 		name = (TextView) findViewById(R.id.username_textview);
 		name.setText(extras.get(1));
-		
-		
+
 		buttonAddToArray();
-		/*for(int i = 0 ; i < parsedInfo.size();i++){
-			setButtonText(parsedInfo,i);
-		}*/
+		/*
+		 * for(int i = 0 ; i < parsedInfo.size();i++){
+		 * setButtonText(parsedInfo,i); }
+		 */
 
 	}
-	
 
 	// 버튼 셋팅 - 버튼 4개를 arrayList에 등록하고 버튼 각각 setText 해줌.
 	private void buttonAddToArray() {
@@ -84,9 +84,7 @@ public class GridFarmDetailViewActivity extends Activity {
 		gridButton.add((Button) findViewById(R.id.Grid2_button6));
 		gridButton.add((Button) findViewById(R.id.Grid2_button7));
 		gridButton.add((Button) findViewById(R.id.Grid2_button8));
-		
-		
-	
+
 		parsingCheck();
 	}
 
@@ -97,67 +95,57 @@ public class GridFarmDetailViewActivity extends Activity {
 		case R.id.Grid2_button1:
 			Log.v("test", "Grid1_button1");
 			ShowDetailExecute(v, 0);
-			break;
+			break; 
 		case R.id.Grid2_button2:
 			Log.d("test", "Grid1_button2");
 			ShowDetailExecute(v, 1);
 			break;
 		case R.id.Grid2_button3:
 			Log.d("test", "Grid1_button3");
+			ShowDetailExecute(v, 2);
 			break;
 		case R.id.Grid2_button4:
 			Log.d("test", "Grid1_button4");
+			ShowDetailExecute(v, 3);
 			break;
 		case R.id.Grid2_button5:
 			Log.d("test", "Grid1_button5");
+			ShowDetailExecute(v, 4);
 			break;
 		case R.id.Grid2_button6:
 			Log.d("test", "Grid1_button6");
+			ShowDetailExecute(v, 5);
 			break;
 		case R.id.Grid2_button7:
 			Log.d("test", "Grid1_button7");
+			ShowDetailExecute(v, 6);
 			break;
 		case R.id.Grid2_button8:
 			Log.d("test", "Grid1_button8");
+			ShowDetailExecute(v, 7);
 			break;
 		default:
 			break;
 		}
 	}
-	public void ShowDetailExecute(View v, int position){
-		Intent intent = new Intent(GridFarmDetailViewActivity.this, 
-				DetailModuleActivity.class);
-		intent.putExtra("seq",parsedInfoList.get(+position).get("seq"));
-		startActivity(intent);
-	}
 
-	// /// 액션메뉴를 활성화 시키기 위한 메서드. //////////// 액션메뉴 관련 1 시작
-
-
-	// 엑션 메뉴의 메뉴 클릭시 실행되는 메서드 .
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		switch (item.getItemId()) {
-		case R.id.action_todolist:// todolist 클릭 - TodoListActivity 실행.
-			ExecuteToDoActivity();
-			return true;
-		case R.id.action_farm_gridview: // 현재 farmGridView이므로 아무것도 안해야됨
-			return true;
-		case R.id.action_message_menu: // Message menu로 진입
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+	public void ShowDetailExecute(View v, int modNum) {
+		if (parsedInfoList.size()!=0 && parsedInfoList.get(modNum).get("modNum") != null) {
+			Intent intent2 = new Intent(GridFarmDetailViewActivity.this,
+					DetailModuleActivity.class);
+			intent2.putExtra("info", parsedInfoList.get(modNum));
+			intent2.putExtra("name", getIntent().getStringArrayListExtra("idAndName").get(1));
+			intent2.putExtra("id", getIntent().getStringArrayListExtra("idAndName").get(0));
+			startActivity(intent2);
+		} 
 	}
 
 	private void ExecuteToDoActivity() { // action menu에서 아이템 선택시 실행되는 펑션.
 		this.finish(); // 기존 액티비티를 종료하고 선택한 액티비티를 실행.
-		//Intent i = new Intent(GridViewActivity2.this, ToDoListActivity.class);
-		//startActivity(i);
+		// Intent i = new Intent(GridViewActivity2.this,
+		// ToDoListActivity.class);
+		// startActivity(i);
 	}
-
-	// ///////////// 액션메뉴 관련 1 끝
 
 	// ////////////JSONParse 관련 1 시작
 	@Override
@@ -177,7 +165,7 @@ public class GridFarmDetailViewActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			//name = (TextView) findViewById(R.id.name);
+			// name = (TextView) findViewById(R.id.name);
 			pDialog = new ProgressDialog(GridFarmDetailViewActivity.this);
 			pDialog.setMessage("Getting Data ...");
 			pDialog.setIndeterminate(false);
@@ -189,7 +177,9 @@ public class GridFarmDetailViewActivity extends Activity {
 		protected JSONObject doInBackground(String... args) {
 			JSONParser jParser = new JSONParser();
 			// Getting JSON from URL
-			JSONObject json = jParser.getJSONFromUrl(GlobalVariable.getDetailLand+"?id="+extras.get(0));
+			JSONObject json = jParser
+					.getJSONFromUrl(GlobalVariable.getDetailLand + "?id="
+							+ extras.get(0));
 			return json;
 		}
 
@@ -200,45 +190,49 @@ public class GridFarmDetailViewActivity extends Activity {
 				// Getting JSON Array from URL
 				jsonArray = json.getJSONArray(GlobalVariable.RESULT);
 				// oslist.clear();
-				
+
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject c = jsonArray.getJSONObject(i);
 					// Storing JSON item in a Variable
-					String seq = new String(String.valueOf(i+1));
+					String seq = new String(String.valueOf(i + 1));
 					String type = c.getString(GlobalVariable.TYPE);
 					String startDate = c.getString(GlobalVariable.STARTDATE);
-					int modNum = Integer.parseInt(c.getString(GlobalVariable.MODNUM));
+					int modNum = Integer.parseInt(c
+							.getString(GlobalVariable.MODNUM));
 					String level = c.getString(GlobalVariable.LEVEL);
-					//String cropSeq = c.getString(CROPSEQ);
+					// String cropSeq = c.getString(CROPSEQ);
+					//String name = c.getString(GlobalVariable.NAME);
+
+					HashMap<String, String> parsedInfo = new HashMap<String, String>();
+					//parsedInfo.put(GlobalVariable.NAME, name);
+					for(int i1 = 0 ; i1 < 8 ; i1 ++)
+						parsedInfoList.add(new HashMap<String, String>());
 					
-					HashMap<String,String> parsedInfo = new HashMap<String,String>();
 					parsedInfo.put(GlobalVariable.SEQ, seq);
 					parsedInfo.put(GlobalVariable.TYPE, type);
-					parsedInfo.put(GlobalVariable.STARTDATE,startDate);
-					parsedInfo.put(GlobalVariable.MODNUM,c.getString(GlobalVariable.MODNUM));
-					parsedInfo.put(GlobalVariable.LEVEL,level);
-					parsedInfoList.add(parsedInfo);
-					
-					
-					gridButton.get(modNum-1).setText(modNum+". "+GlobalVariable.getCropStr(type)+"\n Level : "+level);
-					
-					
-					 //여기에서 type 가지고 setText할 거임.
-					 
-					
-					
+					parsedInfo.put(GlobalVariable.STARTDATE, startDate);
+					parsedInfo.put(GlobalVariable.MODNUM,
+							c.getString(GlobalVariable.MODNUM));
+					parsedInfo.put(GlobalVariable.LEVEL, level);
+					parsedInfoList.set(modNum, parsedInfo);
+
+					gridButton.get(modNum).setText(
+							modNum + ". " + GlobalVariable.getCropStr(type)
+									+ "\n Level : " + level);
+
+					// 여기에서 type 가지고 setText할 거임.
+
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	/*private void setButtonText(HashMap<String,String> h,int i){
-		gridButton.get(i).setText(
-				h.get(GlobalVariable.MODNUM)+" "+
-		h.get(GlobalVariable.TYPE)+" \n"+
-		h.get(GlobalVariable.LEVEL));
-	}*/
+	/*
+	 * private void setButtonText(HashMap<String,String> h,int i){
+	 * gridButton.get(i).setText( h.get(GlobalVariable.MODNUM)+" "+
+	 * h.get(GlobalVariable.TYPE)+" \n"+ h.get(GlobalVariable.LEVEL)); }
+	 */
 	// ////////////JSONParse 관련 1 끝
 
 }
