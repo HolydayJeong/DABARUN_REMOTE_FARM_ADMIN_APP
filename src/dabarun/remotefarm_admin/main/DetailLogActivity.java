@@ -1,5 +1,6 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
+import dabarun.remotefarm_admin.R;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;

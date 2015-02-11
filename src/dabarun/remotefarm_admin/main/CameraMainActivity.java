@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,6 +13,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import dabarun.remotefarm_admin.R;
 
 import Variable.GlobalVariable;
 import android.app.Activity;

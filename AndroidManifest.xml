@@ -45,34 +45,34 @@
             </intent-filter>
         </receiver>
         <!-- GCM을 수신하기 위한 BroadcastReceiver -->
-        <service android:name=".GCMIntentService" />
+        <service android:name=".main.GCMIntentService" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".main.LoginActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".CameraMainActivity"
+            android:name=".main.CameraMainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".GridFarmDetailViewActivity"
+            android:name=".main.GridFarmDetailViewActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DetailModuleActivity"
+            android:name=".main.DetailModuleActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ToDoDetailActivity"
+            android:name=".main.ToDoDetailActivity"
             android:label="@string/title_activity_to_do_detail" >
         </activity>
         <activity
-            android:name=".TabActivity"
+            android:name=".main.TabActivity"
             android:label="@string/title_activity_tab" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,7 +81,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailLogActivity"
+            android:name=".main.DetailLogActivity"
             android:label="@string/title_activity_detail_log" >
         </activity>
     </application>

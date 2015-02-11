@@ -23,7 +23,7 @@ public class GlobalVariable {
 	public final static String redIdSend = url1 + "push_insert.php";
 	public final static String userLog = "http://211.39.253.201/Dabarun/farmer/getRequestList.php";
 	// ////////////////////////////////////////////////////////////////
-	public final static String SPF_LOGIN = "LOGIN";
+	public final static String DABARUNFARMER = "DABARUNFARMER";
 	public final static String SPF_ID = "ID";
 	public final static String SPF_PW = "PW";
 	public final static String SPF_SCORE = "SCORE";

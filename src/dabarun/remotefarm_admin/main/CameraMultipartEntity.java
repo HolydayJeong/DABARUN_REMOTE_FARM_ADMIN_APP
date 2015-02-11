@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

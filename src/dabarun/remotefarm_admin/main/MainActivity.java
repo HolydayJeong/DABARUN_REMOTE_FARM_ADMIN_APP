@@ -1,12 +1,13 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
+import dabarun.remotefarm_admin.R;
 import android.support.v7.appcompat.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-/* ³ªÁß¿¡ ÇØ¾ßÇÒ °Í : HttpPost Åë½Å ¸®ÆÑÅä¸µ ÇÏ±â. */
+/* ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½ : HttpPost ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ä¸µ ï¿½Ï±ï¿½. */
 
 
 public class MainActivity extends Activity {

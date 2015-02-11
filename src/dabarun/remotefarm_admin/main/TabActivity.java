@@ -1,6 +1,8 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.util.Locale;
+
+import dabarun.remotefarm_admin.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;

@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 
 import java.util.ArrayList;
@@ -27,6 +27,8 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
+
+import dabarun.remotefarm_admin.R;
 
 
 public class GCMIntentService extends GCMBaseIntentService {

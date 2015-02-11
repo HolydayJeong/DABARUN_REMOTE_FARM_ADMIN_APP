@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 
 import java.util.ArrayList;
@@ -17,6 +17,8 @@ import org.apache.http.message.BasicNameValuePair;
 
 
 import com.google.android.gcm.GCMRegistrar;
+
+import dabarun.remotefarm_admin.R;
 
 
 import Variable.GlobalVariable;
@@ -67,7 +69,7 @@ public class LoginActivity extends Activity {
         pw_Edt = (EditText)findViewById(R.id.pw_Edt);
         tv = (TextView)findViewById(R.id.tv);
          
-      		SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
+      		SharedPreferences spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
       		//session key value
       
       		id = ""+spf.getString(GlobalVariable.SPF_ID, "");
@@ -148,7 +150,7 @@ public class LoginActivity extends Activity {
   		        			registerGCM();
 
 
-  		        			SharedPreferences spf = getSharedPreferences(GlobalVariable.SPF_LOGIN, 0);
+  		        			SharedPreferences spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
   							SharedPreferences.Editor spfEdit = spf.edit();
   							
   							spfEdit.putString(GlobalVariable.SPF_ID, id_Edt.getText().toString());

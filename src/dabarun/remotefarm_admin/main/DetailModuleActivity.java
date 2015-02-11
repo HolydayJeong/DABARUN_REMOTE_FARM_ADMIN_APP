@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +10,8 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import dabarun.remotefarm_admin.R;
 
 //import dabarun.remotefarm_admin.Grid.JSONParse;
 

@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,8 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import dabarun.remotefarm_admin.JSONParser;
-import dabarun.remotefarm_admin.TabActivity.PlaceholderFragment;
+import dabarun.remotefarm_admin.R;
+import dabarun.remotefarm_admin.main.JSONParser;
+import dabarun.remotefarm_admin.main.TabActivity.PlaceholderFragment;
 import Variable.GlobalVariable;
 import Variable.TableMainLayout;
 import android.support.annotation.Nullable;

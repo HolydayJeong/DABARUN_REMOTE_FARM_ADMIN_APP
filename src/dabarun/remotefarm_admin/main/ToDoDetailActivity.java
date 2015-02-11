@@ -1,5 +1,5 @@
 
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +17,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import dabarun.remotefarm_admin.R;
 
 import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;

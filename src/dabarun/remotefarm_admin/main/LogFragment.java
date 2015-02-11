@@ -1,4 +1,4 @@
-package dabarun.remotefarm_admin;
+package dabarun.remotefarm_admin.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 //import dabarun.remotefarm_admin.ToDoDetailActivity.Connect;
-import dabarun.remotefarm_admin.ToDoListFragment.JSONParse;
+import dabarun.remotefarm_admin.R;
+import dabarun.remotefarm_admin.main.ToDoListFragment.JSONParse;
 import Variable.GlobalVariable;
 import android.app.ProgressDialog;
 import android.content.Intent;
