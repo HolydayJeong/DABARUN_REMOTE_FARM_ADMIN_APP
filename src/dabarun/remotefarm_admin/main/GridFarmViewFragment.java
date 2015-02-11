@@ -1,9 +1,6 @@
 package dabarun.remotefarm_admin.main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,20 +19,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -191,8 +179,7 @@ public class GridFarmViewFragment extends Fragment {
 		protected JSONObject doInBackground(String... args) {
 			JSONParser jParser = new JSONParser();
 			// Getting JSON from URL
-			JSONObject json = jParser
-					.getJSONFromUrl(GlobalVariable.getTotalLand);
+			JSONObject json = jParser.getJSONFromUrl(GlobalVariable.getTotalLand);
 			return json;
 		}
 
@@ -200,29 +187,36 @@ public class GridFarmViewFragment extends Fragment {
 		protected void onPostExecute(JSONObject json) {
 			pDialog.dismiss();
 			try {
-				// Getting JSON Array from URL
-				jsonArray = json.getJSONArray(RESULT);
-				// oslist.clear();
-				for (int i = 0; i < jsonArray.length(); i++) {
-					JSONObject c = jsonArray.getJSONObject(i);
-					// Storing JSON item in a Variable
-					String id = c.getString(ID);
-					String name = c.getString(NAME);
-					String farmNum = c.getString("farmNum");
-					// String cropSeq = c.getString(CROPSEQ);
-					// JSON에서 부터 받아온 String을 가지고 이제 button들에 setText하면 되겠지?
-					gridButton.get(i).setText(name);
-					ArrayList<String> idAndName = new ArrayList<String>();
-					idAndName.add(0, id);
-					idAndName.add(1, name);
-					idAndName.add(2, farmNum);
-					infoStrings.add(idAndName); //
+				if(jsonArray != null){
+					// Getting JSON Array from URL
+					jsonArray = json.getJSONArray(RESULT);
+					// oslist.clear();
+				
+					for (int i = 0; i < jsonArray.length(); i++) {
+						JSONObject c = jsonArray.getJSONObject(i);
+						// Storing JSON item in a Variable
+						String id = c.getString(ID);
+						String name = c.getString(NAME);
+						String farmNum = c.getString("farmNum");
+						// String cropSeq = c.getString(CROPSEQ);
+						// JSON에서 부터 받아온 String을 가지고 이제 button들에 setText하면 되겠지?
+						gridButton.get(i).setText(name);
+						ArrayList<String> idAndName = new ArrayList<String>();
+						idAndName.add(0, id);
+						idAndName.add(1, name);
+						idAndName.add(2, farmNum);
+						infoStrings.add(idAndName); //
+					}
 				}
+				else
+					Toast.makeText(getActivity(), "JASON NULL", Toast.LENGTH_SHORT);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
+	
 	// ////////////JSONParse 관련 1 끝
 
 }

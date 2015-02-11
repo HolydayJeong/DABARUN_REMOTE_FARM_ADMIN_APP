@@ -4,6 +4,10 @@ package Variable;
 //AIzaSyDyH6nr07Iv8fGfraEqiu8d97k1pVPc1CQ
 
 public class GlobalVariable {
+	
+	public final static String SENDER_ID = "130953040990";
+	
+	/////////////////////////////////////////////////////////////////
 	public final static String url = "http://211.39.253.201/Dabarun/farmer/";
 	// public final static String url = "http://cra16.handong.edu/Dabarun/";
 

@@ -3,6 +3,7 @@ package dabarun.remotefarm_admin.main;
 import java.util.Locale;
 
 import dabarun.remotefarm_admin.R;
+import dabarun.remotefarm_admin.chatting.UserFragment;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -141,7 +142,7 @@ public class TabActivity extends ActionBarActivity implements
 			case 1:
 				return GridFarmViewFragment.newInstance(position+1);
 			case 2:
-				return LogFragment.newInstance(position + 1);
+				return UserFragment.newInstance(position + 1);
 			default:
 				return PlaceholderFragment.newInstance(position + 1);
 			}
