@@ -1,18 +1,34 @@
 package dabarun.remotefarm_admin.main;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.locks.Lock;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import dabarun.remotefarm_admin.R;
 import dabarun.remotefarm_admin.chatting.UserFragment;
 
+import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +36,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
@@ -40,10 +57,22 @@ public class TabActivity extends ActionBarActivity implements
 	
 	GridFarmViewFragment gridFarmViewFragment = new GridFarmViewFragment();
 	
+	List<NameValuePair> params;
+    SharedPreferences prefs;
+    
+    String userName;
 
+    GoogleCloudMessaging gcm;
+    Context context;
+    String regid;
+    String id;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		context = getApplicationContext();
+		prefs = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+		new Register().execute();
 		setContentView(R.layout.activity_tab);
 
 		// Set up the action bar.
@@ -177,7 +206,6 @@ public class TabActivity extends ActionBarActivity implements
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
-		private static final String ARG_SECTION_NUMBER = "section_number";
 
 		/**
 		 * Returns a new instance of this fragment for the given section number.
@@ -185,7 +213,7 @@ public class TabActivity extends ActionBarActivity implements
 		public static PlaceholderFragment newInstance(int sectionNumber) {
 			PlaceholderFragment fragment = new PlaceholderFragment();
 			Bundle args = new Bundle();
-			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+			args.putInt(GlobalVariable.ARG_SECTION_NUMBER, sectionNumber);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -201,5 +229,55 @@ public class TabActivity extends ActionBarActivity implements
 			return rootView;
 		}
 	}
+	
+	 private class Register extends AsyncTask<String, String, JSONObject> {
+	    	@Override
+			protected void onPreExecute() {
+			}
+	        @Override
+	        protected JSONObject doInBackground(String... args) {
+	   //     	JSONObject jObj = null;
+	            try {
+	                if (gcm == null) {
+                		gcm = GoogleCloudMessaging.getInstance(context);
+	                    regid = gcm.register(GlobalVariable.SENDER_ID);
+
+	                    SharedPreferences.Editor edit = prefs.edit();
+	                    edit.putString("REG_ID", regid);
+	                    edit.commit();
+	                }
+
+	            } catch (IOException ex) {
+	                Log.e("Error", ex.getMessage());
+	            }
+	            JSONParser json = new JSONParser();
+	            params = new ArrayList<NameValuePair>();
+	            params.add(new BasicNameValuePair("name", prefs.getString(GlobalVariable.SPF_ID, "")));
+	            params.add(new BasicNameValuePair("mobno", prefs.getString(GlobalVariable.SPF_ID, "")));
+	            params.add((new BasicNameValuePair("reg_id",prefs.getString("REG_ID",""))));
+	            prefs.getString("REG_FROM","");
+	            JSONObject jObj = json.getJSONFromUrl("http://54.65.196.112:8000/login",params);
+	            return  jObj;
+	        }
+	        @Override
+	        protected void onPostExecute(JSONObject json) {
+	             try {
+	            	 if(json != null){
+		                 String res = json.getString("response");
+		                 if(res.equals("Sucessfully Registered")) {
+		                	 Toast.makeText(TabActivity.this,"Registered",Toast.LENGTH_SHORT).show();
+		                 }else{
+		                     Toast.makeText(TabActivity.this,res,Toast.LENGTH_SHORT).show();
+		                 }
+	                 	 SharedPreferences.Editor edit = prefs.edit();
+	                      edit.putString("REG_FROM", prefs.getString(GlobalVariable.SPF_ID, ""));	// ������ ���Ⱑ mobno
+	                      edit.putString("FROM_NAME", prefs.getString(GlobalVariable.SPF_ID, ""));
+	                      edit.commit();
+	                 }
+	            	 else
+	            		 Toast.makeText(TabActivity.this,"JSON NULL in ChatActivity, Register ",Toast.LENGTH_SHORT).show();
+	             }catch (Exception e) {}
+	        }
+	    }
 
 }

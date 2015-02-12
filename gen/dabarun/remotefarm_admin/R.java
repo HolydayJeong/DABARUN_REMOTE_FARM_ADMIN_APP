@@ -2119,22 +2119,22 @@ containing a value of this type.
     }
     public static final class id {
         public static final int Button01=0x7f0c006f;
-        public static final int Grid1_button1=0x7f0c0090;
-        public static final int Grid1_button2=0x7f0c0091;
-        public static final int Grid1_button3=0x7f0c0093;
-        public static final int Grid1_button4=0x7f0c0094;
-        public static final int Grid1_button5=0x7f0c0096;
-        public static final int Grid1_button6=0x7f0c0097;
-        public static final int Grid1_tableRow2=0x7f0c0092;
-        public static final int Grid1_tableRow3=0x7f0c0095;
-        public static final int Grid2_button1=0x7f0c0085;
-        public static final int Grid2_button2=0x7f0c0086;
-        public static final int Grid2_button3=0x7f0c0088;
-        public static final int Grid2_button4=0x7f0c0089;
-        public static final int Grid2_button5=0x7f0c008b;
-        public static final int Grid2_button6=0x7f0c008c;
-        public static final int Grid2_button7=0x7f0c008e;
-        public static final int Grid2_button8=0x7f0c008f;
+        public static final int Grid1_button1=0x7f0c0091;
+        public static final int Grid1_button2=0x7f0c0092;
+        public static final int Grid1_button3=0x7f0c0094;
+        public static final int Grid1_button4=0x7f0c0095;
+        public static final int Grid1_button5=0x7f0c0097;
+        public static final int Grid1_button6=0x7f0c0098;
+        public static final int Grid1_tableRow2=0x7f0c0093;
+        public static final int Grid1_tableRow3=0x7f0c0096;
+        public static final int Grid2_button1=0x7f0c0086;
+        public static final int Grid2_button2=0x7f0c0087;
+        public static final int Grid2_button3=0x7f0c0089;
+        public static final int Grid2_button4=0x7f0c008a;
+        public static final int Grid2_button5=0x7f0c008c;
+        public static final int Grid2_button6=0x7f0c008d;
+        public static final int Grid2_button7=0x7f0c008f;
+        public static final int Grid2_button8=0x7f0c0090;
         public static final int RelativeLayout1=0x7f0c005d;
         public static final int RelativeLayout2=0x7f0c0062;
         public static final int TableLayout1=0x7f0c005a;
@@ -2146,16 +2146,17 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0c0033;
         public static final int action_bar_title=0x7f0c0032;
         public static final int action_context_bar=0x7f0c0046;
-        public static final int action_farm_gridview=0x7f0c00a6;
+        public static final int action_farm_gridview=0x7f0c00a7;
         public static final int action_menu_divider=0x7f0c0005;
         public static final int action_menu_presenter=0x7f0c0006;
-        public static final int action_message_menu=0x7f0c00a7;
+        public static final int action_message_menu=0x7f0c00a8;
         public static final int action_mode_bar=0x7f0c0042;
         public static final int action_mode_bar_stub=0x7f0c0041;
         public static final int action_mode_close_button=0x7f0c0034;
-        public static final int action_settings=0x7f0c00a4;
-        public static final int action_todolist=0x7f0c00a5;
+        public static final int action_settings=0x7f0c00a5;
+        public static final int action_todolist=0x7f0c00a6;
         public static final int activity_chooser_view_content=0x7f0c0035;
+        public static final int activity_main=0x7f0c0071;
         public static final int adjust_height=0x7f0c0009;
         public static final int adjust_width=0x7f0c000a;
         public static final int always=0x7f0c0028;
@@ -2174,25 +2175,25 @@ containing a value of this type.
         public static final int checkbox=0x7f0c003d;
         public static final int classic=0x7f0c001d;
         public static final int collapseActionView=0x7f0c0029;
-        public static final int comment=0x7f0c009f;
+        public static final int comment=0x7f0c00a0;
         public static final int content_frame=0x7f0c0059;
         public static final int decor_content_parent=0x7f0c0043;
         public static final int default_activity_button=0x7f0c0038;
         public static final int dialog=0x7f0c002d;
         public static final int disableHome=0x7f0c0022;
-        public static final int dodetail_btncancel=0x7f0c007b;
-        public static final int dodetail_btnconfirm=0x7f0c007a;
-        public static final int dodetail_landImage=0x7f0c0073;
-        public static final int dodetail_level=0x7f0c0078;
-        public static final int dodetail_levelnum=0x7f0c0079;
-        public static final int dodetail_name=0x7f0c0075;
-        public static final int dodetail_poscrop=0x7f0c0074;
-        public static final int dodetail_request=0x7f0c0076;
-        public static final int dodetail_startdate=0x7f0c0077;
-        public static final int dolist_crop=0x7f0c007d;
-        public static final int dolist_name=0x7f0c007f;
-        public static final int dolist_pos=0x7f0c007c;
-        public static final int dolist_request=0x7f0c007e;
+        public static final int dodetail_btncancel=0x7f0c007c;
+        public static final int dodetail_btnconfirm=0x7f0c007b;
+        public static final int dodetail_landImage=0x7f0c0074;
+        public static final int dodetail_level=0x7f0c0079;
+        public static final int dodetail_levelnum=0x7f0c007a;
+        public static final int dodetail_name=0x7f0c0076;
+        public static final int dodetail_poscrop=0x7f0c0075;
+        public static final int dodetail_request=0x7f0c0077;
+        public static final int dodetail_startdate=0x7f0c0078;
+        public static final int dolist_crop=0x7f0c007e;
+        public static final int dolist_name=0x7f0c0080;
+        public static final int dolist_pos=0x7f0c007d;
+        public static final int dolist_request=0x7f0c007f;
         public static final int donate_with_google=0x7f0c001c;
         public static final int dropdown=0x7f0c002e;
         public static final int edit_query=0x7f0c0047;
@@ -2213,33 +2214,33 @@ containing a value of this type.
         public static final int imageview=0x7f0c0055;
         public static final int linear_layout=0x7f0c0053;
         public static final int listMode=0x7f0c0020;
-        public static final int listView=0x7f0c00a1;
-        public static final int list_crop=0x7f0c009c;
-        public static final int list_cropseq=0x7f0c0098;
-        public static final int list_date=0x7f0c009a;
+        public static final int listView=0x7f0c00a2;
+        public static final int list_crop=0x7f0c009d;
+        public static final int list_cropseq=0x7f0c0099;
+        public static final int list_date=0x7f0c009b;
         public static final int list_item=0x7f0c0039;
-        public static final int list_name=0x7f0c009d;
-        public static final int list_pos=0x7f0c009b;
-        public static final int list_request=0x7f0c0099;
+        public static final int list_name=0x7f0c009e;
+        public static final int list_pos=0x7f0c009c;
+        public static final int list_request=0x7f0c009a;
         public static final int list_view_messages=0x7f0c0056;
         public static final int listview_user_log=0x7f0c0069;
-        public static final int loglist_list=0x7f0c0081;
+        public static final int loglist_list=0x7f0c0082;
         public static final int match_parent=0x7f0c0017;
         public static final int middle=0x7f0c0031;
-        public static final int mobno=0x7f0c00a3;
+        public static final int mobno=0x7f0c00a4;
         public static final int monochrome=0x7f0c001f;
-        public static final int name=0x7f0c00a2;
+        public static final int name=0x7f0c00a3;
         public static final int never=0x7f0c002b;
         public static final int none=0x7f0c000b;
         public static final int normal=0x7f0c000d;
-        public static final int pager=0x7f0c0071;
+        public static final int pager=0x7f0c0072;
         public static final int production=0x7f0c0012;
         public static final int progress_circular=0x7f0c0007;
         public static final int progress_horizontal=0x7f0c0008;
         public static final int pw_Edt=0x7f0c006e;
         public static final int radio=0x7f0c003f;
-        public static final int refresh=0x7f0c00a0;
-        public static final int relativeLayout1=0x7f0c0072;
+        public static final int refresh=0x7f0c00a1;
+        public static final int relativeLayout1=0x7f0c0073;
         public static final int sandbox=0x7f0c0013;
         public static final int satellite=0x7f0c000e;
         public static final int search_badge=0x7f0c0049;
@@ -2252,7 +2253,7 @@ containing a value of this type.
         public static final int search_plate=0x7f0c004d;
         public static final int search_src_text=0x7f0c004e;
         public static final int search_voice_btn=0x7f0c0052;
-        public static final int section_label=0x7f0c0082;
+        public static final int section_label=0x7f0c0083;
         public static final int selectionDetails=0x7f0c0016;
         public static final int sendbtn=0x7f0c0057;
         public static final int shortcut=0x7f0c003e;
@@ -2263,11 +2264,11 @@ containing a value of this type.
         public static final int strict_sandbox=0x7f0c0014;
         public static final int submit_area=0x7f0c0050;
         public static final int tabMode=0x7f0c0021;
-        public static final int tableRow0=0x7f0c0083;
+        public static final int tableRow0=0x7f0c0084;
         public static final int tableRow1=0x7f0c005b;
-        public static final int tableRow2=0x7f0c0087;
-        public static final int tableRow3=0x7f0c008a;
-        public static final int tableRow4=0x7f0c008d;
+        public static final int tableRow2=0x7f0c0088;
+        public static final int tableRow3=0x7f0c008b;
+        public static final int tableRow4=0x7f0c008e;
         public static final int take_photo=0x7f0c0054;
         public static final int terrain=0x7f0c000f;
         public static final int textView_cropname=0x7f0c0060;
@@ -2275,17 +2276,17 @@ containing a value of this type.
         public static final int textView_plant_date=0x7f0c005f;
         public static final int text_land=0x7f0c005c;
         public static final int title=0x7f0c003b;
-        public static final int todolist=0x7f0c0080;
+        public static final int todolist=0x7f0c0081;
         public static final int tv=0x7f0c0070;
         public static final int tv0=0x7f0c006a;
         public static final int tv1=0x7f0c006b;
         public static final int tv2=0x7f0c006d;
         public static final int up=0x7f0c0001;
         public static final int useLogo=0x7f0c0027;
-        public static final int username_textview=0x7f0c0084;
+        public static final int username_textview=0x7f0c0085;
         public static final int withText=0x7f0c002c;
         public static final int wrap_content=0x7f0c0018;
-        public static final int wrapper=0x7f0c009e;
+        public static final int wrapper=0x7f0c009f;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within
@@ -2361,8 +2362,10 @@ containing a value of this type.
     public static final class menu {
         public static final int detail_log=0x7f0d0000;
         public static final int main=0x7f0d0001;
-        public static final int tab=0x7f0d0002;
-        public static final int to_do_detail=0x7f0d0003;
+        public static final int main_activity12=0x7f0d0002;
+        public static final int main_activity433=0x7f0d0003;
+        public static final int tab=0x7f0d0004;
+        public static final int to_do_detail=0x7f0d0005;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f050000;
@@ -2427,12 +2430,12 @@ containing a value of this type.
         public static final int accept=0x7f070002;
         public static final int action_settings=0x7f070035;
         public static final int app_name=0x7f070033;
-        public static final int button_text_fertil=0x7f07004b;
-        public static final int button_text_harvest=0x7f07004e;
-        public static final int button_text_levelup=0x7f07004d;
-        public static final int button_text_select=0x7f07004c;
-        public static final int button_text_take_photo=0x7f070052;
-        public static final int button_text_water=0x7f07004a;
+        public static final int button_text_fertil=0x7f07004c;
+        public static final int button_text_harvest=0x7f07004f;
+        public static final int button_text_levelup=0x7f07004e;
+        public static final int button_text_select=0x7f07004d;
+        public static final int button_text_take_photo=0x7f070053;
+        public static final int button_text_water=0x7f07004b;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f070009;
@@ -2535,10 +2538,10 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f070005;
         public static final int create_calendar_title=0x7f070004;
         public static final int decline=0x7f070003;
-        public static final int dodetail_btncancel=0x7f07003f;
-        public static final int dodetail_btnconfirm=0x7f07003e;
-        public static final int dodetail_name=0x7f07003d;
-        public static final int dodetail_poscrop=0x7f07003c;
+        public static final int dodetail_btncancel=0x7f070040;
+        public static final int dodetail_btnconfirm=0x7f07003f;
+        public static final int dodetail_name=0x7f07003e;
+        public static final int dodetail_poscrop=0x7f07003d;
         public static final int dolist_crop=0x7f07003a;
         public static final int dolist_name=0x7f070039;
         public static final int dolist_position=0x7f070037;
@@ -2549,25 +2552,28 @@ containing a value of this type.
         public static final int store_picture_title=0x7f070000;
         /**  camera 
          */
-        public static final int take_photo=0x7f07004f;
-        public static final int text_completed=0x7f070047;
-        public static final int text_crop=0x7f070045;
-        public static final int text_name=0x7f070049;
+        public static final int take_photo=0x7f070050;
+        public static final int text_completed=0x7f070048;
+        public static final int text_crop=0x7f070046;
+        public static final int text_name=0x7f07004a;
         /**  text of LogFragment 
          */
-        public static final int text_position=0x7f070044;
-        public static final int text_request=0x7f070048;
-        public static final int text_requested=0x7f070046;
-        public static final int title_activity_detail_log=0x7f070053;
+        public static final int text_position=0x7f070045;
+        public static final int text_request=0x7f070049;
+        public static final int text_requested=0x7f070047;
+        public static final int title_activity_chat=0x7f07003c;
+        public static final int title_activity_detail_log=0x7f070054;
+        public static final int title_activity_main_activity12=0x7f070055;
+        public static final int title_activity_main_activity433=0x7f070056;
         /**  title of each tab 
          */
-        public static final int title_activity_tab=0x7f070040;
+        public static final int title_activity_tab=0x7f070041;
         public static final int title_activity_to_do_detail=0x7f07003b;
-        public static final int title_section1=0x7f070041;
-        public static final int title_section2=0x7f070042;
-        public static final int title_section3=0x7f070043;
-        public static final int upload_server=0x7f070050;
-        public static final int uploaded=0x7f070051;
+        public static final int title_section1=0x7f070042;
+        public static final int title_section2=0x7f070043;
+        public static final int title_section3=0x7f070044;
+        public static final int upload_server=0x7f070051;
+        public static final int uploaded=0x7f070052;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

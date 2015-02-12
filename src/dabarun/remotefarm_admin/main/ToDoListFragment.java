@@ -58,8 +58,7 @@ public class ToDoListFragment extends Fragment {
    // URL to get JSON Array
    // JSON Node Names
    private static final String RESULT = "result";
-   private static final String SEQ = "seq";
-   private static final String POS = "pos";
+   private static final String SEQ = "seq";private static final String POS = "pos";
    private static final String FARMNUM = "farmNum";
    private static final String MODNUM = "modNum";
    private static final String CROP = "type";
@@ -71,13 +70,12 @@ public class ToDoListFragment extends Fragment {
    // ///////////////Fragment/////////////////////////////////
    FragmentActivity fa;
    RelativeLayout rlayout;
-   private static final String ARG_SECTION_NUMBER = "section_number";
 
    // //////////////////////////////////////////////////////
    public static ToDoListFragment newInstance(int sectionNumber) {
       ToDoListFragment fragment = new ToDoListFragment();
       Bundle args = new Bundle();
-      args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+      args.putInt(GlobalVariable.ARG_SECTION_NUMBER, sectionNumber);
       fragment.setArguments(args);
       return fragment;
    }
@@ -173,7 +171,6 @@ public class ToDoListFragment extends Fragment {
                 */
 
                list.setAdapter(adapter);
-               Log.d("test", "list setting end");
                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                   @Override
                   public void onItemClick(AdapterView<?> parent,

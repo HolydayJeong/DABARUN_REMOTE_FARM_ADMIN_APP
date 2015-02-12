@@ -10,6 +10,7 @@
     <string name="dolist_name">사용자</string>
     <string name="dolist_crop">작물</string>
     <string name="title_activity_to_do_detail">ToDoDetailActivity</string>
+    <string name="title_activity_chat">메세지</string>
     <string name="dodetail_poscrop">1-2 배추</string>
     <string name="dodetail_name">홍길동</string>
     <string name="dodetail_btnconfirm">물을 주었습니다!</string>
@@ -38,5 +39,7 @@
     <string name="uploaded">Successfully uploaded</string>
     <string name="button_text_take_photo">사진촬영</string>
     <string name="title_activity_detail_log">DetailLogActivity</string>
+    <string name="title_activity_main_activity12">MainActivity12</string>
+    <string name="title_activity_main_activity433">MainActivity433</string>
 
 </resources>

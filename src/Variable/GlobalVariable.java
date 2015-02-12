@@ -6,6 +6,7 @@ package Variable;
 public class GlobalVariable {
 	
 	public final static String SENDER_ID = "130953040990";
+	public static final String ARG_SECTION_NUMBER = "section_number";
 	
 	/////////////////////////////////////////////////////////////////
 	public final static String url = "http://211.39.253.201/Dabarun/farmer/";

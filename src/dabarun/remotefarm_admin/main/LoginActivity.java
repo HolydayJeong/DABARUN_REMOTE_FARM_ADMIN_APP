@@ -1,6 +1,7 @@
 package dabarun.remotefarm_admin.main;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 
 import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import dabarun.remotefarm_admin.R;
 
@@ -36,6 +39,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LoginActivity extends Activity {
@@ -76,6 +80,11 @@ public class LoginActivity extends Activity {
       		if(id != null)
       		{
       			id_Edt.setText(id);
+      			
+      			
+      		//여긴 개발용 나중에 꼭 고쳐!!!!!!!!
+      			Intent intent = new Intent(LoginActivity.this, TabActivity.class);                                                                                                                                             
+					startActivity(intent);
       		}
 
 
@@ -184,7 +193,7 @@ public class LoginActivity extends Activity {
 		  GCMRegistrar.register(this, GlobalVariable.PROJECT_ID);
 		} 
 		else {
-			Log.d("TAG", "Already registered");
+			Log.d("test", "Already registered");
 		}
 		HttpClient client = new DefaultHttpClient();
 		try{ 

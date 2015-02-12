@@ -50,12 +50,11 @@ public class GridFarmViewFragment extends Fragment {
 
 	FragmentActivity fa;
 	LinearLayout llayout;
-	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	public static GridFarmViewFragment newInstance(int sectionNumber) {
 		GridFarmViewFragment fragment = new GridFarmViewFragment();
 		Bundle args = new Bundle();
-		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+		args.putInt(GlobalVariable.ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -177,21 +176,26 @@ public class GridFarmViewFragment extends Fragment {
 
 		@Override
 		protected JSONObject doInBackground(String... args) {
-			JSONParser jParser = new JSONParser();
-			// Getting JSON from URL
-			JSONObject json = jParser.getJSONFromUrl(GlobalVariable.getTotalLand);
-			return json;
+			try{
+				JSONParser jParser = new JSONParser();
+				// Getting JSON from URL
+				JSONObject json = jParser.getJSONFromUrl(GlobalVariable.getTotalLand);
+				return json;
+			}catch(Exception e){
+				Log.e("test", e.getMessage());
+			}
+			return null;
 		}
 
 		@Override
 		protected void onPostExecute(JSONObject json) {
 			pDialog.dismiss();
 			try {
+				// Getting JSON Array from URL
+				jsonArray = json.getJSONArray(RESULT);
+				// oslist.clear();
+
 				if(jsonArray != null){
-					// Getting JSON Array from URL
-					jsonArray = json.getJSONArray(RESULT);
-					// oslist.clear();
-				
 					for (int i = 0; i < jsonArray.length(); i++) {
 						JSONObject c = jsonArray.getJSONObject(i);
 						// Storing JSON item in a Variable

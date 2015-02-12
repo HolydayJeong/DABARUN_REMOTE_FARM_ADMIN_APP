@@ -62,8 +62,6 @@ public class ChatActivity extends Activity {
     Intent intent;
     String mobno;
     
-  
-    
     GoogleCloudMessaging gcm;
     Context context;
     String regid;
@@ -222,4 +220,4 @@ public class ChatActivity extends Activity {
             }
         }
     }
-}
+}    
