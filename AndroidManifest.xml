@@ -18,10 +18,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <permission
-        android:name="com.example.gcm.permission.C2D_MESSAGE"
+        android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -97,8 +97,9 @@
             android:label="@string/title_activity_detail_log" >
         </activity>
         <activity
-            android:name="dabarun.remotefarm_admin.chatting.ChatActivity"
-            android:label="@string/title_activity_chat" >
+            android:name=".chatting.ChatActivity"
+            android:label="@string/title_activity_chat"
+            android:launchMode="singleTask" >
         </activity>
     </application>
 
