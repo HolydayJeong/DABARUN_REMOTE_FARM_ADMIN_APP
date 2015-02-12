@@ -144,7 +144,7 @@ public class UserFragment extends Fragment {
 	                    Bundle args = new Bundle();
 	                    args.putString("mobno", users.get(position).get("mobno"));
 	                    Log.d("test", "mobno : " + users.get(position).get("mobno"));
-	                    Intent chat = new Intent(fa, GridFarmDetailViewActivity.class);
+	                    Intent chat = new Intent(fa, ChatActivity.class);
 	                    chat.putExtra("INFO", args);
 	                    startActivity(chat);
 	                }

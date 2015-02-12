@@ -101,8 +101,8 @@ public class ChatActivity extends Activity {
         selectData();
         
         /* 상대방이 한말 표시 */
-        if(!"farmer".equalsIgnoreCase(bundle.getString("name").trim())&&
-        		!prefs.getString(GlobalVariable.SPF_ID, "").equalsIgnoreCase(bundle.getString("name").trim())){
+        if(!"farmer".equalsIgnoreCase(bundle.getString("mobno").trim())&&
+        		!prefs.getString(GlobalVariable.SPF_ID, "").equalsIgnoreCase(bundle.getString("mobno").trim())){
         	Log.e("test", "IN");
         	ADAPTER.add(new OneComment(FROMOTHER, bundle.getString("msg")));
         }
