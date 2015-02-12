@@ -215,7 +215,7 @@ public class DetailModuleActivity extends Activity {
 									"[완료]"
 											+ GlobalVariable
 													.getRequestStr(request));
-							attr.put("date", finnDate);
+							attr.put("date", finnDate.substring(5));
 							logList.add(attr);
 						}
 						attr2.clear();
@@ -223,7 +223,7 @@ public class DetailModuleActivity extends Activity {
 						attr2.put(ID, id);
 						attr2.put(REQUEST,
 								"[요청]" + GlobalVariable.getRequestStr(request));
-						attr2.put("date", requestDate);
+						attr2.put("date", requestDate.substring(5));
 						logList.add(attr2);
 
 					}

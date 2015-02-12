@@ -179,6 +179,12 @@ public class LoginActivity extends Activity {
 
   		}
   	}
+  	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		GCMRegistrar.onDestroy(this);
+		super.onDestroy();
+	}
   		
   	/// 리팩토링 : 위에 부분을 나중에 밑에 집어넣어보자. 가능할거 같아. php 하나로 처리해서.
   	
