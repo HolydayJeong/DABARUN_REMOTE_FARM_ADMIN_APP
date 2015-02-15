@@ -76,8 +76,8 @@ public class LoginActivity extends Activity {
       		SharedPreferences spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
       		//session key value
       
-      		id = ""+spf.getString(GlobalVariable.SPF_ID, "");
-      		if(id != null)
+      		id = spf.getString(GlobalVariable.SPF_ID, "");
+      		if(!"".equals(id))
       		{
       			id_Edt.setText(id);
       			

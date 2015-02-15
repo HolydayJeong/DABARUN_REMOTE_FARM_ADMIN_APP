@@ -90,7 +90,6 @@ public class UserFragment extends Fragment {
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            	users.clear();
             	new Load().execute();
             }
         });
@@ -118,6 +117,7 @@ public class UserFragment extends Fragment {
         @Override
         protected void onPostExecute(JSONArray json) {
         	if(json != null){
+        		users.clear();
 	            for(int i = 0; i < json.length(); i++){
 	                JSONObject c = null;
 	                try {

@@ -68,14 +68,15 @@ public class ChatActivity extends Activity {
     String id;
     
     SQLiteDatabase db;
-    String newQuery = "create table msgbox (id integer primary key , name text, msg text, isother integer);";
+    String newQuery = "create table msgbox (id integer primary key , msgFrom text, msgTo text, msg text, isother integer);";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         context = getApplicationContext();
         prefs = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+        id = prefs.getString(GlobalVariable.SPF_ID, "");
         bundle = getIntent().getBundleExtra("INFO");
         
         setContentView(R.layout.activity_chat);
@@ -101,9 +102,13 @@ public class ChatActivity extends Activity {
         selectData();
         
         /* 상대방이 한말 표시 */
-        if(!"farmer".equalsIgnoreCase(bundle.getString("mobno").trim())&&
-        		!prefs.getString(GlobalVariable.SPF_ID, "").equalsIgnoreCase(bundle.getString("mobno").trim())){
+/*
+         if(!id.equals(bundle.getString("mobno").trim())&&
+ 
+        		!prefs.getString(GlobalVariable.SPF_ID, "").equals(bundle.getString("mobno").trim())){
         	Log.e("test", "IN");
+ */
+        if((null != bundle.getString("msg")) && !"null".equals(bundle.getString("msg"))){
         	ADAPTER.add(new OneComment(FROMOTHER, bundle.getString("msg")));
         }
 
@@ -115,7 +120,8 @@ public class ChatActivity extends Activity {
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            	insertData("You",chat_msg.getText().toString(), INT_SELF);
+            	if(!"".toString().equals(chat_msg.getText().toString()) || chat_msg.getText().toString() != null)
+            	insertData(id,  bundle.getString("mobno"),chat_msg.getText().toString(), INT_SELF);
                 Log.d("test", "you: " + chat_msg.getText().toString());
                  
      			ADAPTER.add(new OneComment(FROMMYSELF, chat_msg.getText().toString()));
@@ -133,11 +139,11 @@ public class ChatActivity extends Activity {
         edit.commit();
     }
     
-    private void insertData(String name,String msg, int isother){
+    private void insertData(String msgFrom, String msgTo,String msg, int isother){
     	db.beginTransaction();
     	 
         try{
-            String sql = "insert into msgbox (name,msg,isother) values ('"+ name +"','"+ msg +"','"+ isother +"');";
+            String sql = "insert into msgbox (msgFrom,msgTo,msg,isother) values ('"+msgFrom+"','"+ msgTo +"','"+ msg +"','"+ isother +"');";
             db.execSQL(sql);
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -149,25 +155,31 @@ public class ChatActivity extends Activity {
     
     public void selectData(){
     	boolean selfOrNot = true;
+//        String sql = "select * from msgbox where msgfrom = '"+bundle.getString("mobno")+"' and msgTo = '"+id+"' or " +
+//        		"msgfrom = '"+id+"' and msgTo = '"+bundle.getString("mobno")+"';";
         String sql = "select * from msgbox";
-        
         Cursor result = db.rawQuery(sql, null);
         result.moveToFirst();
         while(!result.isAfterLast()){
         	
-        	
+        	if(id.equals(result.getString(1))/*보내는 사람*/ &&
+        			bundle.getString("mobno").equals(result.getString(2))/*받는사람*/ ||
+        			/* 보내는 사람 : 나, 받는사람 : 타인 case */
+        			bundle.getString("mobno").equals(result.getString(1))/*보내는 사람*/ &&
+        			id.equals(result.getString(2))/*받는사람*/)
+        			/* 보내는 사람 : 타인, 받는사람 : 나 case */
+        	{
         	//table에 누가 보냈는지 값도 있어야 함....
-        	
-        	if( result.getInt(3) == 1)
-        	{selfOrNot = FROMOTHER;}
-        	
-        	else if(result.getInt(3) == 0)
-        	{selfOrNot = FROMMYSELF;}
-        	
-        	
-        	result.getString(3);
-        	ADAPTER.add(new OneComment(selfOrNot, result.getString(2)));
-            
+	        	if( result.getInt(4) == 1)
+	        	{selfOrNot = FROMOTHER;}
+	        	
+	        	else if(result.getInt(4) == 0)
+	        	{selfOrNot = FROMMYSELF;}
+	        	
+	        	
+	        	result.getString(3);
+	        	ADAPTER.add(new OneComment(selfOrNot, result.getString(3)));
+        	}
             result.moveToNext();
         }
         result.close();
@@ -182,7 +194,7 @@ public class ChatActivity extends Activity {
             String str2 = intent.getStringExtra("fromu");
             
             if(str2.equals(bundle.getString("mobno"))){
-            	insertData(str1, p_msg, INT_OTHER);
+            	insertData(str1, id, p_msg, INT_OTHER);
                 Log.d("test", "2  name: " + str1 + " msg: " + p_msg); 
                 
     			ADAPTER.add(new OneComment(FROMOTHER, p_msg));
