@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings.Global;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -108,7 +109,7 @@ public class UserFragment extends Fragment {
             params.add(new BasicNameValuePair("mobno", prefs.getString("REG_FROM","")));
             Log.d("test", prefs.getString("REG_FROM",""));
             //JSONArray jAry = json.getJSONArray("http://10.0.2.2:8080/getuser",params);
-            JSONArray jAry = json.getJSONArray( "http://54.65.196.112:8000/getuser",params);
+            JSONArray jAry = json.getJSONArray( GlobalVariable.chatUrl+"getuser",params);
 
             return jAry;
         }

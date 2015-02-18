@@ -28,6 +28,7 @@ import Variable.GlobalVariable;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,6 +55,10 @@ public class LoginActivity extends Activity {
     HttpClient httpclient;
     List<NameValuePair> nameValuePairs;
     ProgressDialog dialog = null;
+    SharedPreferences spf;
+    
+    GoogleCloudMessaging gcm;
+    Context context;
     
     static String id;
      
@@ -62,10 +67,10 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	Log.d("debug", "onCreate1");
     	super.onCreate(savedInstanceState);
-    	GCMRegistrar.unregister(this);
         setContentView(R.layout.activity_login_main);
         
-       
+        context = getApplicationContext();
+        
         Log.d("debug", "onCreate2");
         
         b = (Button)findViewById(R.id.Button01);  
@@ -73,7 +78,7 @@ public class LoginActivity extends Activity {
         pw_Edt = (EditText)findViewById(R.id.pw_Edt);
         tv = (TextView)findViewById(R.id.tv);
          
-      		SharedPreferences spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+      		spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
       		//session key value
       
       		id = spf.getString(GlobalVariable.SPF_ID, "");
@@ -183,21 +188,25 @@ public class LoginActivity extends Activity {
   	/// 리팩토링 : 위에 부분을 나중에 밑에 집어넣어보자. 가능할거 같아. php 하나로 처리해서.
   	
   	public void registerGCM(){
-		GCMRegistrar.checkDevice(this);		// 기기가 등록되었는지 확인.
-		GCMRegistrar.checkManifest(this);
-		final String regId = GCMRegistrar.getRegistrationId(this);
+  		String regId = "";
+  		try{
+  				gcm = GoogleCloudMessaging.getInstance(context);
+                regId = gcm.register(GlobalVariable.SENDER_ID);
+                SharedPreferences.Editor edit = spf.edit();
+                edit.putString("REG_ID", regId);
+                edit.commit();
+  		}catch (IOException ex) {
+            Log.e("Error", ex.getMessage());
+        }
 		Log.d("test", "regId : "+regId);
 		if ("".equals(regId) || null == regId) {
 			Log.d("test", "regId check");
-			
-		  GCMRegistrar.register(this, GlobalVariable.PROJECT_ID);
 		} 
 		else {
 			Log.d("test", "Already registered");
 		}
 		HttpClient client = new DefaultHttpClient();
 		try{ 
-	
 			String result1;
 			Log.d("test","MainActivity id : "+id);
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

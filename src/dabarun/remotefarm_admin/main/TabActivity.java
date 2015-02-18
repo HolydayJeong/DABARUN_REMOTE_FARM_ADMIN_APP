@@ -110,6 +110,46 @@ public class TabActivity extends ActionBarActivity implements
 					.setTabListener(this));
 		}
 	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		// Set up the action bar.
+				final ActionBar actionBar = getSupportActionBar();
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+				// Create the adapter that will return a fragment for each of the three
+				// primary sections of the activity.
+				mSectionsPagerAdapter = new SectionsPagerAdapter(
+						getSupportFragmentManager());
+
+				// Set up the ViewPager with the sections adapter.
+				mViewPager = (ViewPager) findViewById(R.id.pager);
+				mViewPager.setAdapter(mSectionsPagerAdapter);
+
+				// When swiping between different sections, select the corresponding
+				// tab. We can also use ActionBar.Tab#select() to do this if we have
+				// a reference to the Tab.
+				mViewPager
+						.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+							@Override
+							public void onPageSelected(int position) {
+								actionBar.setSelectedNavigationItem(position);
+							}
+						});
+/*
+				// For each of the sections in the app, add a tab to the action bar.
+				for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+					// Create a tab with text corresponding to the page title defined by
+					// the adapter. Also specify this Activity object, which implements
+					// the TabListener interface, as the callback (listener) for when
+					// this tab is selected.
+					actionBar.addTab(actionBar.newTab()
+							.setText(mSectionsPagerAdapter.getPageTitle(i))
+							.setTabListener(this));
+				}
+*/
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -236,28 +276,19 @@ public class TabActivity extends ActionBarActivity implements
 			}
 	        @Override
 	        protected JSONObject doInBackground(String... args) {
-	   //     	JSONObject jObj = null;
-	            try {
-	                if (gcm == null) {
-                		gcm = GoogleCloudMessaging.getInstance(context);
-	                    regid = gcm.register(GlobalVariable.SENDER_ID);
-
-	                    SharedPreferences.Editor edit = prefs.edit();
-	                    edit.putString("REG_ID", regid);
-	                    edit.commit();
-	                }
-
-	            } catch (IOException ex) {
-	                Log.e("Error", ex.getMessage());
-	            }
-	            JSONParser json = new JSONParser();
-	            params = new ArrayList<NameValuePair>();
-	            params.add(new BasicNameValuePair("name", prefs.getString(GlobalVariable.SPF_ID, "")));
-	            params.add(new BasicNameValuePair("mobno", prefs.getString(GlobalVariable.SPF_ID, "")));
-	            params.add((new BasicNameValuePair("reg_id",prefs.getString("REG_ID",""))));
-	            prefs.getString("REG_FROM","");
-	            JSONObject jObj = json.getJSONFromUrl("http://54.65.196.112:8000/login",params);
-	            return  jObj;
+	        	if(!"".equals(prefs.getString("REGID", "")) || prefs.getString("REG_ID", "") != null)
+	        	{
+		        	//     	JSONObject jObj = null;
+		            JSONParser json = new JSONParser();
+		            params = new ArrayList<NameValuePair>();
+		            params.add(new BasicNameValuePair("name", prefs.getString(GlobalVariable.SPF_ID, "")));
+		            params.add(new BasicNameValuePair("mobno", prefs.getString(GlobalVariable.SPF_ID, "")));
+		            params.add((new BasicNameValuePair("reg_id",prefs.getString("REG_ID",""))));
+		            prefs.getString("REG_FROM","");
+		            JSONObject jObj = json.getJSONFromUrl("http://54.65.196.112:8000/login",params);
+		            return  jObj;
+	        	}
+	            return null;
 	        }
 	        @Override
 	        protected void onPostExecute(JSONObject json) {

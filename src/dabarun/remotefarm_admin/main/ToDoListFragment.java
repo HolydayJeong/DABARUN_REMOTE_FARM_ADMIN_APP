@@ -63,6 +63,7 @@ public class ToDoListFragment extends Fragment {
    private static final String MODNUM = "modNum";
    private static final String CROP = "type";
    private static final String REQUEST = "request";
+   private static final String REQNUM = "reqNum";
    private static final String NAME = "name";
    private static boolean isFirst = true;
 
@@ -143,6 +144,7 @@ public class ToDoListFragment extends Fragment {
                      + c.getString("modNum");
                String type = GlobalVariable
                      .getCropStr((c.getString(CROP)));
+               String reqNum = c.getString(REQUEST);
                String request = GlobalVariable.getRequestStr(c
                      .getString(REQUEST));
 
@@ -153,6 +155,7 @@ public class ToDoListFragment extends Fragment {
                map.put(POS, pos);
                map.put(CROP, type);
                map.put(REQUEST, request);
+               map.put(REQNUM, reqNum);
                map.put(NAME, name);
                // map.put(TAG_API, api);
                oslist.add(map);
@@ -180,6 +183,8 @@ public class ToDoListFragment extends Fragment {
                            ToDoDetailActivity.class);
                      intent.putExtra("seq",
                            oslist.get(+position).get(SEQ));
+                     intent.putExtra("req",
+                             oslist.get(+position).get(REQNUM));
 
                      startActivity(intent);
                   }

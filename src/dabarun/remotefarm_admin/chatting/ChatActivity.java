@@ -213,7 +213,7 @@ public class ChatActivity extends Activity {
             params.add(new BasicNameValuePair("to", bundle.getString("mobno")));
             params.add((new BasicNameValuePair("msg",chat_msg.getText().toString())));
 
-            JSONObject jObj = json.getJSONFromUrl("http://54.65.196.112:8000/send",params);
+            JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
             //JSONObject jObj = json.getJSONFromUrl("http://54.65.196.112:8000/send",params);
             return jObj;
         }

@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import dabarun.remotefarm_admin.R;
+import dabarun.remotefarm_admin.chatting.ChatActivity;
 
 import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;
@@ -40,6 +41,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ToDoDetailActivity extends ActionBarActivity implements View.OnClickListener {
    ImageView image;
@@ -53,9 +55,11 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
    Button Confirm;
    Button Cancel;
 
-    HttpResponse response;
-    HttpClient httpclient;
-    List<NameValuePair> nameValuePairs;
+   HttpResponse response;
+   HttpClient httpclient;
+   List<NameValuePair> nameValuePairs;
+   
+   SharedPreferences spf;
     
    JSONArray android = null;
    
@@ -82,6 +86,8 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_to_do_detail);
       
+      spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+      
       image = (ImageView) findViewById(R.id.dodetail_landImage);
       poscrop = (TextView) findViewById(R.id.dodetail_poscrop); 
       name = (TextView) findViewById(R.id.dodetail_name);
@@ -96,14 +102,15 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       
       Intent intent = getIntent();
       seq = Integer.parseInt(intent.getStringExtra("seq"));
+      req = Integer.parseInt(intent.getStringExtra("req"));
       
    }
    
    public void onClick(View view){
       if(view == Confirm)
-          reqTemp = seq;
+          reqTemp = req;
       else if(view == Cancel)
-         reqTemp = seq*10 + seq;
+         reqTemp = req*10 + req;
          
       new AlertDialog.Builder(this)
          .setTitle("확인")
@@ -114,29 +121,11 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
          .setNeutralButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               try{
-                    
-                    HttpClient client = new DefaultHttpClient();
-                    Log.d("test","confirm button");            
-                     try{
-                        ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
-                        nameValuePairs1.add(new BasicNameValuePair("reqId", reqId));
-                        //nameValuePairs1.add(new BasicNameValuePair("id", LoginActivity.id));
-                        nameValuePairs1.add(new BasicNameValuePair("req", ""+ reqTemp));                        
-                        Log.d("test","confirm semd");
-                        
-                        HttpPost httpPost1 = new HttpPost(GlobalVariable.push);         
-                        UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs1,"UTF-8");
-                        httpPost1.setEntity(entityRequest1);
-                        ResponseHandler<String> handler1 = new BasicResponseHandler();
-                        String result1 = client.execute(httpPost1, handler1);
-                        
-                       result1 = result1.trim().toString();
-                       Log.d("test", "result1:"+result1);
-                       
-                         Log.d("test","check3");
-                     }catch(Exception e){e.printStackTrace();}               
-              }catch(Exception e){}      
+	             try{
+	            	 new GCMSend().execute();
+		             finish();
+	             }catch(Exception e){
+                    	 e.printStackTrace();}               
             } })
          .show();                     
    }
@@ -238,7 +227,6 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
          } catch (JSONException e) {
             e.printStackTrace();
          }
-         
         }
      }
      private String getButtonText(int request)
@@ -269,5 +257,65 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       }         
       return text;
    }
+	 private class GCMSend extends AsyncTask<String, String, JSONObject> {
+	
+	     @Override
+	     protected JSONObject doInBackground(String... args) {
+	    	 int isFinn = 0;
+	    	 try{
+	             HttpClient client = new DefaultHttpClient();
+	             Log.d("test","ing");            
+	              try{
+	                ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
+	                nameValuePairs1.add(new BasicNameValuePair("seq", ""+seq));
+	                if(reqTemp > 10)
+	                	isFinn = 2;
+	                else if(reqTemp > 0)
+	                	isFinn = 1;
+	                 
+	                nameValuePairs1.add(new BasicNameValuePair("isFinn", ""+isFinn));
+	                Log.d("test","req send");
+	                
+	                HttpPost httpPost1 = new HttpPost(GlobalVariable.setReqFinn);         
+	                UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs1,"UTF-8");
+	                httpPost1.setEntity(entityRequest1);
+	                ResponseHandler<String> handler1 = new BasicResponseHandler();
+
+	                String result = client.execute(httpPost1, handler1);
+	                result = result.trim().toString();
+	                
+	                Log.d("test", "result1:"+result);
+	                
+	                if("success".equals(result))
+	                {
+	                	JSONParser json = new JSONParser();
+	               	 	List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+	                    params.add(new BasicNameValuePair("from", spf.getString("REG_FROM","")));
+	                    params.add(new BasicNameValuePair("fromn", spf.getString("FROM_NAME","")));
+	                    params.add(new BasicNameValuePair("to", reqId));
+	                    params.add((new BasicNameValuePair("msg",getButtonText(reqTemp))));
+
+	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
+	                    
+	       	         return jObj;
+	                }
+	              }catch(Exception e){}               
+	          }catch(Exception e){}
+	    	 return null;	    	 
+	     }
+	     @Override
+	     protected void onPostExecute(JSONObject json) {
+	         String res = null;
+	         try {
+	             res = json.getString("response");
+	             if(res.equals("Failure")){
+	                 Toast.makeText(getApplicationContext(),"The user has logged out. You cant send message anymore !",Toast.LENGTH_SHORT).show();
+	             }
+	         } catch (JSONException e) {
+	             e.printStackTrace();
+	         }
+	     }
+	 }
 }
    

@@ -17,8 +17,14 @@ public class GlobalVariable {
 	public final static String getTotalLand = url + "getTotalLand.php";
 	public final static String getDetailLand = url + "getDetailLand.php";
 	public final static String getDoDetail = url + "getDoDetail.php";
+	
+	public final static String setReqFinn = url + "setReqFinn.php";
 
 	public final static String setPoint = url + "setPoint.php";
+	//////////////////////////////////////////////////////////////////
+	
+	public final static String chatUrl = "http://54.65.196.112:8000/";
+
 	// ///////////////////////////////////////////////////////////////
 	public final static String url1 = "http://211.39.253.201/Dabarun/";
 	public final static String push = "http://cra16.handong.edu/Dabarun/dragonflight/push_test.php";

@@ -161,17 +161,10 @@ public class GridFarmViewFragment extends Fragment {
 	}
 
 	private class JSONParse extends AsyncTask<String, String, JSONObject> {
-		private ProgressDialog pDialog;
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-
-			pDialog = new ProgressDialog(fa);
-			pDialog.setMessage("Getting Data ...");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();
 		}
 
 		@Override
@@ -189,7 +182,6 @@ public class GridFarmViewFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(JSONObject json) {
-			pDialog.dismiss();
 			try {
 				// Getting JSON Array from URL
 				jsonArray = json.getJSONArray(RESULT);
