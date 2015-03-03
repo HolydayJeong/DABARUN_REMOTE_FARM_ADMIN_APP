@@ -187,6 +187,7 @@ public class ToDoListFragment extends Fragment {
                              oslist.get(+position).get(REQNUM));
 
                      startActivity(intent);
+                     getActivity().finish();
                   }
                });
             }

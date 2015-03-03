@@ -72,7 +72,7 @@ public class TabActivity extends ActionBarActivity implements
 		super.onCreate(savedInstanceState);
 		context = getApplicationContext();
 		prefs = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
-		new Register().execute();
+		new Register().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		setContentView(R.layout.activity_tab);
 
 		// Set up the action bar.
@@ -110,7 +110,7 @@ public class TabActivity extends ActionBarActivity implements
 					.setTabListener(this));
 		}
 	}
-	
+/*	
 	@Override
 	protected void onResume(){
 		super.onResume();
@@ -148,9 +148,9 @@ public class TabActivity extends ActionBarActivity implements
 							.setText(mSectionsPagerAdapter.getPageTitle(i))
 							.setTabListener(this));
 				}
-*/
-	}
 
+	}
+*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -276,19 +276,33 @@ public class TabActivity extends ActionBarActivity implements
 			}
 	        @Override
 	        protected JSONObject doInBackground(String... args) {
+	        	 try {
+	                 if (gcm == null) {
+	                     gcm = GoogleCloudMessaging.getInstance(context);
+	                     regid = gcm.register(GlobalVariable.SENDER_ID);
+
+	                     SharedPreferences.Editor edit = prefs.edit();
+	                     edit.putString("REG_ID", regid);
+	                     edit.commit();
+	                 }
+
+	             } catch (IOException ex) {
+	                 Log.e("Error", ex.getMessage());
+	             }
+	        	 JSONObject jObj = null;
 	        	if(!"".equals(prefs.getString("REGID", "")) || prefs.getString("REG_ID", "") != null)
 	        	{
-		        	//     	JSONObject jObj = null;
+		        	     	//JSONObject jObj = null;
 		            JSONParser json = new JSONParser();
 		            params = new ArrayList<NameValuePair>();
 		            params.add(new BasicNameValuePair("name", prefs.getString(GlobalVariable.SPF_ID, "")));
 		            params.add(new BasicNameValuePair("mobno", prefs.getString(GlobalVariable.SPF_ID, "")));
 		            params.add((new BasicNameValuePair("reg_id",prefs.getString("REG_ID",""))));
 		            prefs.getString("REG_FROM","");
-		            JSONObject jObj = json.getJSONFromUrl("http://54.65.196.112:8000/login",params);
+		            jObj = json.getJSONFromUrl("http://54.65.196.112:8000/login",params);
 		            return  jObj;
 	        	}
-	            return null;
+	            return jObj;
 	        }
 	        @Override
 	        protected void onPostExecute(JSONObject json) {

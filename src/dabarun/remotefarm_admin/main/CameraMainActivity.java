@@ -45,6 +45,7 @@ public class CameraMainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_camera_main);
 
 		mTakePhoto = (Button) findViewById(R.id.take_photo);

@@ -19,6 +19,7 @@ public class GlobalVariable {
 	public final static String getDoDetail = url + "getDoDetail.php";
 	
 	public final static String setReqFinn = url + "setReqFinn.php";
+	public final static String setDetailModule = url + "setDetailModule.php";
 
 	public final static String setPoint = url + "setPoint.php";
 	//////////////////////////////////////////////////////////////////
@@ -78,7 +79,7 @@ public class GlobalVariable {
 				crop = "딸기";
 				break;
 			case 2:
-				crop = "토마토";
+				crop = "배추";
 				break;
 			}
 		}

@@ -4,6 +4,7 @@ package dabarun.remotefarm_admin.main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -60,6 +61,8 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
    List<NameValuePair> nameValuePairs;
    
    SharedPreferences spf;
+   
+   int asyncNum = 0;
     
    JSONArray android = null;
    
@@ -123,11 +126,19 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
             public void onClick(DialogInterface dialog, int which) {
 	             try{
 	            	 new GCMSend().execute();
-		             finish();
+		             //finish();
 	             }catch(Exception e){
                     	 e.printStackTrace();}               
             } })
          .show();                     
+   }
+   
+   @Override
+   public void onBackPressed(){
+
+	   Intent intent = new Intent(ToDoDetailActivity.this, TabActivity.class);                                                                                                                                             
+	   startActivity(intent);
+	   finish();
    }
 
    @Override
@@ -258,10 +269,12 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       return text;
    }
 	 private class GCMSend extends AsyncTask<String, String, JSONObject> {
+		 // GCM 보내기
 	
 	     @Override
 	     protected JSONObject doInBackground(String... args) {
 	    	 int isFinn = 0;
+	    	 JSONObject jObj = null;
 	    	 try{
 	             HttpClient client = new DefaultHttpClient();
 	             Log.d("test","ing");            
@@ -295,16 +308,13 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
 	                    params.add(new BasicNameValuePair("fromn", spf.getString("FROM_NAME","")));
 	                    params.add(new BasicNameValuePair("to", reqId));
 	                    params.add((new BasicNameValuePair("msg",getButtonText(reqTemp))));
-
-	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
-	                    
-	       	         return jObj;
+	                    jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
 	                }
 	              }catch(Exception e){}               
 	          }catch(Exception e){}
-	    	 return null;	    	 
+	    	 return jObj;	    	 
 	     }
-	     @Override
+		@Override
 	     protected void onPostExecute(JSONObject json) {
 	         String res = null;
 	         try {
@@ -312,6 +322,8 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
 	             if(res.equals("Failure")){
 	                 Toast.makeText(getApplicationContext(),"The user has logged out. You cant send message anymore !",Toast.LENGTH_SHORT).show();
 	             }
+	             else
+	            	 Toast.makeText(getApplicationContext(),"전송했습니다",Toast.LENGTH_SHORT).show();
 	         } catch (JSONException e) {
 	             e.printStackTrace();
 	         }

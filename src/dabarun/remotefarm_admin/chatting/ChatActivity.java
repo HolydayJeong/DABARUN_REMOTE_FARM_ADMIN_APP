@@ -15,6 +15,8 @@ import com.google.android.gms.internal.gm;
 
 import dabarun.remotefarm_admin.R;
 import dabarun.remotefarm_admin.main.JSONParser;
+import dabarun.remotefarm_admin.main.TabActivity;
+import dabarun.remotefarm_admin.main.ToDoDetailActivity;
 
 import Variable.GlobalVariable;
 import android.app.Activity;
@@ -137,6 +139,13 @@ public class ChatActivity extends Activity {
     	SharedPreferences.Editor edit = prefs.edit();
         edit.putString("CURRENT_ACTIVE", "");
         edit.commit();
+    }
+    
+    @Override
+    public void onBackPressed(){
+ 	   Intent intent = new Intent(ChatActivity.this, TabActivity.class);                                                                                                                                             
+ 	   startActivity(intent);
+ 	   finish();
     }
     
     private void insertData(String msgFrom, String msgTo,String msg, int isother){

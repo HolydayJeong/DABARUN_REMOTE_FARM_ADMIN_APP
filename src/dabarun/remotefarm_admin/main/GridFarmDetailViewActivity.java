@@ -47,6 +47,7 @@ public class GridFarmDetailViewActivity extends Activity {
 	TextView id;
 	TextView modNum;
 	
+	private static final String CROPSEQ = "cropSeq";
 
 	// JSON Array
 	JSONArray jsonArray = null;
@@ -89,6 +90,13 @@ public class GridFarmDetailViewActivity extends Activity {
 
 		parsingCheck();
 	}
+	
+	@Override
+	   public void onBackPressed(){
+		   Intent intent = new Intent(GridFarmDetailViewActivity.this, TabActivity.class);                                                                                                                                             
+		   startActivity(intent);
+		   finish();
+	   }
 
 	// XML에 아래의 버튼들에 onclick = "onClickButton"을 해줌. 이제 그 버튼들을 클릭시
 	// 아래의 "onClickButton" 메서드가 실행됨. onClickListener 대신 사용함.
@@ -154,7 +162,7 @@ public class GridFarmDetailViewActivity extends Activity {
 	protected void onResume() {
 		// buttonText를 가지고 parse 해야겠지?
 		super.onResume();
-		// parsingCheck();
+		 parsingCheck();
 	};
 
 	private void parsingCheck() {
@@ -197,6 +205,7 @@ public class GridFarmDetailViewActivity extends Activity {
 					JSONObject c = jsonArray.getJSONObject(i);
 					// Storing JSON item in a Variable
 					String seq = new String(String.valueOf(i + 1));
+					String cropSeq = c.getString(CROPSEQ);
 					String type = c.getString(GlobalVariable.TYPE);
 					String startDate = c.getString(GlobalVariable.STARTDATE);
 					int modNum = Integer.parseInt(c
@@ -211,6 +220,7 @@ public class GridFarmDetailViewActivity extends Activity {
 						parsedInfoList.add(new HashMap<String, String>());
 					
 					parsedInfo.put(GlobalVariable.SEQ, seq);
+					parsedInfo.put(CROPSEQ, cropSeq);
 					parsedInfo.put(GlobalVariable.TYPE, type);
 					parsedInfo.put(GlobalVariable.STARTDATE, startDate);
 					parsedInfo.put(GlobalVariable.MODNUM,

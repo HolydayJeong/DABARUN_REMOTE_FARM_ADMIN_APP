@@ -2146,15 +2146,15 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0c0033;
         public static final int action_bar_title=0x7f0c0032;
         public static final int action_context_bar=0x7f0c0046;
-        public static final int action_farm_gridview=0x7f0c00a7;
+        public static final int action_farm_gridview=0x7f0c00a6;
         public static final int action_menu_divider=0x7f0c0005;
         public static final int action_menu_presenter=0x7f0c0006;
-        public static final int action_message_menu=0x7f0c00a8;
+        public static final int action_message_menu=0x7f0c00a7;
         public static final int action_mode_bar=0x7f0c0042;
         public static final int action_mode_bar_stub=0x7f0c0041;
         public static final int action_mode_close_button=0x7f0c0034;
-        public static final int action_settings=0x7f0c00a5;
-        public static final int action_todolist=0x7f0c00a6;
+        public static final int action_settings=0x7f0c00a4;
+        public static final int action_todolist=0x7f0c00a5;
         public static final int activity_chooser_view_content=0x7f0c0035;
         public static final int activity_main=0x7f0c0071;
         public static final int adjust_height=0x7f0c0009;
@@ -2175,7 +2175,7 @@ containing a value of this type.
         public static final int checkbox=0x7f0c003d;
         public static final int classic=0x7f0c001d;
         public static final int collapseActionView=0x7f0c0029;
-        public static final int comment=0x7f0c00a0;
+        public static final int comment=0x7f0c009f;
         public static final int content_frame=0x7f0c0059;
         public static final int decor_content_parent=0x7f0c0043;
         public static final int default_activity_button=0x7f0c0038;
@@ -2214,22 +2214,21 @@ containing a value of this type.
         public static final int imageview=0x7f0c0055;
         public static final int linear_layout=0x7f0c0053;
         public static final int listMode=0x7f0c0020;
-        public static final int listView=0x7f0c00a2;
-        public static final int list_crop=0x7f0c009d;
-        public static final int list_cropseq=0x7f0c0099;
-        public static final int list_date=0x7f0c009b;
+        public static final int listView=0x7f0c00a1;
+        public static final int list_crop=0x7f0c009c;
+        public static final int list_date=0x7f0c009a;
         public static final int list_item=0x7f0c0039;
-        public static final int list_name=0x7f0c009e;
-        public static final int list_pos=0x7f0c009c;
-        public static final int list_request=0x7f0c009a;
+        public static final int list_name=0x7f0c009d;
+        public static final int list_pos=0x7f0c009b;
+        public static final int list_request=0x7f0c0099;
         public static final int list_view_messages=0x7f0c0056;
         public static final int listview_user_log=0x7f0c0069;
         public static final int loglist_list=0x7f0c0082;
         public static final int match_parent=0x7f0c0017;
         public static final int middle=0x7f0c0031;
-        public static final int mobno=0x7f0c00a4;
+        public static final int mobno=0x7f0c00a3;
         public static final int monochrome=0x7f0c001f;
-        public static final int name=0x7f0c00a3;
+        public static final int name=0x7f0c00a2;
         public static final int never=0x7f0c002b;
         public static final int none=0x7f0c000b;
         public static final int normal=0x7f0c000d;
@@ -2239,7 +2238,7 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f0c0008;
         public static final int pw_Edt=0x7f0c006e;
         public static final int radio=0x7f0c003f;
-        public static final int refresh=0x7f0c00a1;
+        public static final int refresh=0x7f0c00a0;
         public static final int relativeLayout1=0x7f0c0073;
         public static final int sandbox=0x7f0c0013;
         public static final int satellite=0x7f0c000e;
@@ -2286,7 +2285,7 @@ containing a value of this type.
         public static final int username_textview=0x7f0c0085;
         public static final int withText=0x7f0c002c;
         public static final int wrap_content=0x7f0c0018;
-        public static final int wrapper=0x7f0c009f;
+        public static final int wrapper=0x7f0c009e;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within

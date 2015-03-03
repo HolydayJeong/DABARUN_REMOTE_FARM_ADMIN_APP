@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:onClick="onClickButton"
             android:text="@string/button_text_select" />
 
         <Button
@@ -81,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:onClick="onClickButton"
             android:text="@string/button_text_water" />
 
         <Button
@@ -89,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/button_give_water"
             android:layout_below="@+id/button_give_water"
+            android:onClick="onClickButton"
             android:text="@string/button_text_levelup" />
 
         <Button
@@ -97,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/button_crop_select"
+            android:onClick="onClickButton"
             android:text="@string/button_text_fertil" />
 
         <Button
@@ -105,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/button_harvest"
+            android:onClick="onClickButton"
             android:text="@string/button_text_take_photo" />
 
         <Button
@@ -113,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/button_take_photo"
             android:layout_alignParentTop="true"
+            android:onClick="onClickButton"
             android:text="@string/button_text_harvest" />
 
     </RelativeLayout>

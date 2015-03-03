@@ -151,6 +151,7 @@ public class GridFarmViewFragment extends Fragment {
 					fa, GridFarmDetailViewActivity.class);
 			i.putExtra("idAndName", a);
 			startActivity(i);
+			getActivity().finish();
 		}
 	}
 

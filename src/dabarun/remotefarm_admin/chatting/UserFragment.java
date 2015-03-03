@@ -148,6 +148,7 @@ public class UserFragment extends Fragment {
 	                    Intent chat = new Intent(fa, ChatActivity.class);
 	                    chat.putExtra("INFO", args);
 	                    startActivity(chat);
+	                    getActivity().finish();
 	                }
 	            });
         	}

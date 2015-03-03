@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>	
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dabarun.remotefarm_admin"
     android:versionCode="1"
@@ -16,12 +16,15 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
 
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <permission
-        android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE"
+        android:name="com.google.android.c2dm.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -90,7 +93,7 @@
         <activity
             android:name=".main.TabActivity"
             android:label="@string/title_activity_tab"
-            android:launchMode="singleTask" >
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".main.DetailLogActivity"
@@ -98,8 +101,7 @@
         </activity>
         <activity
             android:name=".chatting.ChatActivity"
-            android:label="@string/title_activity_chat"
-             >
+            android:label="@string/title_activity_chat" >
         </activity>
     </application>
 
