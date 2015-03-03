@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical" >
+<!-- 
+    <TextView
+        android:id="@+id/list_cropseq"
+        android:layout_width="50dip"
+        android:layout_height="80dip"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:textSize="13pt" />
+-->
+    <TextView
+        android:id="@+id/list_request"
+        android:layout_width="150dip"
+        android:layout_height="80dip"
+        android:gravity="center"
+        android:textSize="9pt" />
+
+    <TextView
+        android:id="@+id/list_date"
+        android:layout_width="180dip"
+        android:layout_height="80dip"
+        android:layout_toRightOf="@id/list_request"
+        android:gravity="center"
+        android:textSize="10pt" />
+
+</RelativeLayout>

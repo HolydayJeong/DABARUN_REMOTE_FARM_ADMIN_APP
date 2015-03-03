@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/dabarun.remotefarm_admin"
+    android:id="@+id/TableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal|center_vertical" >
+
+        <TextView
+            android:id="@+id/text_land"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="text_land" />
+    </TableRow>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:minHeight="130dp" >
+
+        <ImageView
+            android:id="@+id/imageView_crop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView_plant_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView_crop"
+            android:layout_toRightOf="@+id/imageView_crop"
+            android:text="Text_plant_date" />
+
+        <TextView
+            android:id="@+id/textView_cropname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView_crop"
+            android:layout_centerHorizontal="true"
+            android:text="Text_cropname" />
+
+        <TextView
+            android:id="@+id/textView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cropname"
+            android:layout_alignBottom="@+id/textView_cropname"
+            android:layout_alignParentRight="true"
+            android:text="text_name" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:minHeight="100dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button_crop_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="onClickButton"
+            android:text="@string/button_text_select" />
+
+        <Button
+            android:id="@+id/button_give_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:onClick="onClickButton"
+            android:text="@string/button_text_water" />
+
+        <Button
+            android:id="@+id/button_levelup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button_give_water"
+            android:layout_below="@+id/button_give_water"
+            android:onClick="onClickButton"
+            android:text="@string/button_text_levelup" />
+
+        <Button
+            android:id="@+id/button_fertilize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_crop_select"
+            android:onClick="onClickButton"
+            android:text="@string/button_text_fertil" />
+
+        <Button
+            android:id="@+id/button_take_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/button_harvest"
+            android:onClick="onClickButton"
+            android:text="@string/button_text_take_photo" />
+
+        <Button
+            android:id="@+id/button_harvest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button_take_photo"
+            android:layout_alignParentTop="true"
+            android:onClick="onClickButton"
+            android:text="@string/button_text_harvest" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listview_user_log"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight = "1"
+        >
+    </ListView>
+
+</TableLayout>
