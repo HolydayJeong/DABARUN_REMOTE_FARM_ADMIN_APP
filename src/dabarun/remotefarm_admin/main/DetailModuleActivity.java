@@ -57,6 +57,7 @@ public class DetailModuleActivity extends Activity {
 	ListView userLogList;
 	
 	Button harvest;
+	Button takePhoto;
 	// JSON Node Namesㄴㄴ
 	private static final String RESULT = "result";
 	private static final String SEQ = "seq";
@@ -99,8 +100,21 @@ public class DetailModuleActivity extends Activity {
 		cropImage = (ImageView) findViewById(R.id.imageView_crop);
 		cropImage.setImageDrawable(getCropImg(extras.get(GlobalVariable.TYPE)));
 		
+		
+		//버튼 등록 그리고 수확하기(harverst) 버튼은 색상을 바꿈.
 		harvest = (Button)findViewById(R.id.button_harvest);
 		harvest.getBackground().setColorFilter(new LightingColorFilter(0x006666, 0xFF0000));
+		takePhoto = (Button)findViewById(R.id.button_take_photo);// 카메라 촬영 버튼 등록.
+		takePhoto.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(DetailModuleActivity.this, CameraMainActivity.class);                                                                                                                                             
+				startActivity(intent);
+			}
+		});
+		
 		buttonAddToArray();
 	}
 

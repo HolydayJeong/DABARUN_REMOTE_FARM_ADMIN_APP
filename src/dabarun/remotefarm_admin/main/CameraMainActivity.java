@@ -51,6 +51,7 @@ public class CameraMainActivity extends Activity implements OnClickListener {
 		mImageView = (ImageView) findViewById(R.id.imageview);
 
 		mTakePhoto.setOnClickListener(this);
+		takePhoto();
 	}
 
 	@Override
