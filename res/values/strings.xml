@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">다바른 농부용</string>
+    <string name="app_name">다바를 농부용</string>
     <string name="hello_world">로딩중입니다</string>
     <string name="action_settings">Settings</string>
     <string name="null_text">없음</string>

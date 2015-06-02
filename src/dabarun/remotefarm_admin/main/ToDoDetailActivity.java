@@ -4,7 +4,6 @@ package dabarun.remotefarm_admin.main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,8 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import dabarun.remotefarm_admin.R;
-import dabarun.remotefarm_admin.chatting.ChatActivity;
 
 import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;
@@ -56,18 +55,17 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
    Button Confirm;
    Button Cancel;
 
-   HttpResponse response;
-   HttpClient httpclient;
-   List<NameValuePair> nameValuePairs;
-   
-   SharedPreferences spf;
-   
-   int asyncNum = 0;
+    HttpResponse response;
+    HttpClient httpclient;
+    List<NameValuePair> nameValuePairs;
+    List<NameValuePair> params;
+    
+    SharedPreferences prefs;
     
    JSONArray android = null;
    
    String reqId = "";
-   static int req = 0;
+   int req = 0;
    int seq = 0;
    int reqTemp = 0;
    
@@ -89,7 +87,7 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_to_do_detail);
       
-      spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+      prefs = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
       
       image = (ImageView) findViewById(R.id.dodetail_landImage);
       poscrop = (TextView) findViewById(R.id.dodetail_poscrop); 
@@ -105,7 +103,6 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       
       Intent intent = getIntent();
       seq = Integer.parseInt(intent.getStringExtra("seq"));
-      req = Integer.parseInt(intent.getStringExtra("req"));
       
    }
    
@@ -124,21 +121,12 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
          .setNeutralButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-	             try{
-	            	 new GCMSend().execute();
-		             //finish();
-	             }catch(Exception e){
-                    	 e.printStackTrace();}               
+               try{
+                	 new GCMSend().execute();
+                	 finish();
+                 }catch(Exception e){e.printStackTrace();}
             } })
          .show();                     
-   }
-   
-   @Override
-   public void onBackPressed(){
-
-	   Intent intent = new Intent(ToDoDetailActivity.this, TabActivity.class);                                                                                                                                             
-	   startActivity(intent);
-	   finish();
    }
 
    @Override
@@ -217,7 +205,6 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
         
       @Override
       protected void onPostExecute(JSONObject json) {
-         int req = 0;
            pDialog.dismiss();
          try {
             // Getting JSON Array from URL
@@ -238,8 +225,10 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
          } catch (JSONException e) {
             e.printStackTrace();
          }
+         
         }
      }
+     
      private String getButtonText(int request)
    {
       String text ="";
@@ -268,66 +257,69 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
       }         
       return text;
    }
-	 private class GCMSend extends AsyncTask<String, String, JSONObject> {
-		 // GCM 보내기
-	
-	     @Override
-	     protected JSONObject doInBackground(String... args) {
-	    	 int isFinn = 0;
-	    	 JSONObject jObj = null;
-	    	 try{
-	             HttpClient client = new DefaultHttpClient();
-	             Log.d("test","ing");            
-	              try{
-	                ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
-	                nameValuePairs1.add(new BasicNameValuePair("seq", ""+seq));
-	                if(reqTemp > 10)
-	                	isFinn = 2;
-	                else if(reqTemp > 0)
-	                	isFinn = 1;
-	                 
-	                nameValuePairs1.add(new BasicNameValuePair("isFinn", ""+isFinn));
-	                Log.d("test","req send");
-	                
-	                HttpPost httpPost1 = new HttpPost(GlobalVariable.setReqFinn);         
-	                UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs1,"UTF-8");
-	                httpPost1.setEntity(entityRequest1);
-	                ResponseHandler<String> handler1 = new BasicResponseHandler();
-
-	                String result = client.execute(httpPost1, handler1);
-	                result = result.trim().toString();
-	                
-	                Log.d("test", "result1:"+result);
-	                
-	                if("success".equals(result))
-	                {
-	                	JSONParser json = new JSONParser();
-	               	 	List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-	                    params.add(new BasicNameValuePair("from", spf.getString("REG_FROM","")));
-	                    params.add(new BasicNameValuePair("fromn", spf.getString("FROM_NAME","")));
-	                    params.add(new BasicNameValuePair("to", reqId));
-	                    params.add((new BasicNameValuePair("msg",getButtonText(reqTemp))));
-	                    jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
-	                }
-	              }catch(Exception e){}               
-	          }catch(Exception e){}
-	    	 return jObj;	    	 
-	     }
-		@Override
-	     protected void onPostExecute(JSONObject json) {
-	         String res = null;
-	         try {
-	             res = json.getString("response");
-	             if(res.equals("Failure")){
-	                 Toast.makeText(getApplicationContext(),"The user has logged out. You cant send message anymore !",Toast.LENGTH_SHORT).show();
-	             }
-	             else
-	            	 Toast.makeText(getApplicationContext(),"전송했습니다",Toast.LENGTH_SHORT).show();
-	         } catch (JSONException e) {
-	             e.printStackTrace();
-	         }
-	     }
-	 }
+     
+     private class GCMSend extends AsyncTask<String, String, JSONObject> {
+    	 		 // GCM 보내기
+    	  	
+    	  	     @Override
+    	  	     protected JSONObject doInBackground(String... args) {
+    	  	    	 int isFinn = 0;
+    	  	    	 try{
+    	  	             HttpClient client = new DefaultHttpClient();
+    	  	             Log.d("test","ing");            
+    	  	              try{
+    	  	                ArrayList<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
+    	  	                nameValuePairs1.add(new BasicNameValuePair("seq", ""+seq));
+    	  	                if(reqTemp > 10)
+    	  	                	isFinn = 2;
+    	  	                else if(reqTemp > 0)
+    	  	                	isFinn = 1;
+    	  	                 
+    	  	                nameValuePairs1.add(new BasicNameValuePair("isFinn", ""+isFinn));
+    	  	                Log.d("test","req send");
+    	  	                
+    	  	                HttpPost httpPost1 = new HttpPost(GlobalVariable.setReqFinn);         
+    	  	                UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs1,"UTF-8");
+    	  	                httpPost1.setEntity(entityRequest1);
+    	  	                ResponseHandler<String> handler1 = new BasicResponseHandler();
+    	  
+    	  	                String result = client.execute(httpPost1, handler1);
+    	  	                result = result.trim().toString();
+    	  	                
+    	  	                Log.d("test", "result1:"+result);
+    	  	                
+    	  	                if("success".equals(result))
+    	  	                {
+    	  	                	JSONParser json = new JSONParser();
+    	  	               	 	List<NameValuePair> params = new ArrayList<NameValuePair>();
+    	  
+    	  	                    params.add(new BasicNameValuePair("from", prefs.getString("REG_FROM","")));
+    	  	                    params.add(new BasicNameValuePair("fromn", prefs.getString("FROM_NAME","")));
+    	  	                    params.add(new BasicNameValuePair("to", reqId));
+    	  	                    params.add((new BasicNameValuePair("msg",getButtonText(reqTemp))));
+    	 
+    	 	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
+    	 	                    
+    	 	       	         return jObj;
+    	  	                }
+    	  	              }catch(Exception e){e.printStackTrace();}               
+    	  	          }catch(Exception e){e.printStackTrace();}
+    	 	    	 return null;	    	 
+    	  	     }
+    	 	     @Override
+    	  	     protected void onPostExecute(JSONObject json) {
+    	  	         String res = null;
+    	  	         try {
+    	  	             res = json.getString("response");
+    	  	             if(res.equals("Failure")){
+    	  	                 Toast.makeText(getApplicationContext(),"The user has logged out. You cant send message anymore !",Toast.LENGTH_SHORT).show();
+    	  	             }
+    	 	             else
+    	 	            	 Toast.makeText(getApplicationContext(),"전송했습니다",Toast.LENGTH_SHORT).show();
+    	  	         } catch (JSONException e) {
+    	  	             e.printStackTrace();
+    	  	         }
+    	  	     }
+    	  	 }
 }
    

@@ -17,15 +17,9 @@ public class GlobalVariable {
 	public final static String getTotalLand = url + "getTotalLand.php";
 	public final static String getDetailLand = url + "getDetailLand.php";
 	public final static String getDoDetail = url + "getDoDetail.php";
-	
+
 	public final static String setReqFinn = url + "setReqFinn.php";
-	public final static String setDetailModule = url + "setDetailModule.php";
-
 	public final static String setPoint = url + "setPoint.php";
-	//////////////////////////////////////////////////////////////////
-	
-	public final static String chatUrl = "http://54.65.196.112:8000/";
-
 	// ///////////////////////////////////////////////////////////////
 	public final static String url1 = "http://211.39.253.201/Dabarun/";
 	public final static String push = "http://cra16.handong.edu/Dabarun/dragonflight/push_test.php";
@@ -35,6 +29,10 @@ public class GlobalVariable {
 	public final static String redIdSend = url1 + "push_insert.php";
 	public final static String userLog = "http://211.39.253.201/Dabarun/farmer/getRequestList.php";
 	// ////////////////////////////////////////////////////////////////
+	public final static String chatUrl = "http://54.65.196.112:8000/send";
+	
+	
+	///////////////////////////////////////////////////////////////////////
 	public final static String DABARUNFARMER = "DABARUNFARMER";
 	public final static String SPF_ID = "ID";
 	public final static String SPF_PW = "PW";
@@ -45,6 +43,7 @@ public class GlobalVariable {
 	// JSON Node Names
 	public static final String RESULT = "result";
 	public static final String SEQ = "seq";
+	public static final String CROPSEQ = "cropSeq";
 	public static final String REQUEST = "request";
 	public static final String ID = "id";
 	public static final String MODNUM = "modNum";
@@ -79,7 +78,7 @@ public class GlobalVariable {
 				crop = "딸기";
 				break;
 			case 2:
-				crop = "배추";
+				crop = "토마토";
 				break;
 			}
 		}

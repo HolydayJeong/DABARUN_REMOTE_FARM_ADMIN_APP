@@ -24,13 +24,10 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import dabarun.remotefarm_admin.R;
 
 
-import com.google.android.gcm.GCMRegistrar;
-
 import Variable.GlobalVariable;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,6 +39,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 public class LoginActivity extends Activity {
 
@@ -55,22 +54,18 @@ public class LoginActivity extends Activity {
     HttpClient httpclient;
     List<NameValuePair> nameValuePairs;
     ProgressDialog dialog = null;
-    SharedPreferences spf;
     
-    GoogleCloudMessaging gcm;
-    Context context;
-    
-    static String id;
+    public static String id;
      
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	Log.d("debug", "onCreate1");
     	super.onCreate(savedInstanceState);
+    	GCMRegistrar.unregister(this);
         setContentView(R.layout.activity_login_main);
         
-        context = getApplicationContext();
-        
+       
         Log.d("debug", "onCreate2");
         
         b = (Button)findViewById(R.id.Button01);  
@@ -78,11 +73,11 @@ public class LoginActivity extends Activity {
         pw_Edt = (EditText)findViewById(R.id.pw_Edt);
         tv = (TextView)findViewById(R.id.tv);
          
-      		spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+      		SharedPreferences spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
       		//session key value
       
-      		id = spf.getString(GlobalVariable.SPF_ID, "");
-      		if(!"".equals(id))
+      		id = ""+spf.getString(GlobalVariable.SPF_ID, "");
+      		if(id != null)
       		{
       			id_Edt.setText(id);
       			
@@ -162,6 +157,7 @@ public class LoginActivity extends Activity {
   		        		//when login is successful
   		        		if(!result1.equals("not_exist")){
   		        			registerGCM();
+  		        			Log.d("test", "register end");
 
   		        			SharedPreferences spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
   							SharedPreferences.Editor spfEdit = spf.edit();
@@ -173,38 +169,43 @@ public class LoginActivity extends Activity {
   		        			//Execute activity below
   		        			Intent intent = new Intent(LoginActivity.this, TabActivity.class);                                                                                                                                             
   							startActivity(intent);
-  		        		}	        		
+  		        		}
+  		        		else
+  		        			Toast.makeText(LoginActivity.this,"아이디 혹은 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show();
   	    			}catch(Exception e){
   	    				e.printStackTrace();
   	    			}					
   				}catch(Exception e){}				
   			return -1;
 
+
   		}
   	}
+  	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		GCMRegistrar.onDestroy(this);
+		super.onDestroy();
+	}
   		
   	/// 리팩토링 : 위에 부분을 나중에 밑에 집어넣어보자. 가능할거 같아. php 하나로 처리해서.
   	
   	public void registerGCM(){
-  		String regId = "";
-  		try{
-  				gcm = GoogleCloudMessaging.getInstance(context);
-                regId = gcm.register(GlobalVariable.SENDER_ID);
-                SharedPreferences.Editor edit = spf.edit();
-                edit.putString("REG_ID", regId);
-                edit.commit();
-  		}catch (IOException ex) {
-            Log.e("Error", ex.getMessage());
-        }
+		GCMRegistrar.checkDevice(this);		// 기기가 등록되었는지 확인.
+		GCMRegistrar.checkManifest(this);
+		final String regId = GCMRegistrar.getRegistrationId(this);
 		Log.d("test", "regId : "+regId);
 		if ("".equals(regId) || null == regId) {
 			Log.d("test", "regId check");
+			
+		  GCMRegistrar.register(this, GlobalVariable.PROJECT_ID);
 		} 
 		else {
 			Log.d("test", "Already registered");
 		}
 		HttpClient client = new DefaultHttpClient();
 		try{ 
+	
 			String result1;
 			Log.d("test","MainActivity id : "+id);
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

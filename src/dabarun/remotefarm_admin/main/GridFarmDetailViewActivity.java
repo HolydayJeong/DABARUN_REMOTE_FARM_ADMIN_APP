@@ -47,7 +47,6 @@ public class GridFarmDetailViewActivity extends Activity {
 	TextView id;
 	TextView modNum;
 	
-	private static final String CROPSEQ = "cropSeq";
 
 	// JSON Array
 	JSONArray jsonArray = null;
@@ -90,13 +89,6 @@ public class GridFarmDetailViewActivity extends Activity {
 
 		parsingCheck();
 	}
-	
-	@Override
-	   public void onBackPressed(){
-		   Intent intent = new Intent(GridFarmDetailViewActivity.this, TabActivity.class);                                                                                                                                             
-		   startActivity(intent);
-		   finish();
-	   }
 
 	// XML에 아래의 버튼들에 onclick = "onClickButton"을 해줌. 이제 그 버튼들을 클릭시
 	// 아래의 "onClickButton" 메서드가 실행됨. onClickListener 대신 사용함.
@@ -144,6 +136,7 @@ public class GridFarmDetailViewActivity extends Activity {
 			Intent intent2 = new Intent(GridFarmDetailViewActivity.this,
 					DetailModuleActivity.class);
 			intent2.putExtra("info", parsedInfoList.get(modNum));
+			intent2.putExtra("cropSeq", parsedInfoList.get(modNum).get(GlobalVariable.CROPSEQ));
 			intent2.putExtra("name", getIntent().getStringArrayListExtra("idAndName").get(1));
 			intent2.putExtra("id", getIntent().getStringArrayListExtra("idAndName").get(0));
 			startActivity(intent2);
@@ -162,7 +155,7 @@ public class GridFarmDetailViewActivity extends Activity {
 	protected void onResume() {
 		// buttonText를 가지고 parse 해야겠지?
 		super.onResume();
-		 parsingCheck();
+		// parsingCheck();
 	};
 
 	private void parsingCheck() {
@@ -201,11 +194,11 @@ public class GridFarmDetailViewActivity extends Activity {
 				jsonArray = json.getJSONArray(GlobalVariable.RESULT);
 				// oslist.clear();
 
-				for (int i = 0; i < jsonArray.length(); i++) {
+				for (int i = 0; i < 6; i++) {
 					JSONObject c = jsonArray.getJSONObject(i);
 					// Storing JSON item in a Variable
 					String seq = new String(String.valueOf(i + 1));
-					String cropSeq = c.getString(CROPSEQ);
+					String cropSeq = c.getString(GlobalVariable.CROPSEQ);
 					String type = c.getString(GlobalVariable.TYPE);
 					String startDate = c.getString(GlobalVariable.STARTDATE);
 					int modNum = Integer.parseInt(c
@@ -220,7 +213,7 @@ public class GridFarmDetailViewActivity extends Activity {
 						parsedInfoList.add(new HashMap<String, String>());
 					
 					parsedInfo.put(GlobalVariable.SEQ, seq);
-					parsedInfo.put(CROPSEQ, cropSeq);
+					parsedInfo.put(GlobalVariable.CROPSEQ, cropSeq);
 					parsedInfo.put(GlobalVariable.TYPE, type);
 					parsedInfo.put(GlobalVariable.STARTDATE, startDate);
 					parsedInfo.put(GlobalVariable.MODNUM,

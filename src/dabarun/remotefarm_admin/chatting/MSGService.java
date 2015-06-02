@@ -3,9 +3,13 @@ package dabarun.remotefarm_admin.chatting;
 
 //import android.R;
 
+
+
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import dabarun.remotefarm_admin.R;
+
+
 import Variable.GlobalVariable;
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -32,6 +36,7 @@ public class MSGService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+    	Log.d("test", "onHandleIntent in MSGService");
         Bundle extras = intent.getExtras();
         GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 
@@ -43,15 +48,16 @@ public class MSGService extends IntentService {
 
             if (GoogleCloudMessaging.
                     MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
-                Log.e("L2C","Error");
+                Log.e("TAG","Error");
 
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED.equals(messageType)) {
-                Log.e("L2C","Error");
+                Log.e("TAG","Error");
 
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
 
                 if(!prefs.getString("CURRENT_ACTIVE","").equals(extras.getString("fromu"))) {
                     sendNotification(extras.getString("msg"), extras.getString("fromu"), extras.getString("name"));
+                    Log.i("TAG", "CURRENT_ACTIVE not same");
                 }
                 Log.i("TAG", "Received: " + extras.getString("msg"));
             }
@@ -63,7 +69,7 @@ public class MSGService extends IntentService {
 
 
     private void sendNotification(String msg,String mobno,String name) {
-    	Log.d("test", "snedNotification in MSGService");
+
         Bundle args = new Bundle();
         args.putString("mobno", mobno);
         args.putString("name", name);
@@ -74,6 +80,7 @@ public class MSGService extends IntentService {
         notification.setContentTitle(name);
         notification.setContentText(msg);
         notification.setTicker("New Message !");
+        Log.d("test", "New Message!");
         notification.setSmallIcon(R.drawable.ic_launcher);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 1000, chat, PendingIntent.FLAG_CANCEL_CURRENT);

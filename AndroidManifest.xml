@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>	
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dabarun.remotefarm_admin"
     android:versionCode="1"
@@ -16,24 +16,13 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.CAMERA"/>
 
-	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <permission
-        android:name="com.google.android.c2dm.permission.C2D_MESSAGE"
+        android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE" />
 
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-  
-	<permission android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE"
-	    	    android:protectionLevel="signature" />
-	<uses-permission android:name="dabarun.remotefarm_admin.permission.C2D_MESSAGE" />
-    
     <application
         android:allowBackup="true"
         android:configChanges="orientation|screenSize|screenLayout"
@@ -46,7 +35,7 @@
             android:value="@integer/google_play_services_version" />
 
         <receiver
-            android:name="dabarun.remotefarm_admin.chatting.MSGReceiver"
+            android:name=".chatting.MSGReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -54,8 +43,9 @@
                 <category android:name="com.example.gcm" />
             </intent-filter>
         </receiver>
-        <service android:name="dabarun.remotefarm_admin.chatting.MSGService" />
-<!-- 
+
+        <service android:name=".chatting.MSGService" />
+ 
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -66,13 +56,19 @@
                 <category android:name="dabarun.remotefarm_admin" />
             </intent-filter>
         </receiver>
-        <!- GCM을 수신하기 위한 BroadcastReceiver ->
+        
+        <!-- GCM을 수신하기 위한 BroadcastReceiver -->
         <service android:name=".main.GCMIntentService" />
--->
+
         <activity
             android:name=".main.LoginActivity"
-		   
-		</activity>  
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".main.CameraMainActivity"
             android:label="@string/app_name" >
@@ -95,15 +91,14 @@
         </activity>
         <activity
             android:name=".main.TabActivity"
-            android:label="@string/title_activity_tab"
-            android:uiOptions="splitActionBarWhenNarrow" >
+            android:label="@string/title_activity_tab" >
         </activity>
         <activity
             android:name=".main.DetailLogActivity"
             android:label="@string/title_activity_detail_log" >
         </activity>
         <activity
-            android:name=".chatting.ChatActivity"
+            android:name="dabarun.remotefarm_admin.chatting.ChatActivity"
             android:label="@string/title_activity_chat" >
         </activity>
     </application>

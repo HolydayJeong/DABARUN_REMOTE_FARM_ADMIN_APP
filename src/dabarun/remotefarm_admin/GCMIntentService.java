@@ -23,6 +23,8 @@ import android.util.Log;
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
 
+import dabarun.remotefarm_admin.main.LoginActivity;
+
 public class GCMIntentService extends GCMBaseIntentService {
 	
 	public GCMIntentService(){ 

@@ -151,7 +151,6 @@ public class GridFarmViewFragment extends Fragment {
 					fa, GridFarmDetailViewActivity.class);
 			i.putExtra("idAndName", a);
 			startActivity(i);
-			getActivity().finish();
 		}
 	}
 
@@ -162,10 +161,17 @@ public class GridFarmViewFragment extends Fragment {
 	}
 
 	private class JSONParse extends AsyncTask<String, String, JSONObject> {
+		private ProgressDialog pDialog;
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+
+			pDialog = new ProgressDialog(fa);
+			pDialog.setMessage("Getting Data ...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(true);
+			pDialog.show();
 		}
 
 		@Override
@@ -183,13 +189,14 @@ public class GridFarmViewFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(JSONObject json) {
+			pDialog.dismiss();
 			try {
 				// Getting JSON Array from URL
 				jsonArray = json.getJSONArray(RESULT);
 				// oslist.clear();
 
 				if(jsonArray != null){
-					for (int i = 0; i < jsonArray.length(); i++) {
+					for (int i = 0; i < 6; i++) {
 						JSONObject c = jsonArray.getJSONObject(i);
 						// Storing JSON item in a Variable
 						String id = c.getString(ID);

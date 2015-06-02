@@ -18,6 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import dabarun.remotefarm_admin.main.LoginActivity;
+
 import Variable.GlobalVariable;
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
