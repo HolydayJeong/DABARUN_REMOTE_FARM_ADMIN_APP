@@ -17,7 +17,11 @@ public class GlobalVariable {
 	public final static String getTotalLand = url + "getTotalLand.php";
 	public final static String getDetailLand = url + "getDetailLand.php";
 	public final static String getDoDetail = url + "getDoDetail.php";
+	
+	public final static String insertRequest = url + "insertRequest.php";
 
+	public final static String setHarvest = url + "setHarvest.php";
+	public final static String setLevelUp = url + "setLevelUp.php";
 	public final static String setReqFinn = url + "setReqFinn.php";
 	public final static String setPoint = url + "setPoint.php";
 	// ///////////////////////////////////////////////////////////////

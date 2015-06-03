@@ -6,7 +6,17 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +27,9 @@ import dabarun.remotefarm_admin.R;
 
 import Variable.GlobalVariable;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
@@ -40,7 +52,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailModuleActivity extends Activity {
+public class DetailModuleActivity extends Activity implements View.OnClickListener {
 	private ArrayList<Button> gridButton = new ArrayList<Button>(); // 버튼 어레이
 	private ArrayList<String> buttonText = new ArrayList<String>(); // 버튼 텍스트를
 																	// 저장하는
@@ -56,8 +68,14 @@ public class DetailModuleActivity extends Activity {
 	ImageView cropImage;
 	ListView userLogList;
 	
-	Button harvest;
+	Button water, weed, fertilizer, levelup, harvest;
 	Button takePhoto;
+	
+	int req = 0;
+	int cmd = 0;	// 5 - 수확불가
+	String modNum1;
+	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+	
 	// JSON Node Namesㄴㄴ
 	private static final String RESULT = "result";
 	private static final String SEQ = "seq";
@@ -72,7 +90,8 @@ public class DetailModuleActivity extends Activity {
 	private static final String ISFINN = "isFinn";
 	private static final String STARTDATE = "startDate";
 	private static final String TYPE = "type";
-
+	
+	HttpPost httpPost1;
 	// JSON Array
 	JSONArray jsonArray = null;
 	// extra info from previous activity
@@ -88,6 +107,7 @@ public class DetailModuleActivity extends Activity {
 		// information.
 		intent = getIntent();
 		extras = (HashMap<String, String>) intent.getSerializableExtra("info");
+		modNum1 = extras.get(MODNUM);
 		name = (TextView) findViewById(R.id.textView_name);
 		name.setText(intent.getStringExtra("name"));
 		modNum = (TextView) findViewById(R.id.text_land);
@@ -102,7 +122,16 @@ public class DetailModuleActivity extends Activity {
 		
 		
 		//버튼 등록 그리고 수확하기(harverst) 버튼은 색상을 바꿈.
+		water = (Button)findViewById(R.id.button_give_water);
+		water.setOnClickListener(this);
+		weed = (Button)findViewById(R.id.button_remove_weed);
+		weed.setOnClickListener(this);
+		fertilizer = (Button)findViewById(R.id.button_fertilize);
+		fertilizer.setOnClickListener(this);
+		levelup = (Button)findViewById(R.id.button_levelup);
+		levelup.setOnClickListener(this);
 		harvest = (Button)findViewById(R.id.button_harvest);
+		harvest.setOnClickListener(this);
 		harvest.getBackground().setColorFilter(new LightingColorFilter(0x006666, 0xFF0000));
 		takePhoto = (Button)findViewById(R.id.button_take_photo);// 카메라 촬영 버튼 등록.
 		takePhoto.setOnClickListener(new OnClickListener() {
@@ -142,10 +171,63 @@ public class DetailModuleActivity extends Activity {
 
 	// XML에 아래의 버튼들에 onclick = "onClickButton"을 해줌. 이제 그 버튼들을 클릭시
 	// 아래의 "onClickButton" 메서드가 실행됨. onClickListener 대신 사용함.
-	public void onClickButton(View v) {
-		switch (v.getId()) {
-
+	@Override
+	public void onClick(View v) {
+		nameValuePairs.clear();
+		
+		if(v == takePhoto){
+				Intent intent1 = new Intent(DetailModuleActivity.this, CameraMainActivity.class); 
+				intent1.putExtra("id", intent.getStringExtra("id"));
+				startActivity(intent1);
 		}
+		
+		else if(v == harvest){
+			req = 5;
+			httpPost1 = new HttpPost(GlobalVariable.setHarvest);
+			nameValuePairs.add(new BasicNameValuePair("id", intent.getStringExtra("id")));
+		}
+		else if (v == levelup){
+			req = 4;
+			httpPost1 = new HttpPost(GlobalVariable.setLevelUp);
+			nameValuePairs.add(new BasicNameValuePair("id", intent.getStringExtra("id")));
+		}
+		else if (v == water){
+			req = 1;
+			httpPost1 = new HttpPost(GlobalVariable.insertRequest);
+			nameValuePairs.add(new BasicNameValuePair("id", intent.getStringExtra("id")));
+			nameValuePairs.add(new BasicNameValuePair("modNum", modNum1));
+			nameValuePairs.add(new BasicNameValuePair("request", String.valueOf(req)));
+		}
+		else if (v == weed){
+			req = 2;
+			httpPost1 = new HttpPost(GlobalVariable.insertRequest);
+			nameValuePairs.add(new BasicNameValuePair("id", intent.getStringExtra("id")));
+			nameValuePairs.add(new BasicNameValuePair("modNum", modNum1));
+			nameValuePairs.add(new BasicNameValuePair("request", String.valueOf(req)));
+		}
+		else if (v == fertilizer){
+			req = 3;
+			httpPost1 = new HttpPost(GlobalVariable.insertRequest);
+			nameValuePairs.add(new BasicNameValuePair("id", intent.getStringExtra("id")));
+			nameValuePairs.add(new BasicNameValuePair("modNum", modNum1));
+			nameValuePairs.add(new BasicNameValuePair("request", String.valueOf(req)));
+		}
+		
+		new AlertDialog.Builder(this)
+        .setTitle("확인")
+        .setMessage("확인을 누르면 \""+getButtonText(req)+"\" 알람을 보냅니다.")
+        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+           @Override
+           public void onClick(DialogInterface dialog, int which) {} })
+        .setNeutralButton("확인", new DialogInterface.OnClickListener() {
+           @Override
+           public void onClick(DialogInterface dialog, int which) {
+              try{
+               	 new GCMSend().execute();
+               	 
+                }catch(Exception e){e.printStackTrace();}
+           } })
+        .show();     
 	}
 
 	private void ExecuteToDoActivity() { // action menu에서 아이템 선택시 실행되는 펑션.
@@ -173,6 +255,35 @@ public class DetailModuleActivity extends Activity {
 	private void executeLogJSON() {
 		new UserLogJSON().execute();
 	}
+	
+	private void makeToast(String txt){
+		Toast.makeText(DetailModuleActivity.this, txt, Toast.LENGTH_SHORT).show();
+	}
+	
+	private String getButtonText(int request)
+	   {
+	      String text ="";
+	      
+	      switch(request)
+	      {
+	         case 1:
+	            text = "물을 줄 때가 되었습니다!";
+	            break;
+	         case 2:
+	            text = "비료를 줄 때가 되었습니다!";
+	            break;
+	         case 3:
+	            text = "잡초를 뽑을 때가 되었습니다!";
+	            break;
+	         case 4:
+	        	 text = "작물이 한 단계 성장 했습니다!";
+	        	 break;
+	         case 5:
+	        	 text = "작물이 수확되었습니다!";
+	        	 break;
+	      }         
+	      return text;
+	   }
 
 	private class UserLogJSON extends AsyncTask<String, String, JSONObject> {
 		private ProgressDialog pDialog;
@@ -320,5 +431,84 @@ public class DetailModuleActivity extends Activity {
 		}
 	}
 	// ////////////JSONParse 관련 1 끝
+	
+	private class GCMSend extends AsyncTask<String, String, JSONObject> {
+		 // GCM 보내기
+ 	
+ 	     @Override
+ 	     protected JSONObject doInBackground(String... args) {
+ 	    	 int isFinn = 0;
+ 	    	 try{
+ 	             HttpClient client = new DefaultHttpClient();
+ 	             Log.d("test","ing");            
+ 	              try{
+ 	                Log.d("test","req send");
+ 	                
+ 	                         
+ 	                UrlEncodedFormEntity entityRequest1 = new UrlEncodedFormEntity(nameValuePairs,"UTF-8");
+ 	                httpPost1.setEntity(entityRequest1);
+ 	                ResponseHandler<String> handler1 = new BasicResponseHandler();
+ 
+ 	                String result = client.execute(httpPost1, handler1);
+ 	                result = result.trim().toString();
+ 	                
+ 	                Log.d("test", "result1:"+result);
+ 	                
+ 	                if("success".equals(result))
+ 	                {
+ 	                	JSONParser json = new JSONParser();
+ 	               	 	List<NameValuePair> params = new ArrayList<NameValuePair>();
+ 
+ 	                    params.add(new BasicNameValuePair("from", ""));
+ 	                    params.add(new BasicNameValuePair("fromn", ""));
+ 	                    params.add(new BasicNameValuePair("to", intent.getStringExtra("id")));
+ 	                    params.add((new BasicNameValuePair("msg",getButtonText(req))));
+
+	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
+	                    cmd = 1;
+	       	         return jObj;
+ 	                }
+ 	                else if("requestExist".equals(result))
+ 	                	cmd = 4;
+ 	                else if("NotYet".equals(result))
+ 	                	cmd = 5;
+ 	              }catch(Exception e){e.printStackTrace();}               
+ 	          }catch(Exception e){e.printStackTrace();}
+	    	 return null;	    	 
+ 	     }
+	     @Override
+ 	     protected void onPostExecute(JSONObject json) {
+	    	 if(cmd == 1){
+	    		 makeToast("전송했습니다");
+	    		 Intent intent = new Intent(DetailModuleActivity.this, TabActivity.class);                                                                                                                                             
+				startActivity(intent);
+	    		 return;
+	    	 }
+	    	 else if(cmd == 4){
+	    		 makeToast("이미 요청을 하셨습니다");
+	    		 return;
+	    	 }
+	    	 else if(cmd == 5){
+	    		 makeToast("아직 충분한 단계가 아닙니다.\n레벨업을 먼저 해주세요");
+	    		 return;
+	    	 }
+	    	 
+ 	         String res = null;
+ 	         try {
+ 	        	 if(json != null){
+	 	        	 res = json.getString("response");
+	 	             if(res.equals("Failure")){
+	 	                 Toast.makeText(getApplicationContext(),"The user has logged out. You cant send message anymore !",Toast.LENGTH_SHORT).show();
+	 	             }
+		             else
+		            	 Toast.makeText(getApplicationContext(),"전송했습니다",Toast.LENGTH_SHORT).show();
+ 	        	 }
+ 	        	
+ 	         } catch (JSONException e) {
+ 	             e.printStackTrace();
+ 	         }
+ 	     }
+ 	 }
+
 
 }

@@ -69,12 +69,13 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button_crop_select"
+            android:id="@+id/button_remove_weed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="@string/button_text_select" />
+            android:textSize="5pt"
+            android:text="잡초제거권유" />
 
         <Button
             android:id="@+id/button_give_water"
@@ -96,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/button_crop_select"
+            android:layout_below="@+id/button_remove_weed"
             android:text="거름권유" />
 
         <Button

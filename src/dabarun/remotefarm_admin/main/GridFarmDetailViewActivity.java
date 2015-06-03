@@ -152,10 +152,10 @@ public class GridFarmDetailViewActivity extends Activity {
 
 	// ////////////JSONParse 관련 1 시작
 	@Override
-	protected void onResume() {
+	protected void onRestart() {
 		// buttonText를 가지고 parse 해야겠지?
-		super.onResume();
-		// parsingCheck();
+		super.onRestart();
+		
 	};
 
 	private void parsingCheck() {
@@ -228,6 +228,7 @@ public class GridFarmDetailViewActivity extends Activity {
 					// 여기에서 type 가지고 setText할 거임.
 
 				}
+				cancel(true);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
