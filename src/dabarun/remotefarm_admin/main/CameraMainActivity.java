@@ -19,6 +19,7 @@ import dabarun.remotefarm_admin.R;
 import Variable.GlobalVariable;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,12 +42,16 @@ public class CameraMainActivity extends Activity implements OnClickListener {
 	private Button mTakePhoto;
 	private ImageView mImageView;
 	private static final String TAG = "upload";
+	SharedPreferences spf;
+	Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera_main);
-
+		spf = getSharedPreferences(GlobalVariable.DABARUNFARMER, 0);
+		intent = getIntent();
+		
 		mTakePhoto = (Button) findViewById(R.id.take_photo);
 		mImageView = (ImageView) findViewById(R.id.imageview);
 
@@ -85,16 +90,16 @@ public class CameraMainActivity extends Activity implements OnClickListener {
 		Log.i(TAG, "onActivityResult: " + this);
 		if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
 			setPic();
-//			Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-//			if (bitmap != null) {
-//				mImageView.setImageBitmap(bitmap);
-//				try {
-//					sendPhoto(bitmap);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
+/*			Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+			if (bitmap != null) {
+				mImageView.setImageBitmap(bitmap);
+				try {
+					sendPhoto(bitmap);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}*/
 		}
 	}
 	
@@ -109,16 +114,16 @@ public class CameraMainActivity extends Activity implements OnClickListener {
 			
 			Bitmap bitmap = bitmaps[0];
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			//bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream); // convert Bitmap to ByteArrayOutputStream
+			bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream); // convert Bitmap to ByteArrayOutputStream
 			InputStream in = new ByteArrayInputStream(stream.toByteArray()); // convert ByteArrayOutputStream to ByteArrayInputStream
 
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			try {
 				HttpPost httppost = new HttpPost(
-						GlobalVariable.url + "savetofile.php"); // server
+						GlobalVariable.url + "savetofile.php?id="+intent.getStringExtra("id")); // server
 
 				CameraMultipartEntity reqEntity = new CameraMultipartEntity();
-				reqEntity.addPart("myFile",
+				reqEntity.addPart("myFile",spf.getString(GlobalVariable.SPF_ID,"")+
 						DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis())) 
 						 + ".jpg", in);
 				httppost.setEntity(reqEntity);

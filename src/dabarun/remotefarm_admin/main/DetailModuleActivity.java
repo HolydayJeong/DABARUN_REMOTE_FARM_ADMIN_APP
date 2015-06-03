@@ -110,8 +110,9 @@ public class DetailModuleActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(DetailModuleActivity.this, CameraMainActivity.class);                                                                                                                                             
-				startActivity(intent);
+				Intent intent1 = new Intent(DetailModuleActivity.this, CameraMainActivity.class); 
+				intent1.putExtra("id", intent.getStringExtra("id"));
+				startActivity(intent1);
 			}
 		});
 		

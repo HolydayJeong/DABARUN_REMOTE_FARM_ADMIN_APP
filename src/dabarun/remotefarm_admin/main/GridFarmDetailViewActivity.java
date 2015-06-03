@@ -194,7 +194,7 @@ public class GridFarmDetailViewActivity extends Activity {
 				jsonArray = json.getJSONArray(GlobalVariable.RESULT);
 				// oslist.clear();
 
-				for (int i = 0; i < 6; i++) {
+				for (int i = 0; i < 8; i++) {
 					JSONObject c = jsonArray.getJSONObject(i);
 					// Storing JSON item in a Variable
 					String seq = new String(String.valueOf(i + 1));
