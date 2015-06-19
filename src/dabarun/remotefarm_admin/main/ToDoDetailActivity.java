@@ -293,12 +293,12 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
     	  	                	JSONParser json = new JSONParser();
     	  	               	 	List<NameValuePair> params = new ArrayList<NameValuePair>();
     	  
-    	  	                    params.add(new BasicNameValuePair("from", prefs.getString("REG_FROM","")));
-    	  	                    params.add(new BasicNameValuePair("fromn", prefs.getString("FROM_NAME","")));
+    	  	                    params.add(new BasicNameValuePair("from", "farmer"));//prefs.getString("REG_FROM","")));
+    	  	                    params.add(new BasicNameValuePair("fromn", "farmer"));//prefs.getString("FROM_NAME","")));
     	  	                    params.add(new BasicNameValuePair("to", reqId));
     	  	                    params.add((new BasicNameValuePair("msg",getButtonText(reqTemp))));
     	 
-    	 	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
+    	 	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl ,params);
     	 	                    
     	 	       	         return jObj;
     	  	                }
@@ -316,6 +316,8 @@ public class ToDoDetailActivity extends ActionBarActivity implements View.OnClic
     	  	             }
     	 	             else
     	 	            	 Toast.makeText(getApplicationContext(),"전송했습니다",Toast.LENGTH_SHORT).show();
+    	  	             	Intent intent = new Intent(ToDoDetailActivity.this, TabActivity.class);                                                                                                                                             
+    	  	             	startActivity(intent);
     	  	         } catch (JSONException e) {
     	  	             e.printStackTrace();
     	  	         }

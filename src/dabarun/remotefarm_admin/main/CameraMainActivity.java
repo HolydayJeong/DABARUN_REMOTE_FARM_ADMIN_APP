@@ -128,11 +128,11 @@ public class CameraMainActivity extends Activity implements OnClickListener {
 						 + ".jpg", in);
 				httppost.setEntity(reqEntity);
 
-				Log.i(TAG, "request " + httppost.getRequestLine());
+				Log.i(TAG, "request1 " + httppost.getRequestLine());
 				HttpResponse response = null;
 				try {
 					response = httpclient.execute(httppost);
-					Log.i(TAG, "response " + response.toString());
+					Log.i(TAG, "response1 " + response.toString());
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

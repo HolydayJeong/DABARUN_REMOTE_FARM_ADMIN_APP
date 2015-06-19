@@ -270,10 +270,10 @@ public class DetailModuleActivity extends Activity implements View.OnClickListen
 	            text = "물을 줄 때가 되었습니다!";
 	            break;
 	         case 2:
-	            text = "비료를 줄 때가 되었습니다!";
+	            text = "잡초를 뽑을 때가 되었습니다!";
 	            break;
 	         case 3:
-	            text = "잡초를 뽑을 때가 되었습니다!";
+	            text = "비료를 줄 때가 되었습니다!";
 	            break;
 	         case 4:
 	        	 text = "작물이 한 단계 성장 했습니다!";
@@ -459,12 +459,12 @@ public class DetailModuleActivity extends Activity implements View.OnClickListen
  	                	JSONParser json = new JSONParser();
  	               	 	List<NameValuePair> params = new ArrayList<NameValuePair>();
  
- 	                    params.add(new BasicNameValuePair("from", ""));
- 	                    params.add(new BasicNameValuePair("fromn", ""));
+ 	                    params.add(new BasicNameValuePair("from", "farmer"));
+ 	                    params.add(new BasicNameValuePair("fromn", "farmer"));
  	                    params.add(new BasicNameValuePair("to", intent.getStringExtra("id")));
  	                    params.add((new BasicNameValuePair("msg",getButtonText(req))));
 
-	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl+"send" ,params);
+	                    JSONObject jObj = json.getJSONFromUrl(GlobalVariable.chatUrl ,params);
 	                    cmd = 1;
 	       	         return jObj;
  	                }

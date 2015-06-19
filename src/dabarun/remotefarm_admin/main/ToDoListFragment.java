@@ -102,6 +102,7 @@ public class ToDoListFragment extends Fragment {
    private void parsingCheck() {
       new JSONParse().execute();
    }
+   
 
    class JSONParse extends AsyncTask<String, String, JSONObject> {
       private ProgressDialog pDialog;
